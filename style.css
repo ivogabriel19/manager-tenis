@@ -1,0 +1,20 @@
+body{
+    background-color: navy;
+}
+
+.fondo {
+    background-image: url(./Imagenes/Reloj.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+}
+
+.partners {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 70px;
+}
+
+.letras {
+    color: yellow;
+}
