@@ -6,8 +6,7 @@
   <title>Simulador de Tenis</title>
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="./img/tenis.png" type="image/x-icon">
-  <script type="text/JavaScript" src="Js/Jugadores.js"></script>
-  <script type="text/JavaScript" src="Js/Simulador.js"></script>
+  <script type="module" src="./src/main.js"></script>
 </head>
 
 <body>
@@ -240,9 +239,9 @@
 
     <section class="marcador-container">
       <div class="controles-marcador">
-        <button onClick="modificarVelocidad(0)" value="Velocidad -">Velocidad -</button>
-        <button onClick="arrancar()" value="Comenzar partido">Comenzar partido</button>
-        <button onClick="modificarVelocidad(1)" value="+ Velocidad">+ Velocidad</button>
+        <button id="btnVelDw" value="Velocidad -">Velocidad -</button>
+        <button id="btnLaunch" value="Comenzar partido">Comenzar partido</button>
+        <button id="btnVelUp" value="+ Velocidad">+ Velocidad</button>
       </div>
 
       <div class="marcador">
@@ -288,7 +287,7 @@
       </div> -->
 
       <div class="cont-tiempo">
-        <span id="timet" class="reloj" valign="bottom"></span>
+        <span id="timet" class="reloj" valign="bottom">00:00</span>
         <div id="time" class="tiempo">
           <label>Tiempo</label>
         </div>
