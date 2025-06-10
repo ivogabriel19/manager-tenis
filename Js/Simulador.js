@@ -138,13 +138,13 @@
   {
 	  if(saq==1)
 	  {
-		  document.getElementById("s2").innerHTML="<center><img  src='./Imagenes/tenis.png'></center>";
+		  document.getElementById("s2").innerHTML="<center><img  src='./img/tenis.png'></center>";
 		  document.getElementById("s1").innerHTML="<center>&nbsp;</center>";
 		  saq=2;
 	  }
 	  else
 	  {
-		  document.getElementById("s1").innerHTML="<center><img  src='./Imagenes/tenis.png'></center>";
+		  document.getElementById("s1").innerHTML="<center><img  src='./img/tenis.png'></center>";
 		  document.getElementById("s2").innerHTML="<center>&nbsp;</center>";
 		  saq=1;
 	  }
@@ -212,55 +212,55 @@
 	  switch(tipo_p)
 	  {
 		case 0:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/Amistoso.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/Amistoso.png'></img>";
 			break;
 		case 1:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/JJOO.gif'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/jjoo.svg'></img>";
 			break;
 		case 2:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/Challenger90.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/challenger.png'></img>";
 			break;
 		case 3:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/ATP250.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/atp250.png'></img>";
 			break;
 		case 4:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/ATP500.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/atp500.png'></img>";
 			break;
 		case 5:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/ATP1000.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/atp1000.png'></img>";
 			break;
 		case 6:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/AustralianOpen.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/AO.png'></img>";
 			break;
 		case 7:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/RG.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/RG.png'></img>";
 			break;
 		case 8:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/WB.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/WB.png'></img>";
 			break;
 		case 9:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/USOpen.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/US.png'></img>";
 			break;
 		case 10:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/ATPFinals.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/atp-finals.svg'></img>";
 			break;
 		case 11:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/CopaDavis.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/davis.png'></img>";
 			break;
 		case 12:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/WTA.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/WTA.png'></img>";
 			break;
 		case 13:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/WTA.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/WTA.png'></img>";
 			break;
 		case 14:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/WTA.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/WTA.png'></img>";
 			break;
 		case 15:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/WTATour.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/WTATour.png'></img>";
 			break;
 		case 16:
-			document.getElementById("im_torneo").innerHTML="<img src='./Imagenes/FedCup.png'></img>";
+			document.getElementById("im_torneo").innerHTML="<img src='./img/torneos/FedCup.png'></img>";
 			break;
 	  }
 
@@ -970,14 +970,14 @@
 
   function calcularTiempo()
   {
-	<!--Previsiones: Soleado(0-80), Parcialmente nublado(81-90), Nublado(91-96), Posibles Chubascos(97-99), Chubascos(100)-->
+	//Previsiones: Soleado(0-80), Parcialmente nublado(81-90), Nublado(91-96), Posibles Chubascos(97-99), Chubascos(100)
 	rn = Math.round(Math.random()*100);
-	if(rn<81) document.getElementById("prev_tiempo").innerHTML="<img src='./Imagenes/Tiempo/soleado.png'></img>";
-	if(rn>80 && rn<91) document.getElementById("prev_tiempo").innerHTML="<img src='./Imagenes/Tiempo/parcnublado.png'></img>";
-	if(rn>90 && rn<97) document.getElementById("prev_tiempo").innerHTML="<img src='./Imagenes/Tiempo/nublado.png'></img>";
+	if(rn<81) document.getElementById("prev_tiempo").innerHTML="<img src='./img/tiempo/soleado.svg'></img>";
+	if(rn>80 && rn<91) document.getElementById("prev_tiempo").innerHTML="<img src='./img/tiempo/parcnublado.svg'></img>";
+	if(rn>90 && rn<97) document.getElementById("prev_tiempo").innerHTML="<img src='./img/tiempo/nublado.svg'></img>";
 	if(rn>96 && rn<100)
 	{
-		document.getElementById("prev_tiempo").innerHTML="<img src='./Imagenes/Tiempo/poschubascos.png'></img>";
+		document.getElementById("prev_tiempo").innerHTML="<img src='./img/tiempo/inestable.svg'></img>";
 		punto_lluvia = Math.round(Math.random()*100);
 		if(punto_lluvia < 81)
 		{
@@ -988,7 +988,7 @@
 	}
 	if(rn>99)
 	{
-		document.getElementById("prev_tiempo").innerHTML="<img src='./Imagenes/Tiempo/chubascos.png'></img>";
+		document.getElementById("prev_tiempo").innerHTML="<img src='./img/tiempo/lluvia.svg'></img>";
 		if(numberOfSets==3)puntosalto_lluvia=Math.floor(Math.random()* 299);
   		else if(numberOfSets==5)puntosalto_lluvia=Math.floor(Math.random()* 499);
 		lluvia=1;
@@ -1044,7 +1044,7 @@
 					sta_nueva = Math.round(Math.random()*2)+1;
 					cad = "un golpe en el codo";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + ") y a su resistencia(-" + sta_nueva +").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + ") y a su resistencia(-" + sta_nueva +").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1064,7 +1064,7 @@
 				{
 					cad = "un golpe en el codo";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1077,7 +1077,7 @@
 			if(cont > 95)
 			{
 				fm = Math.round(Math.random());
-				cad = "una contusión en la rodilla(-" + fm + " de forma) ";
+				cad = "una contusiï¿½n en la rodilla(-" + fm + " de forma) ";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
@@ -1087,9 +1087,9 @@
 			}
 			else
 			{
-				cad = "una leve contusión en la rodilla";
+				cad = "una leve contusiï¿½n en la rodilla";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  			mensaje=mensaje + "Esta lesión no ha afectado al jugador.";
+	  			mensaje=mensaje + "Esta lesiï¿½n no ha afectado al jugador.";
 	  			alert(mensaje);
 				lesion1=50;
 				lesion2=50;
@@ -1101,7 +1101,7 @@
 			if(cont > 95)
 			{
 				cad = "un hematoma(-1 de forma) al haber impactado la pelota en el brazo ";
-				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar, debido a que el fisioterapeuta ha creído que podría complicarse.\n";
+				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar, debido a que el fisioterapeuta ha creï¿½do que podrï¿½a complicarse.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
 				set1=6;
@@ -1118,7 +1118,7 @@
 					sta_nueva = Math.round(Math.random());
 					pow_nueva = Math.round(Math.random());
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + ") y a su resistencia(-" + sta_nueva +").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + ") y a su resistencia(-" + sta_nueva +").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1138,7 +1138,7 @@
 				{
 					cad = "un hematoma en la pierna";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado al jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado al jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1150,7 +1150,7 @@
 			cont = Math.round(Math.random()*100);
 			if(cont > 80)
 			{
-				cad = "una contusión al caer al suelo(-1 de forma) ";
+				cad = "una contusiï¿½n al caer al suelo(-1 de forma) ";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
@@ -1166,12 +1166,12 @@
 					opc2 = Math.round(Math.random()*2)+1;
 					if(opc2==1)
 					{
-						cad = "una contusión en el brazo al caer al suelo";
+						cad = "una contusiï¿½n en el brazo al caer al suelo";
 						pow_nueva = Math.round(Math.random()*2)+1;
 						fore_nueva = Math.round(Math.random()*2)+1;
 						back_nueva = Math.round(Math.random()*2)+1;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su potencia(-" + pow_nueva + "), a su drive(-" + fore_nueva +") y a su revés(-" + back_nueva + ").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su potencia(-" + pow_nueva + "), a su drive(-" + fore_nueva +") y a su revï¿½s(-" + back_nueva + ").";
 	  					alert(mensaje);
 						lesion1=50;
 						lesion2=50;
@@ -1191,11 +1191,11 @@
 					}
 					else
 					{
-						cad = "una contusión en la pierna al caer al suelo";
+						cad = "una contusiï¿½n en la pierna al caer al suelo";
 						sta_nueva = Math.round(Math.random()*2)+1;
 						spe_nueva = Math.round(Math.random()*2)+1;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + ") y a su resistencia(-" + sta_nueva +").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + ") y a su resistencia(-" + sta_nueva +").";
 	  					alert(mensaje);
 						lesion1=50;
 						lesion2=50;
@@ -1214,9 +1214,9 @@
 				}
 				else
 				{
-					cad = "una contusión al caer al suelo";
+					cad = "una contusiï¿½n al caer al suelo";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1228,7 +1228,7 @@
 			cont = Math.round(Math.random()*100);
 			if(cont > 80)
 			{
-				cad = "una sobrecarga en el bíceps(-2 de forma) ";
+				cad = "una sobrecarga en el bï¿½ceps(-2 de forma) ";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
@@ -1241,12 +1241,12 @@
 				afecta = Math.round(Math.random()*100);
 				if(afecta > 40)
 				{
-					cad = "una sobrecarga en el bíceps";
+					cad = "una sobrecarga en el bï¿½ceps";
 					pow_nueva = Math.round(Math.random()*2)+1;
 					fore_nueva = Math.round(Math.random()*2)+1;
 					back_nueva = Math.round(Math.random()*2)+1;
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su potencia(-" + pow_nueva + "), a su drive(-" + fore_nueva +") y a su revés(-" + back_nueva + ").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su potencia(-" + pow_nueva + "), a su drive(-" + fore_nueva +") y a su revï¿½s(-" + back_nueva + ").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1266,9 +1266,9 @@
 				}
 				else
 				{
-					cad = "una sobrecarga leve en el bíceps";
+					cad = "una sobrecarga leve en el bï¿½ceps";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1297,7 +1297,7 @@
 					spe_nueva = Math.round(Math.random()*2)+1;
 					sta_nueva = Math.round(Math.random()*2)+1;
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + ") y a su resistencia(-" + sta_nueva +").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + ") y a su resistencia(-" + sta_nueva +").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1315,9 +1315,9 @@
 				}
 				else
 				{
-					cad = "una sobrecarga leve en el bíceps";
+					cad = "una sobrecarga leve en el bï¿½ceps";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1329,7 +1329,7 @@
 			cont = Math.round(Math.random()*100);
 			if(cont > 80)
 			{
-				cad = "una contractura en el tríceps(-2 de forma) ";
+				cad = "una contractura en el trï¿½ceps(-2 de forma) ";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
@@ -1342,11 +1342,11 @@
 				afecta = Math.round(Math.random()*100);
 				if(afecta > 30)
 				{
-					cad = "una contractura en el tríceps";
+					cad = "una contractura en el trï¿½ceps";
 					spe_nueva = Math.round(Math.random()*2)+1;
 					sta_nueva = Math.round(Math.random()*2)+1;
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + ") y a su resistencia(-" + sta_nueva +").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + ") y a su resistencia(-" + sta_nueva +").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1364,9 +1364,9 @@
 				}
 				else
 				{
-					cad = "una contractura en el tríceps";
+					cad = "una contractura en el trï¿½ceps";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1397,7 +1397,7 @@
 						cad = "un esguince leve de tobillo";
 						spe_nueva = Math.round(Math.random()*2)+1;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + ").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + ").";
 	  					alert(mensaje);
 					}
 					if(opc2 > 81 && opc2 < 96)
@@ -1405,7 +1405,7 @@
 						cad = "un esguince moderado de tobillo";
 						spe_nueva = Math.round(Math.random()*3)+1;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + ").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + ").";
 	  					alert(mensaje);
 					}
 					if(opc2 > 95)
@@ -1413,7 +1413,7 @@
 						cad = "un esguince bastante fuerte de tobillo";
 						spe_nueva = Math.round(Math.random()*4)+2;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + " y, aunque bastante mermado, puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + ").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + ").";
 	  					alert(mensaje);
 					}
 					lesion1=50;
@@ -1432,7 +1432,7 @@
 				{
 					cad = "un esguince leve de tobillo";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1444,7 +1444,7 @@
 			cont = Math.round(Math.random()*100);
 			if(cont > 95)
 			{
-				cad = "un esguince grave de muñeca(-4 de forma) ";
+				cad = "un esguince grave de muï¿½eca(-4 de forma) ";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
@@ -1460,11 +1460,11 @@
 					opc2 = Math.round(Math.random()*100);
 					if(opc2 < 81)
 					{
-						cad = "un esguince leve de muñeca";
+						cad = "un esguince leve de muï¿½eca";
 						fore_nueva = Math.round(Math.random()*2)+1;
 						back_nueva = Math.round(Math.random()*2)+1;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su drive(-" + fore_nueva + ") y a su revés(-" + back_nueva + ").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su drive(-" + fore_nueva + ") y a su revï¿½s(-" + back_nueva + ").";
 	  					alert(mensaje);
 						if(nomb_p == nomb1)
 						{
@@ -1479,12 +1479,12 @@
 					}
 					if(opc2 > 81 && opc2 < 96)
 					{
-						cad = "un esguince moderado de muñeca";
+						cad = "un esguince moderado de muï¿½eca";
 						fore_nueva = Math.round(Math.random()*3)+1;
 						back_nueva = Math.round(Math.random()*3)+1;
 						ser_nueva = Math.round(Math.random()*2)+1;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su drive(-" + fore_nueva + "), a su revés(-" + back_nueva + ") y a su servicio(-" + ser_nueva + ").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su drive(-" + fore_nueva + "), a su revï¿½s(-" + back_nueva + ") y a su servicio(-" + ser_nueva + ").";
 	  					alert(mensaje);
 						if(nomb_p == nomb1)
 						{
@@ -1501,14 +1501,14 @@
 					}
 					if(opc2 > 95)
 					{
-						cad = "un esguince bastante fuerte de muñeca";
+						cad = "un esguince bastante fuerte de muï¿½eca";
 						fore_nueva = Math.round(Math.random()*4)+2;
 						back_nueva = Math.round(Math.random()*4)+2;
 						vol_nueva = Math.round(Math.random()*2)+1;
 						drop_nueva = Math.round(Math.random()*2)+1;
 						ser_nueva = Math.round(Math.random()*3)+1;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + " y, aunque bastante mermado, puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su drive(-" + fore_nueva + "), a su revés(-" + back_nueva + "), a su servicio(-" + ser_nueva + "), a su volea(-" + vol_nueva + ") y a su dejada(-" + drop_nueva + ").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su drive(-" + fore_nueva + "), a su revï¿½s(-" + back_nueva + "), a su servicio(-" + ser_nueva + "), a su volea(-" + vol_nueva + ") y a su dejada(-" + drop_nueva + ").";
 	  					alert(mensaje);
 						if(nomb_p == nomb1)
 						{
@@ -1533,9 +1533,9 @@
 				}
 				else
 				{
-					cad = "un esguince leve de muñeca";
+					cad = "un esguince leve de muï¿½eca";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1567,7 +1567,7 @@
 						spe_nueva = Math.round(Math.random()*2)+1;
 						rest_nueva = Math.round(Math.random()*2)+1;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + ") y a su resto(-" + rest_nueva + ").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + ") y a su resto(-" + rest_nueva + ").";
 	  					alert(mensaje);
 						if(nomb_p == nomb1)
 						{
@@ -1587,7 +1587,7 @@
 						rest_nueva = Math.round(Math.random()*3)+1;
 						sta_nueva = Math.round(Math.random()*2)+1;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + "), a su resto(-" + rest_nueva + ") y a su resistencia(-" + sta_nueva + ").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + "), a su resto(-" + rest_nueva + ") y a su resistencia(-" + sta_nueva + ").";
 	  					alert(mensaje);
 						if(nomb_p == nomb1)
 						{
@@ -1610,7 +1610,7 @@
 						sta_nueva = Math.round(Math.random()*4)+2;
 						pow_nueva = Math.round(Math.random()*2)+1;
 						mensaje="El jugador " + nomb_p + " ha sufrido " + cad + " y, aunque bastante mermado, puede continuar.\n";
-	  					mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + "), a su resto(-" + rest_nueva + "), a su resistencia(-" + sta_nueva + ") y a su potencia(-" + pow_nueva + ").";
+	  					mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + "), a su resto(-" + rest_nueva + "), a su resistencia(-" + sta_nueva + ") y a su potencia(-" + pow_nueva + ").";
 	  					alert(mensaje);
 						if(nomb_p == nomb1)
 						{
@@ -1635,7 +1635,7 @@
 				{
 					cad = "un esguince leve del ligamento lateral interno";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1647,7 +1647,7 @@
 			cont = Math.round(Math.random()*100);
 			if(cont > 90)
 			{
-				cad = "un tirón en el bíceps(-2 de forma) ";
+				cad = "un tirï¿½n en el bï¿½ceps(-2 de forma) ";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
@@ -1660,11 +1660,11 @@
 				afecta = Math.round(Math.random()*100);
 				if(afecta > 40)
 				{
-					cad = "un tirón en el bíceps";
+					cad = "un tirï¿½n en el bï¿½ceps";
 					ser_nueva = Math.round(Math.random()*2)+1;
 					rest_nueva = Math.round(Math.random()*2)+1;
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su servicio(-" + ser_nueva + ") y a su resto(-" + rest_nueva +").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su servicio(-" + ser_nueva + ") y a su resto(-" + rest_nueva +").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1682,9 +1682,9 @@
 				}
 				else
 				{
-					cad = "un tirón leve en el bíceps";
+					cad = "un tirï¿½n leve en el bï¿½ceps";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1696,7 +1696,7 @@
 			cont = Math.round(Math.random()*100);
 			if(cont > 90)
 			{
-				cad = "una subluxación de muñeca(-2 de forma) ";
+				cad = "una subluxaciï¿½n de muï¿½eca(-2 de forma) ";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
@@ -1709,11 +1709,11 @@
 				afecta = Math.round(Math.random()*100);
 				if(afecta > 50)
 				{
-					cad = "una subluxación de muñeca";
+					cad = "una subluxaciï¿½n de muï¿½eca";
 					ser_nueva = Math.round(Math.random()*2)+1;
 					drop_nueva = Math.round(Math.random()*2)+1;
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su servicio(-" + ser_nueva + ") y a su dejada(-" + drop_nueva +").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su servicio(-" + ser_nueva + ") y a su dejada(-" + drop_nueva +").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1731,9 +1731,9 @@
 				}
 				else
 				{
-					cad = "una subluxación leve de muñeca";
+					cad = "una subluxaciï¿½n leve de muï¿½eca";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1763,7 +1763,7 @@
 					fore_nueva = Math.round(Math.random()*2)+1;
 					back_nueva = Math.round(Math.random()*2)+1;
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su resistencia(-" + sta_nueva + "), a su drive(-" + fore_nueva +") y a su revés(-" + back_nueva + ").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su resistencia(-" + sta_nueva + "), a su drive(-" + fore_nueva +") y a su revï¿½s(-" + back_nueva + ").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1783,9 +1783,9 @@
 				}
 				else
 				{
-					cad = "una pequeña lumbalgia";
+					cad = "una pequeï¿½a lumbalgia";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1797,7 +1797,7 @@
 			cont = Math.round(Math.random()*100);
 			if(cont > 70)
 			{
-				cad = "una luxación grave de la rótula(-3 de forma) ";
+				cad = "una luxaciï¿½n grave de la rï¿½tula(-3 de forma) ";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
@@ -1810,10 +1810,10 @@
 				afecta = Math.round(Math.random()*100);
 				if(afecta > 10)
 				{
-					cad = "una luxación leve de la rótula";
+					cad = "una luxaciï¿½n leve de la rï¿½tula";
 					spe_nueva = Math.round(Math.random()*3)+1;
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su velocidad(-" + spe_nueva + ").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su velocidad(-" + spe_nueva + ").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1829,9 +1829,9 @@
 				}
 				else
 				{
-					cad = "una luxación muy leve de la rótula";
+					cad = "una luxaciï¿½n muy leve de la rï¿½tula";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1843,7 +1843,7 @@
 			cont = Math.round(Math.random()*100);
 			if(cont > 70)
 			{
-				cad = "una luxación grave de hombro(-3 de forma) ";
+				cad = "una luxaciï¿½n grave de hombro(-3 de forma) ";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
@@ -1856,13 +1856,13 @@
 				afecta = Math.round(Math.random()*100);
 				if(afecta > 10)
 				{
-					cad = "una luxación leve de hombro";
+					cad = "una luxaciï¿½n leve de hombro";
 					fore_nueva = Math.round(Math.random()*3)+1;
 					back_nueva = Math.round(Math.random()*3)+1;
 					vol_nueva = Math.round(Math.random()*3)+1;
 					drop_nueva = Math.round(Math.random()*3)+1;
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su drive(-" + fore_nueva + "), a su revés(-" + back_nueva + "), a su volea(-" + vol_nueva + ") y a su dejada(-" + drop_nueva + ").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su drive(-" + fore_nueva + "), a su revï¿½s(-" + back_nueva + "), a su volea(-" + vol_nueva + ") y a su dejada(-" + drop_nueva + ").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1884,9 +1884,9 @@
 				}
 				else
 				{
-					cad = "una luxación muy leve de hombro";
+					cad = "una luxaciï¿½n muy leve de hombro";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1916,7 +1916,7 @@
 					back_nueva = Math.round(Math.random()*3)+1;
 					rest_nueva = Math.round(Math.random()*2)+1;
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su drive(-" + fore_nueva + "), a su revés(-" + back_nueva + ") y a su resto(-" + rest_nueva + ").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su drive(-" + fore_nueva + "), a su revï¿½s(-" + back_nueva + ") y a su resto(-" + rest_nueva + ").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1938,7 +1938,7 @@
 				{
 					cad = "un latigazo cervical muy leve";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1950,7 +1950,7 @@
 			cont = Math.round(Math.random()*100);
 			if(cont > 80)
 			{
-				cad = "una distensión del recto anterior(-3 de forma) ";
+				cad = "una distensiï¿½n del recto anterior(-3 de forma) ";
 				mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  			mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  			alert(mensaje);
@@ -1963,13 +1963,13 @@
 				afecta = Math.round(Math.random()*100);
 				if(afecta > 10)
 				{
-					cad = "una leve distensión del recto anterior";
+					cad = "una leve distensiï¿½n del recto anterior";
 					fore_nueva = Math.round(Math.random()*3)+1;
 					back_nueva = Math.round(Math.random()*3)+1;
 					rest_nueva = Math.round(Math.random()*2)+1;
 					vol_nueva = Math.round(Math.random()*2)+1;
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión ha afectado a su drive(-" + fore_nueva + "), a su revés(-" + back_nueva + "), a su resto(-" + rest_nueva + ") y a su volea(-" + vol_nueva + ").";
+	  				mensaje=mensaje + "Esta lesiï¿½n ha afectado a su drive(-" + fore_nueva + "), a su revï¿½s(-" + back_nueva + "), a su resto(-" + rest_nueva + ") y a su volea(-" + vol_nueva + ").";
 	  				alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -1991,9 +1991,9 @@
 				}
 				else
 				{
-					cad = "una distensión muy leve del recto anterior";
+					cad = "una distensiï¿½n muy leve del recto anterior";
 					mensaje="El jugador " + nomb_p + " ha sufrido " + cad + ", pero puede continuar.\n";
-	  				mensaje=mensaje + "Esta lesión no ha afectado  jugador.";
+	  				mensaje=mensaje + "Esta lesiï¿½n no ha afectado  jugador.";
 					alert(mensaje);
 					lesion1=50;
 					lesion2=50;
@@ -2020,7 +2020,7 @@
 			return;
 			break;
 		case 19:
-			cad = "una microrrotura en el cuádriceps(-4 de forma) ";
+			cad = "una microrrotura en el cuï¿½driceps(-4 de forma) ";
 			mensaje="El jugador " + nomb_p + " ha sufrido " + cad + "y no puede continuar.\n";
 	  		mensaje=mensaje + "Se declara como ganador a " + nomb_g;
 	  		alert(mensaje);

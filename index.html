@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Simulador de Tenis</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="./img/tenis.png" type="image/x-icon">
+  <script type="text/JavaScript" src="Js/Jugadores.js"></script>
+  <script type="text/JavaScript" src="Js/Simulador.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="logo"></div>
+    <h4 class="titulo">managerdetenis.foroactivo.com</h4>
+  </header>
+
+  <main>
+    <div class="data-container">
+      <h2>Jugadores</h2>
+      <section class="player-section">
+        <div class="player-form">
+          <!-- Jugador 1 -->
+          <div class="player-column">
+            <h4>Jugador 1</h4>
+            <label>Nombre
+              <div class="player-select">
+                <input id="MenosRaquetaJugador1" value="+" type="button" style="visibility:hidden"
+                  onClick="AniadirRaqueta('1')"></input>
+                <select name="jugador1" id="jugador1" onChange="cargarCaracteristicas('1')">
+                  <option>--------HOMBRES--------</option>
+                </select>
+              </div>
+            </label>
+            <label>Derecha <select name="forehand1" id="forehand1" class="skill-select"></select></label>
+            <label>Revés <select name="backhand1" id="backhand1" class="skill-select"></select></label>
+            <label>Volea <select name="volley1" id="volley1" class="skill-select"></select></label>
+            <label>Dejada <select name="dropshot1" id="dropshot1" class="skill-select"></select></label>
+            <label>Velocidad <select name="speed1" id="speed1" class="skill-select"></select></label>
+            <label>Resistencia <select name="stamina1" id="stamina1" class="skill-select"></select></label>
+            <label>Servicio <select name="service1" id="service1" class="skill-select"></select></label>
+            <label>Potencia <select name="power1" id="power1" class="skill-select"></select></label>
+            <label>Resto <select name="resto1" id="resto1" class="skill-select"></select></label>
+            <label>Consistencia <select name="consistencia1" id="consistencia1" class="skill-select"></select></label>
+            <label>Forma <select name="form1" id="form1" class="skill-select"></select></label>
+            <label>Superficie
+              <select name="surface1" id="surface1">
+                <option selected="selected" value="carpet">Indoor</option>
+                <option value="clay">Tierra</option>
+                <option value="grass">Hierba</option>
+                <option value="hardcourt">Dura</option>
+                <option value="neutral">Neutral</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Jugador 2 -->
+          <div class="player-column">
+            <h4>Jugador 2</h4>
+            <label>Nombre
+              <div class="player-select">
+                <input id="MenosRaquetaJugador2" value="+" type="button" style="visibility:hidden"
+                  onClick="AniadirRaqueta('1')"></input>
+                <select name="jugador2" id="jugador2" onChange="cargarCaracteristicas('2')">
+                  <option>--------HOMBRES--------</option>
+                </select>
+              </div>
+            </label>
+            <label>Derecha <select name="forehand2" id="forehand2" class="skill-select"></select></label>
+            <label>Revés <select name="backhand2" id="backhand2" class="skill-select"></select></label>
+            <label>Volea <select name="volley2" id="volley2" class="skill-select"></select></label>
+            <label>Dejada <select name="dropshot2" id="dropshot2" class="skill-select"></select></label>
+            <label>Velocidad <select name="speed2" id="speed2" class="skill-select"></select></label>
+            <label>Resistencia <select name="stamina2" id="stamina2" class="skill-select"></select></label>
+            <label>Servicio <select name="service2" id="service2" class="skill-select"></select></label>
+            <label>Potencia <select name="power2" id="power2" class="skill-select"></select></label>
+            <label>Resto <select name="resto2" id="resto2" class="skill-select"></select></label>
+            <label>Consistencia <select name="consistencia2" id="consistencia2" class="skill-select"></select></label>
+            <label>Forma <select name="form2" id="form2" class="skill-select"></select></label>
+            <label>Superficie
+              <select name="surface2" id="surface2">
+                <option selected="selected" value="carpet">Indoor</option>
+                <option value="clay">Tierra</option>
+                <option value="grass">Hierba</option>
+                <option value="hardcourt">Dura</option>
+                <option value="neutral">Neutral</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <h2>Tácticas</h2>
+      <section class="tactics-section">
+        <div class="tactics-form">
+          <!-- Jugador 1 -->
+          <div class="player-column">
+            <label>Técnica
+              <select id="technique1">
+                <option value="1">Colocar la pelota (Arriesgar)</option>
+                <option selected="selected" value="0">Mantener bola en pista (Sin riesgo)</option>
+              </select>
+            </label>
+            <label>Posición
+              <select id="position1">
+                <option value="1">Subir a la red</option>
+                <option selected="selected" value="2">Jugar en el fondo</option>
+              </select>
+            </label>
+            <label>Estrategia
+              <select id="strategy1">
+                <option selected="selected" value="1">Jugarle a la derecha</option>
+                <option value="2">Jugarle al rev�s</option>
+              </select>
+            </label>
+            <label>1º Serv.
+              <select id="first1">
+                <option value="1">Arriesgar</option>
+                <option value="2">Riesgo moderado</option>
+                <option selected="selected" value="3">Asegurar</option>
+              </select>
+            </label>
+            <label>2º Serv.
+              <select id="second1">
+                <option value="1">Arriesgar</option>
+                <option value="2">Riesgo moderado</option>
+                <option selected="selected" value="3">Asegurar</option>
+              </select>
+            </label>
+          </div>
+          <!-- Jugador 2 -->
+          <div class="player-column">
+            <label>Técnica
+              <select id="technique2">
+                <option value="1">Colocar la pelota (Arriesgar)</option>
+                <option selected="selected" value="0">Mantener bola en pista (Sin riesgo)</option>
+              </select>
+            </label>
+            <label>Posición
+              <select id="position2">
+                <option value="1">Subir a la red</option>
+                <option selected="selected" value="2">Jugar en el fondo</option>
+              </select>
+            </label>
+            <label>Estrategia
+              <select id="strategy2">
+                <option selected="selected" value="1">Jugarle a la derecha</option>
+                <option value="2">Jugarle al rev�s</option>
+              </select>
+            </label>
+            <label>1º Serv.
+              <select id="first2">
+                <option value="1">Arriesgar</option>
+                <option value="2">Riesgo moderado</option>
+                <option selected="selected" value="3">Asegurar</option>
+              </select>
+            </label>
+            <label>2º Serv.
+              <select id="second2">
+                <option value="1">Arriesgar</option>
+                <option value="2">Riesgo moderado</option>
+                <option selected="selected" value="3">Asegurar</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <h2>Partido</h2>
+      <section class="match-settings">
+        <!-- Superficie del partido -->
+        <form name="MatchSurface">
+          <fieldset>
+            <legend>Superficie del partido</legend>
+            <!-- <div class="radio-group">
+            <label><input name="surface" id="surface" value="carpet" type="radio">Indoor</label>
+            <label><input name="surface" id="surface" value="clay" type="radio">Tierra</label>
+            <label><input name="surface" id="surface" value="grass" type="radio">Hierba</label>
+            <label><input name="surface" id="surface" value="hardcourt" type="radio">Dura</label>
+            <label><input name="surface" id="surface" value="neutral" checked type="radio">Neutral</label>
+          </div> -->
+            <select name="surface" id="">
+              <option value="carpet">Indoor</option>
+              <option value="clay">Tierra</option>
+              <option value="grass">Hierba</option>
+              <option value="hardcourt">Dura</option>
+              <option value="neutral" selected>Neutral</option>
+            </select>
+          </fieldset>
+        </form>
+
+        <!-- Número de sets -->
+        <form name="setsNumber">
+          <fieldset>
+            <legend>Número de sets del partido</legend>
+            <div class="radio-group">
+              <label><input name="setsNum" id="setsNum" value="3" type="radio" checked="checked">3 sets</label>
+              <label><input name="setsNum" id="setsNum" value="5" type="radio">5 sets</label>
+            </div>
+          </fieldset>
+        </form>
+
+        <!-- Tipo de partido -->
+        <fieldset>
+          <legend>Tipo de partido</legend>
+          <select id="mType" onchange="CambiarNumSets(this.options[this.selectedIndex].value);">
+            <option selected="selected" value="0">Exhibici�n</option>
+            <option value="1">Future</option>
+            <option value="2">Challenger</option>
+            <option value="3">ATP 250</option>
+            <option value="4">ATP 500</option>
+            <option value="5">ATP 1000</option>
+            <option value="6">GS (Australian Open)</option>
+            <option value="7">GS (Roland Garros)</option>
+            <option value="8">GS (Wimbledon)</option>
+            <option value="9">GS (US Open)</option>
+            <option value="10">ATP WTFinals</option>
+            <option value="11">Copa Davis</option>
+            <option value="12">WTA Challenger</option>
+            <option value="13">WTA International</option>
+            <option value="14">WTA Premier</option>
+            <option value="15">WTA GS & Tour</option>
+            <option value="16">WTA Fed Cup</option>
+          </select>
+        </fieldset>
+      </section>
+    </div>
+
+    <script>// Generar automáticamente valores del 1 al 10 en los select de habilidades
+      document.querySelectorAll('.skill-select').forEach(select => {
+        for (let i = 1; i <= 10; i++) {
+          const option = document.createElement('option');
+          option.value = i;
+          option.textContent = i;
+          select.appendChild(option);
+        }
+      });
+    </script>
+
+    <section class="marcador-container">
+      <div class="controles-marcador">
+        <button onClick="modificarVelocidad(0)" value="Velocidad -">Velocidad -</button>
+        <button onClick="arrancar()" value="Comenzar partido">Comenzar partido</button>
+        <button onClick="modificarVelocidad(1)" value="+ Velocidad">+ Velocidad</button>
+      </div>
+
+      <div class="marcador">
+        <div class="logo-torneo" id="im_torneo"><img src="./img/torneos/default-atp.png" alt=""></div>
+        <h6 class="scoreboard">Scoreboard</h6>
+        <div class="img-jugador img-jugador1"><img id="im_jug1" src="./img/jugadores/default-avatar.jpg" alt=""></div>
+        <div class="nombre jugador1" id="res1"></div>
+        <div class="img-jugador img-jugador2"><img id="im_jug2" src="./img/jugadores/default-avatar.jpg" alt=""></div>
+        <div class="nombre jugador2" id="res2"></div>
+
+        <div class="puntos-saque celda-saque"><!--dummy--></div>
+        <div class="puntos-encabezado">1</div>
+        <div class="puntos-encabezado alt">2</div>
+        <div class="puntos-encabezado">3</div>
+        <div class="puntos-encabezado alt">4</div>
+        <div class="puntos-encabezado">5</div>
+        <div class="puntos-encabezado juego" id="tie">Juego</div>
+
+        <!-- Jugador 1 -->
+        <div id="s1" class="celda-saque"></div>
+        <div id="set11" class="celda-set">-</div>
+        <div id="set12" class="celda-set alt">-</div>
+        <div id="set13" class="celda-set">-</div>
+        <div id="set14" class="celda-set alt">-</div>
+        <div id="set15" class="celda-set">-</div>
+        <div id="game1" class="celda-juego juego"></div>
+
+        <!-- Jugador 2 -->
+        <div id="s2" class="celda-saque"></div>
+        <div id="set21" class="celda-set">-</div>
+        <div id="set22" class="celda-set alt">-</div>
+        <div id="set23" class="celda-set">-</div>
+        <div id="set24" class="celda-set alt">-</div>
+        <div id="set25" class="celda-set">-</div>
+        <div id="game2" class="celda-juego juego"></div>
+      </div>
+
+      <!-- <div class="partners">
+      <span>Official Partners</span>
+        <div background="./Imagenes/SA.jpg" class="partners"></div>
+        <div background="./Imagenes/Coronita.png" class="partners"></div>
+        <div background="./Imagenes/Fedex.jpg" class="partners"></div>	
+      </div> -->
+
+      <div class="cont-tiempo">
+        <span id="timet" class="reloj" valign="bottom"></span>
+        <div id="time" class="tiempo">
+          <label>Tiempo</label>
+        </div>
+        <div class="prev_tiempo" id="prev_tiempo"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="site-info">
+      <span>Version 4</span>
+      <span>© 2025 managerdetenis.foroactivo.com</span>
+    </div>
+
+    <div class="developer-info">
+      <span>Desarrollado por <a href="https://github.com/ivogabriel19">@ivogabriel19</a></span>
+    </div>
+  </footer>
+</body>
+
+</html>
