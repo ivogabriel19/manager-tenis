@@ -1,14 +1,15 @@
 import { getPlayers, setGameStart, cambioSaque } from "./utils/interact.js";
-import {} from "./utils/game.js";
+import { } from "./utils/game.js";
 
-function launch() {
+function launch() { //Terminado refactoreo
+  console.log("Entre a launch()");
   let { player1, player2, tactic1, tactic2 } = getPlayers();
   setGameStart(player1.name1, player2.name2);
   boostSkills(player1, player2, tactic1, tactic2);
 
   /* Seteo el saque */
-  let saq = Math.round(Math.random() * 10) + 1;
-  saq = cambioSaque(saq);
+  //let saq = Math.round(Math.random() * 10) + 1;
+  //saq = cambioSaque(saq);
 
   let gameState = {
     punto1: 0,
@@ -34,12 +35,15 @@ function launch() {
     tiempo: 0,
     puntosJugados: 0,
     puntoLesion: 999, //no deberia llegar al 999
+    saq: Math.round(Math.random() * 10) + 1, //FIXME: x10?
     surface: setSuperficie(),
     numberOfSets: setNumeroSets(),
   };
 
+  setUpButtons(gameState);
+
   boostSurface(gameState.surface, player1, player2);
-  calcularClima();
+  calcularClima(gameState);
 
   let mensajeExpuesto = false;
 
@@ -54,124 +58,183 @@ function launch() {
   if (gameState.pLesion1 <= 40 || gameState.pLesion2 <= 40)
     saltarLesion(gameState);
 
-  partido(player1, player2, gameState);
+  partido(player1, player2, tactic1, tactic2, gameState);
 }
 
-function partido(player1, player2, gameState) {
-  alert("listo para comenzar el partido");
-
+function partido(player1, player2, tactic1, tactic2, gameState) {
+  //alert("listo para comenzar el partido");
+  console.log("Entre a partido()");
+  console.log(gameState);
   processInjury(player1, player2, gameState);
   processRain(player1, player2, gameState);
   processTiebreak(player1, player2, gameState);
 
-  if (game1 == game2 && game1 > 15 && set != 5) {
-    fore1 = Math.round(Math.random() * 10);
-    fore2 = Math.round(Math.random() * 10);
+  //FIXME: si estan en el mismo game randomiza la mano habil ???
+  if (gameState.game1 == gameState.game2 && gameState.game1 > 15 && gameState.set != 5) {
+    gameState.fore1 = Math.round(Math.random() * 10);
+    gameState.fore2 = Math.round(Math.random() * 10);
   }
 
   //Logica de puntos estandar
-  if (tie == 0) {
-    if (game1 == game2 && game1 >= 5) {
-      if (control == 0) auxgame++;
-      control = 1;
+  playPoint(player1, player2, tactic1, tactic2, gameState);
+
+  processClock(gameState);
+}
+
+function playPoint(player1, player2, tactic1, tactic2, gameState) {  //Terminado refactoreo
+  //console.log("Entre a playPoint()");
+  //console.log(gameState);
+  if (gameState.tie == 0) {
+    if (gameState.game1 == gameState.game2 && gameState.game1 >= 5) {
+      if (gameState.control == 0) gameState.auxgame++;
+      gameState.control = 1;
     }
 
-    pts1 = punto(
-      fore1,
-      back1,
-      vol1,
-      drop1,
-      spe1,
-      sta1,
-      ser1,
-      pow1,
-      rest1,
-      form1,
-      1,
-      saq,
-      consi1
-    );
-    pts2 = punto(
-      fore2,
-      back2,
-      vol2,
-      drop2,
-      spe2,
-      sta2,
-      ser2,
-      pow2,
-      rest2,
-      form2,
-      2,
-      saq,
-      consi2
-    );
+    /*  ok, pts son las posibilidades de cada uno de ganar el punto,
+        en primera instancia eso se calcula con la funcion punto(),
+        si eso saliera empatado simplemente lo randomiza
+     */
+    let pts1 = probs(player1, player2, tactic1, 1, gameState);
+    let pts2 = probs(player2, player1, tactic2, 2, gameState); //(fore2, back2,vol2,drop2,spe2,sta2,ser2,pow2,rest2,form2,2,saq,consi2)
 
-    puntosJugados++;
+    gameState.puntosJugados++;
 
     if (pts1 == pts2) {
       pts1 = Math.random(1000);
       pts2 = Math.random(1000);
     }
-    if (pts1 <= pts2) punto2++;
-    else punto1++;
+    if (pts1 <= pts2) gameState.punto2++;
+    else gameState.punto1++;
 
-    if (pts1 <= pts2 && punto1 == 4) {
-      punto1--;
-      punto2--;
-    }
-    if (pts2 < pts1 && punto2 == 4) {
-      punto1--;
-      punto2--;
-    }
 
-    resultado(punto1, punto2, game1, game2);
-
-    if (game1 > 5 + auxgame) {
-      set++;
-      set1++;
-      sta1 = sta1 - technique1;
-      sta2 = sta2 - technique2;
-      game1 = 0;
-      game2 = 0;
-      auxgame = 0;
-      control = 0;
+    if (pts1 <= pts2 && gameState.punto1 == 4) {
+      gameState.punto1--;
+      gameState.punto2--;
     }
-    if (game2 > 5 + auxgame) {
-      set++;
-      set2++;
-      sta1 = sta1 - technique1;
-      sta2 = sta2 - technique2;
-      game1 = 0;
-      game2 = 0;
-      auxgame = 0;
-      control = 0;
+    if (pts2 < pts1 && gameState.punto2 == 4) {
+      gameState.punto1--;
+      gameState.punto2--;
     }
 
-    tiempo = tiempo + Math.floor(Math.random() * 90);
+    //resultado(punto1, punto2, game1, game2);
+    if ((gameState.punto1 == gameState.punto2) && (gameState.punto1 == 3))
+      gameState.auxpunto = 1;
+    if (gameState.punto1 > 3 + gameState.auxpunto) {
+      gameState.game1++;
+      cambioSaque();
+      gameState.control = 0;
+      gameState.auxpunto = 0;
+      gameState.punto1 = 0;
+      gameState.punto2 = 0;
+    }
+    if (gameState.punto2 > 3 + gameState.auxpunto) {
+      gameState.game2++;
+      cambioSaque();
+      gameState.control = 0;
+      gameState.auxpunto = 0;
+      gameState.punto1 = 0;
+      gameState.punto2 = 0;
+    }
 
-    if (numberOfSets == 5) {
-      if (set1 < 3 && set2 < 3) {
-        setTimeout(
-          "partido(fore1,back1,vol1,drop1,spe1,sta1,ser1,pow1,rest1,form1,fore2,back2,vol2,drop2,spe2,sta2,ser2,pow2,rest2,form2,punto1,punto2,game1,game2,set1,set2,control,consi1,consi2)",
-          velocidad
-        );
+    switch (gameState.punto1) {
+      case 0:
+        document.getElementById("game1").innerHTML = "<font face='helvetica' color='navy'><center>0</center></font>";
+        break;
+      case 1:
+        document.getElementById("game1").innerHTML = "<font face='helvetica' color='navy'><center>15</center></font>";
+        break;
+      case 2:
+        document.getElementById("game1").innerHTML = "<font face='helvetica' color='navy'><center>30</center></font>";
+        break;
+      case 3:
+        document.getElementById("game1").innerHTML = "<font face='helvetica' color='maroon'><center>40</center></font>";
+        break;
+      case 4:
+        document.getElementById("game1").innerHTML = "<font face='helvetica' color='maroon'><center>A</center></font>";
+        break;
+    }
+    switch (gameState.punto2) {
+      case 0:
+        document.getElementById("game2").innerHTML = "<font face='helvetica' color='navy'><center>0</center></font>";
+        break;
+      case 1:
+        document.getElementById("game2").innerHTML = "<font face='helvetica' color='navy'><center>15</center></font>";
+        break;
+      case 2:
+        document.getElementById("game2").innerHTML = "<font face='helvetica' color='navy'><center>30</center></font>";
+        break;
+      case 3:
+        document.getElementById("game2").innerHTML = "<font face='helvetica' color='maroon'><center>40</center></font>";
+        break;
+      case 4:
+        document.getElementById("game2").innerHTML = "<font face='helvetica' color='maroon'><center>A</center></font>";
+        break;
+    }
+
+    switch (gameState.set) {
+      case 1:
+        document.getElementById("set11").innerHTML = "<font color='#CCFF00' face = 'helvetica'><center>" + gameState.game1 + "</center></font>";
+        document.getElementById("set21").innerHTML = "<font color='#CCFF00' face = 'helvetica'><center>" + gameState.game2 + "</center></font>";
+        break;
+      case 2:
+        document.getElementById("set12").innerHTML = "<font color='#CCFF00' face = 'helvetica'><center>" + gameState.game1 + "</center></font>";
+        document.getElementById("set22").innerHTML = "<font color='#CCFF00' face = 'helvetica'><center>" + gameState.game2 + "</center></font>";
+        break;
+      case 3:
+        document.getElementById("set13").innerHTML = "<font color='#CCFF00' face = 'helvetica'><center>" + gameState.game1 + "</center></font>";
+        document.getElementById("set23").innerHTML = "<font color='#CCFF00' face = 'helvetica'><center>" + gameState.game2 + "</center></font>";
+        break;
+      case 4:
+        document.getElementById("set14").innerHTML = "<font color='#CCFF00' face = 'helvetica'><center>" + gameState.game1 + "</center></font>";
+        document.getElementById("set24").innerHTML = "<font color='#CCFF00' face = 'helvetica'><center>" + gameState.game2 + "</center></font>";
+        break;
+      case 5:
+        document.getElementById("set15").innerHTML = "<font color='#CCFF00' face = 'helvetica'><center>" + gameState.game1 + "</center></font>";
+        document.getElementById("set25").innerHTML = "<font color='#CCFF00' face = 'helvetica'><center>" + gameState.game2 + "</center></font>";
+        break;
+    }
+    //fin vieja funcion resultado
+
+    if (gameState.game1 > 5 + gameState.auxgame) {
+      
+      gameState.set++;
+      gameState.set1++;
+      player1.sta1 = player1.sta1 - player1.technique1;
+      player2.sta2 = player2.sta2 - player2.technique2;
+      gameState.game1 = 0;
+      gameState.game2 = 0;
+      gameState.auxgame = 0;
+      gameState.control = 0;
+    }
+    if (gameState.game2 > 5 + gameState.auxgame) {
+      gameState.set++;
+      gameState.set2++;
+      player1.sta1 = player1.sta1 - player1.technique1;
+      player2.sta2 = player2.sta2 - player2.technique2;
+      gameState.game1 = 0;
+      gameState.game2 = 0;
+      gameState.auxgame = 0;
+      gameState.control = 0;
+    }
+
+    //tiempo = tiempo + Math.floor(Math.random() * 90);
+
+    if (gameState.numberOfSets == 5) { //5 sets
+      if (gameState.set1 < 3 && gameState.set2 < 3) {
+        setTimeout(partido, gameState.velocidad, player1, player2, tactic1, tactic2, gameState);
       }
     } //3 sets
     else {
-      if (set1 < 2 && set2 < 2) {
-        setTimeout(
-          "partido(fore1,back1,vol1,drop1,spe1,sta1,ser1,pow1,rest1,form1,fore2,back2,vol2,drop2,spe2,sta2,ser2,pow2,rest2,form2,punto1,punto2,game1,game2,set1,set2,control,consi1,consi2)",
-          velocidad
-        );
+      if (gameState.set1 < 2 && gameState.set2 < 2) {
+        setTimeout(partido, gameState.velocidad, player1, player2, tactic1, tactic2, gameState);
       }
     }
+
   }
 
-  processClock(gameState);
 }
 
-function boostSkills(player1, player2, tactic1, tactic2) {
+function boostSkills(player1, player2, tactic1, tactic2) {  //Terminado refactoreo
   /* Bost de habilidades segun tactica */
   if (tactic1.position1 == 1) {
     player1.drop1++;
@@ -191,7 +254,7 @@ function boostSkills(player1, player2, tactic1, tactic2) {
   player2.back2 = player2.back2 + player2.technique2 * 1.5;
 }
 
-function boostSurface(surface, player1, player2) {
+function boostSurface(surface, player1, player2) {  //Terminado refactoreo
   if (surface == player1.surf1) {
     switch (surface) {
       case "clay":
@@ -259,9 +322,13 @@ function boostSurface(surface, player1, player2) {
 
 //FIXME: chequear
 function setSuperficie() {
-  for (let i = 0; i < MatchSurface.surface.length; i++) {
-    if (MatchSurface.surface[i].checked) return MatchSurface.surface[i].value;
-  }
+  // for (let i = 0; i < MatchSurface.surface.length; i++) {
+  //   if (MatchSurface.surface[i].checked) return MatchSurface.surface[i].value;
+  // }
+  let s = document.getElementById("surface").options[
+      document.getElementById("surface").selectedIndex
+    ].value;
+  return s;
 }
 
 //FIXME: chequear
@@ -271,7 +338,7 @@ function setNumeroSets() {
   }
 }
 
-function calcularClima(gameState) {
+function calcularClima(gameState) { //Terminado refactoreo
   //Previsiones: Soleado(0-80), Parcialmente nublado(81-90), Nublado(91-96), Posibles Chubascos(97-99), Chubascos(100)
   let rn = Math.round(Math.random() * 100);
   if (rn < 81)
@@ -306,28 +373,28 @@ function calcularClima(gameState) {
   }
 }
 
-function lesionar(fm, st) {
+function lesionar(fm, st) {   //Terminado refactoreo
   return Math.floor(Math.random() * 99) + fm * 3 + st;
 }
 
-function saltarLesion(gameState) {
+function saltarLesion(gameState) {  //Terminado refactoreo
   if (gameState.numberOfSets == 3)
     gameState.puntoLesion = Math.floor(Math.random() * 299);
   else if (gameState.numberOfSets == 5)
     gameState.puntoLesion = Math.floor(Math.random() * 499);
 }
 
-function modificarVelocidad(vel, gameState) {
+function modificarVelocidad(vel, gameState) {   //Terminado refactoreo
   if (vel == 1 && gameState.velocidad > 100)
     gameState.velocidad = gameState.velocidad - 225;
   if (vel == 0 && gameState.velocidad < 1900)
     gameState.velocidad = gameState.velocidad + 225;
 }
 
-function processInjury(player1, player2, gameState) {
+function processInjury(player1, player2, gameState) {   //Terminado refactoreo
   if (
     gameState.pLesion1 <= 40 &&
-    gameState.pLesion1 < gameState.plesion2 &&
+    gameState.pLesion1 < gameState.pLesion2 &&
     gameState.puntosJugados == gameState.puntoLesion &&
     gameState.ya_lesion == 0
   ) {
@@ -344,7 +411,7 @@ function processInjury(player1, player2, gameState) {
   }
 }
 
-function processRain(player1, player2, gameState) {
+function processRain(player1, player2, gameState) {   //Terminado refactoreo
   if (gameState.lluvia == 1) {
     if (gameState.puntosalto_lluvia == gameState.puntosJugados) {
       if (gameState.surface == "clay") {
@@ -404,7 +471,7 @@ function processRain(player1, player2, gameState) {
   }
 }
 
-function processTiebreak(player1, player2, gameState) {
+function processTiebreak(player1, player2, gameState) {   //Terminado refactoreo
   if (
     gameState.game1 == gameState.game2 &&
     gameState.game1 == 6 &&
@@ -420,8 +487,10 @@ function processTiebreak(player1, player2, gameState) {
   }
 }
 
-  //TODO: seguir adaptando
+
+//TODO: seguir adaptando
 function tiebreak(player1, player2, gameState) {
+  //console.log("Entre a tiebreak()");
   processInjury(player1, player2, gameState);
   processRain(player1, player2, gameState);
 
@@ -483,7 +552,7 @@ function tiebreak(player1, player2, gameState) {
     punto2 +
     "</center></font>";
 
-  tiempo = tiempo + Math.floor(Math.random() * 90);
+  //tiempo = tiempo + Math.floor(Math.random() * 90);
   processClock(gameState);
 
   if (punto1 < 7 + auxtie && punto2 < 7 + auxtie)
@@ -651,16 +720,197 @@ function tiebreak(player1, player2, gameState) {
   }
 }
 
-function processClock(gameState) {
+function probs(player1, player2, tactic, jug, gameState) { // listo?
+  //console.log("Entre a probs()");
+  let sup = 0;  //base de las probs ?
+  let rand = 0;
+  let p = {
+      fo: 0,
+      ba: 0,
+      vo: 0,
+      dr: 0,
+      sp: 0,
+      st: 0,
+      se: 0,
+      po: 0,
+      rest: 0,
+      form: 0,
+      co: 0,
+      surf: 0,
+    }
+
+  if (jug == 1) {
+    p.fo = player1.fore1;
+    p.ba = player1.back1;
+    p.vo = player1.vol1;
+    p.dr = player1.drop1;
+    p.sp = player1.spe1;
+    p.st = player1.sta1;
+    p.se = player1.ser1;
+    p.po = player1.pow1;
+    p.rest = player1.rest1;
+    p.form = player1.form1;
+    p.co = player1.consi1;
+    p.surf = player1.surf1;
+
+    if (player1.surf1 == gameState.surface) sup = sup + 5;
+    else if (player1.surf1 == "neutral") sup = sup + 2.5;
+    if (tactic.strategy1 == 1) sup = sup - player2.fore2;
+    if (tactic.strategy1 == 2) sup = sup - player2.back2;
+    if (gameState.saq == 1) calcular(1, tactic.first1, 1, player1, { sup });
+  }
+
+  if (jug == 2) {
+    p.fo = player2.fore2;
+    p.ba = player2.back2;
+    p.vo = player2.vol2;
+    p.dr = player2.drop2;
+    p.sp = player2.spe2;
+    p.st = player2.sta2;
+    p.se = player2.ser2;
+    p.po = player2.pow2;
+    p.rest = player2.rest2;
+    p.form = player2.form2;
+    p.co = player2.consi2;
+    p.surf = player2.surf2;
+
+    if (player2.surf2 == gameState.surface) sup = sup + 5;
+    else if (player2.surf2 == "neutral") sup = sup + 2.5;
+    if (tactic.strategy2 == 1) sup = sup - player1.fore1;
+    if (tactic.strategy2 == 2) sup = sup - player1.back1;
+    if (gameState.saq == 2) calcular(2, first2, 1, player2, { sup });
+  }
+
+  if (gameState.surface == "clay")
+    rand = p.fo * 1.5 + p.ba * 1.5 + p.vo * 0.65 + p.dr * 1.5 + p.sp * 1.9 + p.st * 1.7 + p.po * 1.3 + p.rest * 0.25 + p.sup + p.co;
+  else if (gameState.surface == "grass")
+    rand = p.fo * 1.7 + p.ba * 1.7 + p.vo * 1.7 + p.dr * 0.5 + p.sp + p.st * 0.75 + p.po * 2 + p.rest * 0.75 + p.sup + p.co;
+  else if (gameState.surface == "hardcourt")
+    rand = p.fo * 1.7 + p.ba * 1.7 + p.vo * 1.2 + p.dr + p.sp * 1.5 + p.st * 1.5 + p.po * 1.7 + p.rest * 0.5 + p.sup + p.co;
+  else if (gameState.surface == "carpet")
+    rand = p.fo * 1.9 + p.ba * 1.9 + p.vo * 1.5 + p.dr * 0.75 + p.sp + p.st + p.po * 2.1 + p.rest + p.sup + p.co;
+  else
+    rand = p.fo * 1.5 + p.ba * 1.5 + p.vo * 1.3 + p.dr + p.sp * 1.5 + p.st * 1.5 + p.po * 1.7 + p.rest * 0.66 + p.sup + p.co;
+
+  let prob = Math.floor(Math.random() * (rand)) + p.form * 2;
+  return prob;
+}
+
+function calcular(jug, tipo, num, player, buffer){ //terminado refactoreo
+  //console.log("Entre a calcular()");
+  if (jug == 1) {
+    let difi = Math.round(Math.random() * 15) + player.ser1;
+    switch (tipo) {
+      case 1:
+        if (difi > 15) {
+          buffer.sup = buffer.sup + 15;
+          if (surface == "clay") buffer.sup = buffer.sup + player.ser1;
+          else if (surface = "grass") buffer.sup = buffer.sup + player.ser1 * 2.5;
+          else if (surface == "hardcourt") buffer.sup = buffer.sup + player.ser1 * 2;
+          else if (surface == "carpet") buffer.sup = buffer.sup + player.ser1 * 3;
+          else buffer.sup = buffer.sup + player.ser1 * 1.5;
+        }
+        else {
+          if (num == 1) calcular(jug, second1, 2, player, buffer);
+          else buffer.sup = 0;
+        }
+        break;
+
+      case 2:
+        if (difi > 12) {
+          buffer.sup = buffer.sup + 10;
+          if (surface == "clay") buffer.sup = buffer.sup + player.ser1;
+          else if (surface = "grass") buffer.sup = buffer.sup + player.ser1 * 2.5;
+          else if (surface == "hardcourt") buffer.sup = buffer.sup + player.ser1 * 2;
+          else if (surface == "carpet") buffer.sup = buffer.sup + player.ser1 * 3;
+          else buffer.sup = buffer.sup + player.ser1 * 1.5;
+        }
+        else {
+          if (num == 1) calcular(jug, second1, 2, player, buffer);
+          else buffer.sup = 0;
+        }
+        break;
+
+      case 3:
+        if (difi > 10) {
+          buffer.sup = buffer.sup + 5;
+          if (surface == "clay") buffer.sup = buffer.sup + ser1;
+          else if (surface = "grass") buffer.sup = buffer.sup + ser1 * 2.5;
+          else if (surface == "hardcourt") buffer.sup = buffer.sup + ser1 * 2;
+          else if (surface == "carpet") buffer.sup = buffer.sup + ser1 * 3;
+          else buffer.sup = buffer.sup + player.ser1 * 1.5;
+        }
+        else {
+          if (num == 1) calcular(jug, second1, 2, player, buffer);
+          else buffer.sup = 0;
+        }
+        break;
+    }
+  }
+
+  if (jug == 2) {
+    let difi = Math.round(Math.random() * 15) + player.ser2;
+    switch (tipo) {
+      case 1:
+        if (difi > 15) {
+          buffer.sup = buffer.sup + 15;
+          if (surface == "clay") buffer.sup = buffer.sup + player.ser2;
+          else if (surface = "grass") buffer.sup = buffer.sup + player.ser2 * 2.5;
+          else if (surface == "hardcourt") buffer.sup = buffer.sup + player.ser2 * 2;
+          else if (surface == "carpet") buffer.sup = buffer.sup + player.ser2 * 3;
+          else buffer.sup = buffer.sup + player.ser2 * 1.5;
+        }
+        else {
+          if (num == 1) calcular(jug, second2, 2, player, buffer);
+          else buffer.sup = 0;
+        }
+        break;
+
+      case 2:
+        if (difi > 12) {
+          buffer.sup = buffer.sup + 10;
+          if (surface == "clay") buffer.sup = buffer.sup + player.ser2;
+          else if (surface = "grass") buffer.sup = buffer.sup + player.ser2 * 2.5;
+          else if (surface == "hardcourt") buffer.sup = buffer.sup + player.ser2 * 2;
+          else if (surface == "carpet") buffer.sup = buffer.sup + player.ser2 * 3;
+          else buffer.sup = buffer.sup + player.ser2 * 1.5;
+        }
+        else {
+          if (num == 1) calcular(jug, second2, 2, player, buffer);
+          else buffer.sup = 0;
+        }
+        break;
+
+      case 3:
+        if (difi > 10) {
+          buffer.sup = buffer.sup + 5;
+          if (surface == "clay") buffer.sup = buffer.sup + player.ser2;
+          else if (surface = "grass") buffer.sup = buffer.sup + player.ser2 * 2.5;
+          else if (surface == "hardcourt") buffer.sup = buffer.sup + player.ser2 * 2;
+          else if (surface == "carpet") buffer.sup = buffer.sup + player.ser2 * 3;
+          else buffer.sup = buffer.sup + player.ser2 * 1.5;
+        }
+        else {
+          if (num == 1) calcular(jug, second2, 2, player, buffer);
+          else buffer.sup = 0;
+        }
+        break;
+    }
+  }
+}
+
+function processClock(gameState) {    //Terminado refactoreo
+  gameState.tiempo = gameState.tiempo + Math.floor(Math.random() * 90);
+
   if (gameState.tiempo < 60) {
     document.getElementById("timet").innerHTML =
       "<font color='#FFFF00' face='OCR A Extended'><center>" +
       "0:00" +
       "</center></font>";
   } else {
-    tiempo_m_condecimal = gameState.tiempo / 60;
-    tiempo_m_sindecimal = parseInt(tiempo_m_condecimal);
-    tiempo_s = gameState.tiempo % 60;
+    let tiempo_m_condecimal = gameState.tiempo / 60;
+    let tiempo_m_sindecimal = parseInt(tiempo_m_condecimal);
+    let tiempo_s = gameState.tiempo % 60;
     if (tiempo_m_sindecimal < 60) {
       if (tiempo_m_sindecimal < 10) {
         document.getElementById("timet").innerHTML =
@@ -676,9 +926,9 @@ function processClock(gameState) {
           "</center></font>";
       }
     } else {
-      tiempo_h_condecimal = tiempo_m_sindecimal / 60;
-      tiempo_h_sindecimal = parseInt(tiempo_h_condecimal);
-      tiempo_m = tiempo_m_sindecimal % 60;
+      let tiempo_h_condecimal = tiempo_m_sindecimal / 60;
+      let tiempo_h_sindecimal = parseInt(tiempo_h_condecimal);
+      let tiempo_m = tiempo_m_sindecimal % 60;
       if (tiempo_m < 10) {
         document.getElementById("timet").innerHTML =
           "<font color='#FFFF00' face='OCR A Extended'><center>" +
@@ -698,24 +948,26 @@ function processClock(gameState) {
   }
 }
 
-function cero(gameState)
-{
-  gameState.punto1=0;
-  gameState.punto2=0;
-  gameState.game1=0;
-  gameState.game2=0;
-  gameState.chequeo=1;
-  document.getElementById("tie").innerHTML="<font color='green'><b><center>Juego</center></b></font>";
+function cero(gameState) {   //Terminado refactoreo
+  gameState.punto1 = 0;
+  gameState.punto2 = 0;
+  gameState.game1 = 0;
+  gameState.game2 = 0;
+  gameState.chequeo = 1;
+  document.getElementById("tie").innerHTML = "<font color='green'><b><center>Juego</center></b></font>";
 }
 
 document.getElementById("btnLaunch").addEventListener("click", () => {
   launch();
 });
 
-document.getElementById("btnVelDw").addEventListener("click", () => {
-  modificarVelocidad(0, gameState); //FIXME: gameState
-});
+function setUpButtons(gameState) {
+  document.getElementById("btnVelDw").addEventListener("click", () => {
+    modificarVelocidad(0, gameState);
+  });
 
-document.getElementById("btnVelUp").addEventListener("click", () => {
-  modificarVelocidad(1, gameState); //FIXME: gameState
-});
+  document.getElementById("btnVelUp").addEventListener("click", () => {
+    modificarVelocidad(1, gameState);
+  });
+}
+

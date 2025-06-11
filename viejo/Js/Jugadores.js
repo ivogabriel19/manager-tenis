@@ -1,158 +1,153 @@
-window.onload=function(){
-	  var comboJugador1=document.getElementById("jugador1");
-	  var comboJugador2=document.getElementById("jugador2");
-	  
-	  hombres.sort(compara);
-	  mujeres.sort(compara);
-	  veteranos.sort(compara);
-	  
-	  jugadores=new Array();
-	  jugadores=hombres.concat(veteranos);
-	  jugadores=jugadores.concat(mujeres);
-	  
-	  for(i in jugadores){
-		  var opcion1=new Option(jugadores[i][0],i);
-		  var opcion2=new Option(jugadores[i][0],i);
-		  comboJugador1.options[i]=opcion1;
-		  comboJugador2.options[i]=opcion2;
-	  }
-  }
+window.onload = function () {
+	var comboJugador1 = document.getElementById("jugador1");
+	var comboJugador2 = document.getElementById("jugador2");
 
-  function cargarCaracteristicas(num){
-	  var combo=document.getElementById("jugador" + num);
-	  var comboForehand=document.getElementById("forehand" + num);
-	  var comboBackhand=document.getElementById("backhand" + num);
-	  var comboVolley=document.getElementById("volley" + num);
-	  var comboDropshot=document.getElementById("dropshot" + num);
-	  var comboSpeed=document.getElementById("speed" + num);
-	  var comboStamina=document.getElementById("stamina" + num);
-	  var comboService=document.getElementById("service" + num);
-	  var comboPower=document.getElementById("power" + num);
-	  var comboResto=document.getElementById("resto" + num);
-	  var comboConsi=document.getElementById("consistencia" + num);
-	  var comboForm=document.getElementById("form" + num);
-	  var comboSurface=document.getElementById("surface" + num);
-	  
-	  comboForehand.value=jugadores[combo.value][1];
-	  comboBackhand.value=jugadores[combo.value][2];
-	  comboVolley.value=jugadores[combo.value][3];
-	  comboDropshot.value=jugadores[combo.value][4];
-	  comboSpeed.value=jugadores[combo.value][5];
-	  comboStamina.value=jugadores[combo.value][6];
-	  comboService.value=jugadores[combo.value][7];
-	  comboPower.value=jugadores[combo.value][8];
-	  comboResto.value=jugadores[combo.value][9];
-	  comboConsi.value=jugadores[combo.value][10];
-	  comboForm.value=jugadores[combo.value][11];
-	  comboSurface.value=jugadores[combo.value][12];
+	hombres.sort(compara);
+	mujeres.sort(compara);
+	veteranos.sort(compara);
 
-	  var blnRaquetaEncontrada=0;	
-	  for(i in jugadoresraquetas){
-		  if (combo.options[combo.selectedIndex].text==jugadoresraquetas[i][0])
-		  {
-			var btnJugador=document.getElementById("MenosRaquetaJugador" + num);
-			btnJugador.style.visibility='visible';
-			blnRaquetaEncontrada=1;
-			break;		
-		  }
-	  }
-	  if (blnRaquetaEncontrada==0)
-	  {
-	  	var btnJugador=document.getElementById("MenosRaquetaJugador" + num);
-		btnJugador.style.visibility='hidden';
-	  }
-  }
-  
-  function compara(a, b) {
-    return (a[0]<b[0]?"-1":"1");
-  }
+	jugadores = new Array();
+	jugadores = hombres.concat(veteranos);
+	jugadores = jugadores.concat(mujeres);
 
-  function CambiarNumSets(num){
-	var optNumSets=document.setsNumber.setsNum;
-	if (num==6 || num==7 || num==8 || num==9 || num==11)
-	{
-	optNumSets[1].checked=true;
+	for (i in jugadores) {
+		var opcion1 = new Option(jugadores[i][0], i);
+		var opcion2 = new Option(jugadores[i][0], i);
+		comboJugador1.options[i] = opcion1;
+		comboJugador2.options[i] = opcion2;
 	}
-	else
-	{
-	optNumSets[0].checked=true;
-	}
-  }
+}
 
-  function AniadirRaqueta(num){
-	  var combo=document.getElementById("jugador" + num);
-	  for(i in jugadoresraquetas){
-		  if (combo.options[combo.selectedIndex].text==jugadoresraquetas[i][0])
-		  {
-			var PosRaqueta=jugadoresraquetas[i][1]
-			break;		
-		  }
-	  }
-	  
-	  var comboForehand=document.getElementById("forehand" + num);
-	  var comboBackhand=document.getElementById("backhand" + num);
-	  var comboVolley=document.getElementById("volley" + num);
-	  var comboDropshot=document.getElementById("dropshot" + num);
-	  var comboSpeed=document.getElementById("speed" + num);
-	  var comboStamina=document.getElementById("stamina" + num);
-	  var comboService=document.getElementById("service" + num);
-	  var comboPower=document.getElementById("power" + num);
-	  var comboResto=document.getElementById("resto" + num);
-	  var comboConsi=document.getElementById("consistencia" + num);
-	  var comboForm=document.getElementById("form" + num);
-	  var comboSurface=document.getElementById("surface" + num);
-	  
-	  if (parseInt(comboForehand.value) + parseInt(raquetas[PosRaqueta][0])<=10 && parseInt(comboForehand.value) + parseInt(raquetas[PosRaqueta][0])>=0) comboForehand.value=parseInt(comboForehand.value) + parseInt(raquetas[PosRaqueta][0]);
-	  else {
-		if (parseInt(comboForehand.value) + parseInt(raquetas[PosRaqueta][0])<0) comboForehand.value=0;
-		else comboForehand.value=10;
-	  }
-	  if (parseInt(comboBackhand.value) + parseInt(raquetas[PosRaqueta][1])<=10 && parseInt(comboBackhand.value) + parseInt(raquetas[PosRaqueta][1])>=0) comboBackhand.value=parseInt(comboBackhand.value) + parseInt(raquetas[PosRaqueta][1]);
-	  else {
-		if (parseInt(comboBackhand.value) + parseInt(raquetas[PosRaqueta][1])<0) comboBackhand.value=0;
-		else comboBackhand.value=10;
-	  }
-	  if (parseInt(comboVolley.value) + parseInt(raquetas[PosRaqueta][2])<=10 && parseInt(comboVolley.value) + parseInt(raquetas[PosRaqueta][2])>=0) comboVolley.value=parseInt(comboVolley.value) + parseInt(raquetas[PosRaqueta][2]);
-	  else {
-		if (parseInt(comboVolley.value) + parseInt(raquetas[PosRaqueta][0])<0) comboVolley.value=0;
-		else comboVolley.value=10;
-	  }
-	  if (parseInt(comboDropshot.value) + parseInt(raquetas[PosRaqueta][3])<=10 && parseInt(comboDropshot.value) + parseInt(raquetas[PosRaqueta][3])>=0) comboDropshot.value=parseInt(comboDropshot.value) + parseInt(raquetas[PosRaqueta][3]);
-	  else {
-		if (parseInt(comboDropshot.value) + parseInt(raquetas[PosRaqueta][0])<0) comboDropshot.value=0;
-		else comboDropshot.value=10;
-	  }
-	  if (parseInt(comboSpeed.value) + parseInt(raquetas[PosRaqueta][4])<=10 && parseInt(comboSpeed.value) + parseInt(raquetas[PosRaqueta][4])>=0) comboSpeed.value=parseInt(comboSpeed.value) + parseInt(raquetas[PosRaqueta][4]);
-	  else {
-		if (parseInt(comboSpeed.value) + parseInt(raquetas[PosRaqueta][0])<0) comboSpeed.value=0;
-		else comboSpeed.value=10;
-	  }
-	  if (parseInt(comboStamina.value) + parseInt(raquetas[PosRaqueta][5])<=10 && parseInt(comboStamina.value) + parseInt(raquetas[PosRaqueta][5])>=0) comboStamina.value=parseInt(comboStamina.value) + parseInt(raquetas[PosRaqueta][5]);
-	  else {
-		if (parseInt(comboStamina.value) + parseInt(raquetas[PosRaqueta][0])<0) comboStamina.value=0;
-		else comboStamina.value=10;
-	  }
-	  if (parseInt(comboService.value) + parseInt(raquetas[PosRaqueta][6])<=10 && parseInt(comboService.value) + parseInt(raquetas[PosRaqueta][6])>=0) comboService.value=parseInt(comboService.value) + parseInt(raquetas[PosRaqueta][6]);
-	  else {
-		if (parseInt(comboService.value) + parseInt(raquetas[PosRaqueta][0])<0) comboService.value=0;
-		else comboService.value=10;
-	  }
-	  if (parseInt(comboPower.value) + parseInt(raquetas[PosRaqueta][7])<=10 && parseInt(comboPower.value) + parseInt(raquetas[PosRaqueta][7])>=0) comboPower.value=parseInt(comboPower.value) + parseInt(raquetas[PosRaqueta][7]);
-	  else {
-		if (parseInt(comboPower.value) + parseInt(raquetas[PosRaqueta][0])<0) comboPower.value=0;
-		else comboPower.value=10;
-	  }
-	  if (parseInt(comboResto.value) + parseInt(raquetas[PosRaqueta][8])<=10 && parseInt(comboResto.value) + parseInt(raquetas[PosRaqueta][8])>=0) comboResto.value=parseInt(comboResto.value) + parseInt(raquetas[PosRaqueta][8]);
-	  else {
-		if (parseInt(comboResto.value) + parseInt(raquetas[PosRaqueta][0])<0) comboResto.value=0;
-		else comboResto.value=10;
-	  }
-	  if (parseInt(comboConsi.value) + parseInt(raquetas[PosRaqueta][9])<=10 && parseInt(comboConsi.value) + parseInt(raquetas[PosRaqueta][9])>=0) comboConsi.value=parseInt(comboConsi.value) + parseInt(raquetas[PosRaqueta][9]);
-	  else {
-		if (parseInt(comboConsi.value) + parseInt(raquetas[PosRaqueta][0])<0) comboConsi.value=0;
-		else comboConsi.value=10;
-	  }
-  }
+function cargarCaracteristicas(num) {
+	var combo = document.getElementById("jugador" + num);
+	var comboForehand = document.getElementById("forehand" + num);
+	var comboBackhand = document.getElementById("backhand" + num);
+	var comboVolley = document.getElementById("volley" + num);
+	var comboDropshot = document.getElementById("dropshot" + num);
+	var comboSpeed = document.getElementById("speed" + num);
+	var comboStamina = document.getElementById("stamina" + num);
+	var comboService = document.getElementById("service" + num);
+	var comboPower = document.getElementById("power" + num);
+	var comboResto = document.getElementById("resto" + num);
+	var comboConsi = document.getElementById("consistencia" + num);
+	var comboForm = document.getElementById("form" + num);
+	var comboSurface = document.getElementById("surface" + num);
+
+	comboForehand.value = jugadores[combo.value][1];
+	comboBackhand.value = jugadores[combo.value][2];
+	comboVolley.value = jugadores[combo.value][3];
+	comboDropshot.value = jugadores[combo.value][4];
+	comboSpeed.value = jugadores[combo.value][5];
+	comboStamina.value = jugadores[combo.value][6];
+	comboService.value = jugadores[combo.value][7];
+	comboPower.value = jugadores[combo.value][8];
+	comboResto.value = jugadores[combo.value][9];
+	comboConsi.value = jugadores[combo.value][10];
+	comboForm.value = jugadores[combo.value][11];
+	comboSurface.value = jugadores[combo.value][12];
+
+	var blnRaquetaEncontrada = 0;
+	for (i in jugadoresraquetas) {
+		if (combo.options[combo.selectedIndex].text == jugadoresraquetas[i][0]) {
+			var btnJugador = document.getElementById("MenosRaquetaJugador" + num);
+			btnJugador.style.visibility = 'visible';
+			blnRaquetaEncontrada = 1;
+			break;
+		}
+	}
+	if (blnRaquetaEncontrada == 0) {
+		var btnJugador = document.getElementById("MenosRaquetaJugador" + num);
+		btnJugador.style.visibility = 'hidden';
+	}
+}
+
+function compara(a, b) {
+	return (a[0] < b[0] ? "-1" : "1");
+}
+
+function CambiarNumSets(num) {
+	var optNumSets = document.setsNumber.setsNum;
+	if (num == 6 || num == 7 || num == 8 || num == 9 || num == 11) {
+		optNumSets[1].checked = true;
+	}
+	else {
+		optNumSets[0].checked = true;
+	}
+}
+
+function AniadirRaqueta(num) {
+	var combo = document.getElementById("jugador" + num);
+	for (i in jugadoresraquetas) {
+		if (combo.options[combo.selectedIndex].text == jugadoresraquetas[i][0]) {
+			var PosRaqueta = jugadoresraquetas[i][1]
+			break;
+		}
+	}
+
+	var comboForehand = document.getElementById("forehand" + num);
+	var comboBackhand = document.getElementById("backhand" + num);
+	var comboVolley = document.getElementById("volley" + num);
+	var comboDropshot = document.getElementById("dropshot" + num);
+	var comboSpeed = document.getElementById("speed" + num);
+	var comboStamina = document.getElementById("stamina" + num);
+	var comboService = document.getElementById("service" + num);
+	var comboPower = document.getElementById("power" + num);
+	var comboResto = document.getElementById("resto" + num);
+	var comboConsi = document.getElementById("consistencia" + num);
+	var comboForm = document.getElementById("form" + num);
+	var comboSurface = document.getElementById("surface" + num);
+
+	if (parseInt(comboForehand.value) + parseInt(raquetas[PosRaqueta][0]) <= 10 && parseInt(comboForehand.value) + parseInt(raquetas[PosRaqueta][0]) >= 0) comboForehand.value = parseInt(comboForehand.value) + parseInt(raquetas[PosRaqueta][0]);
+	else {
+		if (parseInt(comboForehand.value) + parseInt(raquetas[PosRaqueta][0]) < 0) comboForehand.value = 0;
+		else comboForehand.value = 10;
+	}
+	if (parseInt(comboBackhand.value) + parseInt(raquetas[PosRaqueta][1]) <= 10 && parseInt(comboBackhand.value) + parseInt(raquetas[PosRaqueta][1]) >= 0) comboBackhand.value = parseInt(comboBackhand.value) + parseInt(raquetas[PosRaqueta][1]);
+	else {
+		if (parseInt(comboBackhand.value) + parseInt(raquetas[PosRaqueta][1]) < 0) comboBackhand.value = 0;
+		else comboBackhand.value = 10;
+	}
+	if (parseInt(comboVolley.value) + parseInt(raquetas[PosRaqueta][2]) <= 10 && parseInt(comboVolley.value) + parseInt(raquetas[PosRaqueta][2]) >= 0) comboVolley.value = parseInt(comboVolley.value) + parseInt(raquetas[PosRaqueta][2]);
+	else {
+		if (parseInt(comboVolley.value) + parseInt(raquetas[PosRaqueta][0]) < 0) comboVolley.value = 0;
+		else comboVolley.value = 10;
+	}
+	if (parseInt(comboDropshot.value) + parseInt(raquetas[PosRaqueta][3]) <= 10 && parseInt(comboDropshot.value) + parseInt(raquetas[PosRaqueta][3]) >= 0) comboDropshot.value = parseInt(comboDropshot.value) + parseInt(raquetas[PosRaqueta][3]);
+	else {
+		if (parseInt(comboDropshot.value) + parseInt(raquetas[PosRaqueta][0]) < 0) comboDropshot.value = 0;
+		else comboDropshot.value = 10;
+	}
+	if (parseInt(comboSpeed.value) + parseInt(raquetas[PosRaqueta][4]) <= 10 && parseInt(comboSpeed.value) + parseInt(raquetas[PosRaqueta][4]) >= 0) comboSpeed.value = parseInt(comboSpeed.value) + parseInt(raquetas[PosRaqueta][4]);
+	else {
+		if (parseInt(comboSpeed.value) + parseInt(raquetas[PosRaqueta][0]) < 0) comboSpeed.value = 0;
+		else comboSpeed.value = 10;
+	}
+	if (parseInt(comboStamina.value) + parseInt(raquetas[PosRaqueta][5]) <= 10 && parseInt(comboStamina.value) + parseInt(raquetas[PosRaqueta][5]) >= 0) comboStamina.value = parseInt(comboStamina.value) + parseInt(raquetas[PosRaqueta][5]);
+	else {
+		if (parseInt(comboStamina.value) + parseInt(raquetas[PosRaqueta][0]) < 0) comboStamina.value = 0;
+		else comboStamina.value = 10;
+	}
+	if (parseInt(comboService.value) + parseInt(raquetas[PosRaqueta][6]) <= 10 && parseInt(comboService.value) + parseInt(raquetas[PosRaqueta][6]) >= 0) comboService.value = parseInt(comboService.value) + parseInt(raquetas[PosRaqueta][6]);
+	else {
+		if (parseInt(comboService.value) + parseInt(raquetas[PosRaqueta][0]) < 0) comboService.value = 0;
+		else comboService.value = 10;
+	}
+	if (parseInt(comboPower.value) + parseInt(raquetas[PosRaqueta][7]) <= 10 && parseInt(comboPower.value) + parseInt(raquetas[PosRaqueta][7]) >= 0) comboPower.value = parseInt(comboPower.value) + parseInt(raquetas[PosRaqueta][7]);
+	else {
+		if (parseInt(comboPower.value) + parseInt(raquetas[PosRaqueta][0]) < 0) comboPower.value = 0;
+		else comboPower.value = 10;
+	}
+	if (parseInt(comboResto.value) + parseInt(raquetas[PosRaqueta][8]) <= 10 && parseInt(comboResto.value) + parseInt(raquetas[PosRaqueta][8]) >= 0) comboResto.value = parseInt(comboResto.value) + parseInt(raquetas[PosRaqueta][8]);
+	else {
+		if (parseInt(comboResto.value) + parseInt(raquetas[PosRaqueta][0]) < 0) comboResto.value = 0;
+		else comboResto.value = 10;
+	}
+	if (parseInt(comboConsi.value) + parseInt(raquetas[PosRaqueta][9]) <= 10 && parseInt(comboConsi.value) + parseInt(raquetas[PosRaqueta][9]) >= 0) comboConsi.value = parseInt(comboConsi.value) + parseInt(raquetas[PosRaqueta][9]);
+	else {
+		if (parseInt(comboConsi.value) + parseInt(raquetas[PosRaqueta][0]) < 0) comboConsi.value = 0;
+		else comboConsi.value = 10;
+	}
+}
 
 
 /*ESTRUCTURA DE ARRAY DE JUGADORES:
@@ -164,27 +159,27 @@ El valor de la superficie DEBE ser una de las siguientes posibilidades:
 	"hardcourt" para dura
 */
 
-//Jugadores masculinos con sus características
-<!--hombre=["Jugador",derecha,revés,volea,dejada,velocidad,resistencia,servicio,fuerza,resto,consistencia,forma,"superfice"];-->
+//Jugadores masculinos con sus caracterï¿½sticas
+//hombre = ["Jugador", derecha, revï¿½s,volea,dejada,velocidad,resistencia,servicio,fuerza,resto,consistencia,forma,"superfice"];
 hombre0=["--------HOMBRES--------",0,0,0,0,0,0,0,0,0,0,0,"carpet"];
-<!--hombre1=["Acasuso, Jose(ARG)",7,6,7,6,4,6,7,8,7,5,10,"hardcourt"];-->
+hombre1=["Acasuso, Jose(ARG)",7,6,7,6,4,6,7,8,7,5,10,"hardcourt"];
 hombre2=["Aguilar, Jorge(CHI)",7,6,6,5,7,7,6,8,6,6,10,"clay"];
 hombre378=["Albot, Radu(MOL)",7,6,8,5,6,6,8,8,6,7,10,"carpet"];
-<!--hombre212=["Alcaide, Guillermo(ESP)",8,6,5,6,7,7,6,8,6,5,10,"clay"];-->
-hombre3=["Almagro, Nicolás(ESP)",8,9,8,7,8,8,9,9,8,8,10,"clay"];
-hombre245=["Alund, Martín(ARG)",7,6,5,6,8,7,6,6,7,6,10,"clay"];
+hombre212=["Alcaide, Guillermo(ESP)",8,6,5,6,7,7,6,8,6,5,10,"clay"];
+hombre3=["Almagro, Nicolï¿½s(ESP)",8,9,8,7,8,8,9,9,8,8,10,"clay"];
+hombre245=["Alund, Martï¿½n(ARG)",7,6,5,6,8,7,6,6,7,6,10,"clay"];
 hombre4=["Alves, Thiago(BRA)",6,6,5,5,6,7,7,6,6,7,10,"clay"];
 hombre5=["Anderson, Kevin(RSA)",9,7,7,7,6,7,9,9,7,8,10,"hardcourt"];
-<!--hombre6=["Andreev, Igor(RUS)",8,7,6,7,7,6,6,8,7,7,10,"clay"];-->
+hombre6=["Andreev, Igor(RUS)",8,7,6,7,7,6,6,8,7,7,10,"clay"];
 hombre246=["Andreozzi, Guido(ARG)",7,5,7,5,6,7,7,6,7,6,10,"clay"];
-hombre7=["Andújar, Pablo(ESP)",8,8,6,5,7,8,6,7,8,8,10,"clay"];
+hombre7=["Andï¿½jar, Pablo(ESP)",8,8,6,5,7,8,6,7,8,8,10,"clay"];
 hombre247=["Arguello, Facundo(ARG)",7,6,6,6,8,7,6,5,7,6,10,"clay"];
-hombre293=["Artuñedo, Andrés(ESP)",7,6,6,5,7,6,7,6,6,6,10,"clay"];
+hombre293=["Artuï¿½edo, Andrï¿½s(ESP)",7,6,6,5,7,6,7,6,6,6,10,"clay"];
 hombre189=["Bachinger, Matthias(GER)",8,7,6,6,6,6,6,6,7,7,10,"carpet"];
 hombre8=["Baghdatis, Marcos(CYP)",7,7,7,6,7,7,8,7,7,7,10,"hardcourt"];
 hombre176=["Bagnis, Facundo(ARG)",7,6,5,6,7,7,7,6,6,7,10,"clay"];
 hombre256=["Baker, Brian(USA)",7,6,7,7,6,6,7,8,8,6,10,"hardcourt"];
-<!--hombre220=["Baker, Jamie(GBR)",6,7,7,5,6,5,8,7,6,4,10,"grass"];-->
+hombre220=["Baker, Jamie(GBR)",6,7,7,5,6,5,8,7,6,4,10,"grass"];
 hombre142=["Ball, Carsten(AUS)",7,6,6,6,7,6,8,7,6,5,10,"hardcourt"];
 hombre213=["Bautista-Agut, Roberto(ESP)",8,7,7,6,8,7,7,7,9,7,10,"hardcourt"];
 hombre9=["Beck, Andreas(GER)",8,6,7,7,6,5,9,8,6,6,10,"clay"];
@@ -201,7 +196,7 @@ hombre363=["Beretta, Duilio(PER)",8,6,5,7,7,8,6,6,6,5,10,"clay"];
 hombre16=["Berlocq, Carlos(ARG)",7,6,8,6,7,7,6,7,7,8,10,"clay"];
 hombre17=["Berrer, Michael(GER)",6,7,8,7,5,7,7,7,6,6,10,"carpet"];
 hombre265=["Bhambri, Yuki(IND)",7,7,5,6,6,7,6,7,7,6,10,"hardcourt"];
-<!--hombre18=["Blake, James(USA)",7,7,7,7,7,6,7,8,7,6,10,"hardcourt"];-->
+hombre18=["Blake, James(USA)",7,7,7,7,7,6,7,8,7,6,10,"hardcourt"];
 hombre154=["Bogomolov Jr., Alex(RUS)",7,5,5,7,8,7,7,8,6,6,10,"hardcourt"];
 hombre19=["Bohli, Stephane(SUI)",6,5,8,7,6,7,6,6,6,6,10,"hardcourt"];
 hombre20=["Bolelli, Simone(ITA)",8,8,7,5,8,7,7,7,6,6,10,"hardcourt"];
@@ -212,19 +207,19 @@ hombre294=["Broady, Liam(GBR)",8,6,6,6,6,6,5,6,6,6,10,"grass"];
 hombre173=["Brown, Dustin(GER)",7,8,8,5,6,6,9,9,6,5,10,"hardcourt"];
 hombre198=["Brugues-Davi, Arnau(ESP)",7,6,6,4,7,8,6,7,7,6,10,"hardcourt"];
 hombre228=["Bubka, Sergei(UKR)",7,6,8,5,6,7,8,7,6,7,10,"hardcourt"];
-hombre288=["Carballés, Roberto(ESP)",7,6,5,5,7,6,6,6,8,6,10,"clay"];
-hombre197=["Carreño-Busta, Pablo(ESP)",6,7,6,6,8,8,8,7,7,8,10,"clay"];
-<!--hombre23=["Capdeville, Paul(CHI)",7,6,6,6,6,6,7,7,6,6,10,"clay"];-->
-hombre234=["Cervantes, Iñigo(ESP)",7,6,4,7,8,7,5,6,7,7,10,"clay"];
+hombre288=["Carballï¿½s, Roberto(ESP)",7,6,5,5,7,6,6,6,8,6,10,"clay"];
+hombre197=["Carreï¿½o-Busta, Pablo(ESP)",6,7,6,6,8,8,8,7,7,8,10,"clay"];
+hombre23=["Capdeville, Paul(CHI)",7,6,6,6,6,6,7,7,6,6,10,"clay"];
+hombre234=["Cervantes, Iï¿½igo(ESP)",7,6,4,7,8,7,5,6,7,7,10,"clay"];
 hombre229=["Cervenak, Pavol(SVK)",7,6,5,6,7,7,5,6,7,6,10,"clay"];
 hombre24=["Chardy, Jeremy(FRA)",9,7,7,7,6,7,9,8,7,7,10,"hardcourt"];
-<!--hombre25=["Chela, Juan Ignacio(ARG)",8,7,7,7,7,8,6,8,7,8,10,"clay"];-->
+hombre25=["Chela, Juan Ignacio(ARG)",8,7,7,7,7,8,6,8,7,8,10,"clay"];
 hombre26=["Chiudinelli, Marco(SUI)",7,7,7,7,7,8,6,6,7,7,10,"hardcourt"];
 hombre314=["Chrysochos, Petros(CYP)",6,5,6,5,5,6,7,6,6,5,10,"hardcourt"];
 hombre27=["Cilic, Marin(CRO)",9,9,7,7,7,8,9,9,7,7,10,"hardcourt"];
 hombre28=["Ciric, Nikola(SRB)",5,7,6,4,5,7,8,7,6,6,10,"clay"];
 hombre177=["Cipolla, Flavio(ITA)",7,6,7,7,8,7,5,6,7,7,10,"clay"];
-<!--hombre29=["Clement, Arnaud(FRA)",7,7,8,7,6,5,7,7,7,7,10,"hardcourt"];-->
+hombre29=["Clement, Arnaud(FRA)",7,7,8,7,6,5,7,7,7,7,10,"hardcourt"];
 hombre308=["Clezar, Guilherme(BRA)",7,7,6,6,8,7,7,7,8,6,10,"clay"];
 hombre30=["Copil, Marius(ROU)",7,7,7,5,6,7,9,8,6,6,10,"carpet"];
 hombre372=["Coppejans, Kimmer(BEL)",7,7,5,6,6,7,7,7,6,6,10,"clay"];
@@ -234,26 +229,26 @@ hombre281=["Cuevas, Martin(URU)",7,6,6,5,8,7,6,5,7,7,10,"clay"];
 hombre32=["Cuevas, Pablo(URU)",8,8,7,6,7,8,6,8,7,8,10,"clay"];
 hombre168=["Dabul, Brian(ARG)",8,6,5,6,7,8,5,6,6,7,10,"clay"];
 hombre147=["Dancevic, Frank(CAN)",7,7,8,7,6,6,7,7,7,6,10,"hardcourt"];
-<!--hombre33=["Daniel, Marcos(BRA)",6,6,5,7,5,6,5,6,6,6,10,"clay"];-->
+hombre33=["Daniel, Marcos(BRA)",6,6,5,7,5,6,5,6,6,6,10,"clay"];
 hombre381=["Daniel, Taro(JPN)",8,6,5,7,8,7,5,5,7,6,10,"clay"];
 hombre34=["Darcis, Steve(BEL)",7,6,8,6,7,6,7,7,6,8,10,"hardcourt"];
 hombre261=["Dasnieres de Veigy, Jonathan(FRA)",7,5,5,6,8,6,5,6,7,6,10,"clay"];
-<!--hombre35=["Davydenko, Nikolay(RUS)",7,7,6,7,7,7,7,7,8,6,10,"hardcourt"];-->
+hombre35=["Davydenko, Nikolay(RUS)",7,7,6,7,7,7,7,7,8,6,10,"hardcourt"];
 hombre36=["de Bakker, Thiemo(NED)",8,7,5,6,6,7,8,8,6,7,10,"hardcourt"];
 hombre262=["de Schepper, Kenny(FRA)",7,6,8,6,6,6,9,8,5,7,10,"carpet"];
 hombre190=["De Voest, Rik(RSA)",7,6,8,7,6,6,6,6,6,6,10,"hardcourt"];
-hombre38=["Del Potro, Juan Martín(ARG)",9,9,7,7,9,8,9,10,8,9,10,"neutral"];
+hombre38=["Del Potro, Juan Martï¿½n(ARG)",9,9,7,7,9,8,9,10,8,9,10,"neutral"];
 hombre37=["Delbonis, Federico(ARG)",8,8,6,6,7,7,7,9,6,6,10,"clay"];
 hombre389=["Desein, Niels(BEL)",8,6,6,6,7,6,6,7,6,6,10,"clay"];
-<!--hombre263=["Devilder, Nicolas(FRA)",7,6,6,6,7,7,6,6,7,5,10,"clay"];-->
+hombre263=["Devilder, Nicolas(FRA)",7,6,6,6,7,7,6,6,7,5,10,"clay"];
 hombre39=["Devvarman, Somdev(IND)",7,7,5,7,7,7,7,6,8,8,10,"hardcourt"];
-hombre283=["Díez, Steven(CAN)",7,5,6,5,6,6,6,6,7,8,10,"hardcourt"];
+hombre283=["Dï¿½ez, Steven(CAN)",7,5,6,5,6,6,6,6,7,8,10,"hardcourt"];
 hombre40=["Dimitrov, Grigor(BUL)",8,8,8,8,7,8,8,8,7,8,10,"hardcourt"];
 hombre41=["Djokovic, Novak(SRB)",8,9,8,9,9,8,8,9,9,9,10,"hardcourt"];
 hombre303=["Djokovic, Marko(SRB)",6,7,5,6,7,6,5,7,7,6,10,"hardcourt"];
 hombre42=["Dodig, Ivan(CRO)",7,6,8,7,6,8,8,8,7,7,10,"hardcourt"];
 hombre43=["Dolgopolov, Alexandr(UKR)",8,8,8,7,9,7,9,8,7,7,10,"hardcourt"];
-hombre367=["Domíngues, Joao(POR)",8,5,5,5,7,8,6,6,7,7,10,"clay"];
+hombre367=["Domï¿½ngues, Joao(POR)",8,5,5,5,7,8,6,6,7,7,10,"clay"];
 hombre204=["Donskoy, Evgeny(RUS)",8,6,6,6,6,7,6,8,6,6,10,"hardcourt"];
 hombre248=["Duckworth, James(AUS)",7,6,8,7,6,5,7,7,5,6,10,"hardcourt"];
 hombre238=["Dutra Silva, Rogerio(BRA)",7,8,5,7,6,7,7,7,6,7,10,"clay"];
@@ -261,27 +256,27 @@ hombre216=["Dustov, Farrukh(UZB)",6,7,6,4,6,6,7,7,7,6,10,"hardcourt"];
 hombre361=["Dzumhur, Damir(BOS)",7,8,7,6,6,7,8,7,6,6,10,"clay"];
 hombre188=["Ebden, Matthew(AUS)",7,7,8,6,7,6,7,8,7,6,10,"hardcourt"];
 hombre309=["Edmund, Kyle(GBR)",7,6,7,5,7,7,7,6,6,6,10,"grass"];
-hombre222=["Elías, Gastao(POR)",7,6,5,6,8,7,6,8,7,7,10,"clay"];
+hombre222=["Elï¿½as, Gastao(POR)",7,6,5,6,8,7,6,8,7,7,10,"clay"];
 hombre221=["Evans, Daniel(GBR)",8,7,8,5,8,8,7,7,6,5,10,"hardcourt"];
 hombre44=["Falla, Alejandro(COL)",7,8,6,6,7,8,6,7,7,8,10,"clay"];
 hombre45=["Federer, Roger(SUI)",9,8,8,9,8,8,9,9,9,8,10,"grass"];
-<!--hombre164=["Felder, Marcel(URU)",6,8,7,7,6,6,5,6,7,7,10,"hardcourt"];-->
+hombre164=["Felder, Marcel(URU)",6,8,7,7,6,6,5,6,7,7,10,"hardcourt"];
 hombre295=["Ferreira-Silva, Frederico(BRA)",7,6,5,6,7,8,6,7,7,5,10,"clay"];
 hombre46=["Ferrer, David(ESP)",8,8,7,8,9,9,8,8,10,9,10,"clay"];
-<!--hombre47=["Ferrero, Juan Carlos(ESP)",9,8,9,9,7,7,8,6,8,8,10,"clay"];-->
+hombre47=["Ferrero, Juan Carlos(ESP)",9,8,9,9,7,7,8,6,8,8,10,"clay"];
 hombre48=["Fish, Mardy(USA)",7,8,7,7,6,7,9,8,6,7,10,"hardcourt"];
 hombre187=["Fischer, Martin(AUT)",6,7,7,8,7,6,7,7,9,6,10,"carpet"];
 hombre49=["Fognini, Fabio(ITA)",8,8,7,8,8,8,7,8,8,6,10,"clay"];
 hombre374=["Fucsovics, Marton(HUN)",7,7,7,5,6,6,7,7,6,6,10,"grass"];
 hombre50=["Gabashvili, Teymuraz(RUS)",7,6,7,8,6,7,7,7,7,7,10,"clay"];
 hombre371=["Galarza, Juan Ignacio(ARG)",6,6,4,5,7,7,5,6,8,6,10,"clay"];
-hombre380=["Galdós, Sergio(PER)",7,7,4,6,7,8,5,6,7,7,10,"clay"];
-hombre51=["García-López, Guillermo(ESP)",8,7,7,6,8,8,8,7,7,10,10,"clay"];
-hombre284=["Garín, Christian(CHI)",8,6,4,5,7,7,6,8,7,6,10,"clay"];
+hombre380=["Galdï¿½s, Sergio(PER)",7,7,4,6,7,8,5,6,7,7,10,"clay"];
+hombre51=["Garcï¿½a-Lï¿½pez, Guillermo(ESP)",8,7,7,6,8,8,8,7,7,10,10,"clay"];
+hombre284=["Garï¿½n, Christian(CHI)",8,6,4,5,7,7,6,8,7,6,10,"clay"];
 hombre52=["Gasquet, Richard(FRA)",8,9,8,8,7,7,7,7,8,8,10,"clay"];
-<!--hombre53=["Gaudio, Gaston(ARG)",6,8,7,7,7,7,5,8,7,10,"clay"];-->
+hombre53=["Gaudio, Gaston(ARG)",6,8,7,7,7,7,5,8,7,10,"clay"];
 hombre203=["Giannessi, Alessandro(ITA)",7,7,5,5,8,7,7,8,7,7,10,"clay"];
-<!--hombre311=["Gicquel, Marc(FRA)",7,7,8,7,6,6,7,6,6,7,10,"grass"];-->
+hombre311=["Gicquel, Marc(FRA)",7,7,8,7,6,6,7,6,6,7,10,"grass"];
 hombre54=["Gil, Frederico(POR)",7,7,6,6,8,8,6,6,8,7,10,"clay"];
 hombre55=["Gimeno-Traver, Daniel(ESP)",8,7,6,5,7,8,7,7,7,7,10,"clay"];
 hombre56=["Ginepri, Robby(USA)",7,6,7,7,5,6,7,8,7,7,10,"hardcourt"];
@@ -289,10 +284,10 @@ hombre57=["Giraldo, Santiago(COL)",7,7,5,7,7,8,7,8,8,8,10,"clay"];
 hombre206=["Goffin, David(BEL)",8,7,6,6,8,8,7,7,7,8,10,"hardcourt"];
 hombre242=["Gojowczyk, Peter(GER)",6,8,6,6,6,6,7,8,7,7,10,"hardcourt"];
 hombre139=["Golubev, Andrey(KAZ)",7,7,6,7,6,7,7,7,7,7,10,"carpet"];
-hombre365=["Gómez, Emilio(ECU)",8,6,5,5,8,7,6,7,6,6,10,"clay"];
-hombre315=["González, Alejandro(COL)",7,6,5,6,7,8,6,8,7,6,10,"clay"];
-<!--hombre58=["Gonzalez, Fernando(CHI)",9,7,7,7,7,7,8,9,7,8,10,"clay"];-->
-hombre59=["González, Máximo(ARG)",8,7,5,6,8,7,6,7,7,7,10,"clay"];
+hombre365=["Gï¿½mez, Emilio(ECU)",8,6,5,5,8,7,6,7,6,6,10,"clay"];
+hombre315=["Gonzï¿½lez, Alejandro(COL)",7,6,5,6,7,8,6,8,7,6,10,"clay"];
+hombre58=["Gonzalez, Fernando(CHI)",9,7,7,7,7,7,8,9,7,8,10,"clay"];
+hombre59=["Gonzï¿½lez, Mï¿½ximo(ARG)",8,7,5,6,8,7,6,7,7,7,10,"clay"];
 hombre214=["Granollers, Gerard(ESP)",7,5,7,6,6,6,8,7,6,6,10,"hardcourt"];
 hombre60=["Granollers, Marcel(ESP)",7,7,9,7,8,7,8,7,7,7,10,"clay"];
 hombre171=["Gremelmayr, Denis(GER)",7,6,6,6,7,7,7,6,7,8,10,"clay"];
@@ -301,21 +296,21 @@ hombre211=["Grigelis, Laurynas(LTU)",7,6,6,6,7,6,7,6,8,7,10,"carpet"];
 hombre289=["Groth, Samuel(AUS)",6,6,8,6,4,6,9,9,6,7,10,"hardcourt"];
 hombre193=["Guccione, Chris(AUS)",6,6,8,7,6,5,8,8,6,6,10,"hardcourt"];
 hombre61=["Gulbis, Ernests(LAT)",8,9,7,8,7,7,9,9,7,6,10,"hardcourt"];
-<!--hombre254=["Gutiérrez-Ferrol, Sergio(ESP)",8,6,5,6,8,7,6,6,7,6,10,"clay"];-->
+hombre254=["Gutiï¿½rrez-Ferrol, Sergio(ESP)",8,6,5,6,8,7,6,6,7,6,10,"clay"];
 hombre62=["Haas, Tommy(GER)",8,9,8,8,7,7,8,7,8,8,10,"grass"];
 hombre63=["Haase, Robin(NED)",8,8,7,6,7,8,7,8,8,7,10,"neutral"];
 hombre64=["Haider-Maurer, Andreas(AUT)",7,7,7,6,6,7,7,6,7,7,10,"hardcourt"];
 hombre65=["Hajek, Jan(CZE)",7,6,6,6,7,7,7,7,7,7,10,"hardcourt"];
 hombre66=["Hanescu, Victor(ROU)",7,7,7,7,6,7,7,7,7,7,10,"clay"];
 hombre155=["Harrison, Ryan(USA)",8,6,7,6,6,7,8,8,6,6,10,"hardcourt"];
-<!--hombre223=["Heliovaara, Harry(FIN)",7,5,7,6,7,6,7,8,5,6,10,"hardcourt"];-->
+hombre223=["Heliovaara, Harry(FIN)",7,5,7,6,7,6,7,8,5,6,10,"hardcourt"];
 hombre320=["Herbert, Pierre-Hugues(FRA)",7,5,8,5,6,7,8,7,5,6,10,"clay"];
 hombre313=["Hernych, Jan(CZE)",7,8,7,6,6,6,7,7,6,6,10,"grass"];
 hombre67=["Hewitt, Lleyton(AUS)",7,8,8,7,7,7,7,7,9,7,10,"grass"];
 hombre157=["Huta Galung, Jesse(NED)",6,7,7,7,6,6,5,6,7,7,10,"clay"];
 hombre207=["Ignatik, Uladzimir(BLR)",7,5,8,7,6,6,8,7,6,6,10,"carpet"];
 hombre162=["Ilhan, Marsel(TUR)",8,7,6,6,5,6,8,8,6,7,10,"hardcourt"];
-<!--hombre217=["Inoyatov, Murad(UZB)",6,5,5,5,5,7,6,6,5,5,10,"hardcourt"];-->
+hombre217=["Inoyatov, Murad(UZB)",6,5,5,5,5,7,6,6,5,5,10,"hardcourt"];
 hombre68=["Isner, John(USA)",9,7,7,7,5,7,9,9,7,8,10,"hardcourt"];
 hombre69=["Istomin, Denis(UZB)",8,7,8,7,6,6,10,8,6,7,10,"grass"];
 hombre191=["Ito, Tatsuma(JPN)",7,7,6,7,7,8,6,6,7,7,10,"hardcourt"];
@@ -323,27 +318,27 @@ hombre241=["Janowicz, Jerzy(POL)",8,6,8,9,6,7,9,9,7,7,10,"hardcourt"];
 hombre239=["Jaziri, Malek(TUN)",7,7,6,5,7,8,6,7,7,7,10,"hardcourt"];
 hombre368=["Johansson, Joachim(SWE)",9,7,7,6,5,6,9,9,6,5,10,"carpet"];
 hombre259=["Johnson, Steve(USA)",8,6,7,6,5,6,9,8,6,7,10,"hardcourt"];
-<!--hombre172=["Junqueira, Diego(ARG)",7,6,6,6,5,7,6,7,7,7,10,"clay"];-->
+hombre172=["Junqueira, Diego(ARG)",7,6,6,6,5,7,6,7,7,7,10,"clay"];
 hombre240=["Juska, Andis(LET)",7,6,6,6,7,6,7,6,8,7,10,"carpet"];
 hombre70=["Kamke, Tobias(GER)",7,7,8,6,6,7,8,8,6,6,10,"neutral"];
 hombre71=["Karlovic, Ivo(CRO)",8,7,8,6,5,6,10,10,6,7,10,"grass"];
 hombre72=["Kavcic, Blaz(SLO)",8,7,6,6,8,7,6,6,7,8,10,"hardcourt"];
-<!--hombre73=["Kendrick, Robert(USA)",8,6,8,5,6,6,8,8,6,5,10,"hardcourt"];-->
-<!--hombre74=["Kiefer, Nicolas(GER)",6,6,9,9,5,6,7,7,6,10,"grass"];-->
+hombre73=["Kendrick, Robert(USA)",8,6,8,5,6,6,8,8,6,5,10,"hardcourt"];
+hombre74=["Kiefer, Nicolas(GER)",6,6,9,9,5,6,7,7,6,10,"grass"];
 hombre360=["Klahn, Bradley(USA)",8,7,7,5,6,6,8,8,6,7,10,"hardcourt"];
 hombre230=["Klizan, Martin(SVK)",8,8,6,6,7,8,7,8,7,7,10,"neutral"];
-<!--hombre75=["Koellerer, Daniel(AUT)",7,5,7,6,7,4,7,8,10,"hardcourt"];-->
+hombre75=["Koellerer, Daniel(AUT)",7,5,7,6,7,4,7,8,10,"hardcourt"];
 hombre382=["Kokkinakis, Thanasi(AUS)",7,7,7,5,6,6,8,7,5,6,10,"hardcourt"];
 hombre76=["Kohlschreiber, Philipp(GER)",7,8,8,7,7,8,7,7,7,7,10,"neutral"];
 hombre192=["Korolev, Evgeny(KAZ)",8,7,5,6,6,6,6,7,7,7,10,"hardcourt"];
-<!--hombre77=["Koubek, Stefan(AUT)",8,6,4,5,7,7,7,8,7,7,10,"clay"];-->
+hombre77=["Koubek, Stefan(AUT)",8,6,4,5,7,7,7,8,7,7,10,"clay"];
 hombre304=["Krajinovic, Filip(SRB)",7,7,6,6,7,7,8,8,6,7,10,"clay"];
 hombre275=["Kravchuk, Konstantin(RUS)",7,5,6,7,5,6,8,7,5,6,10,"hardcourt"];
 hombre138=["Kubot, Lukasz(POL)",8,6,8,7,5,6,8,8,7,6,10,"clay"];
 hombre258=["Kudla, Denis(USA)",6,7,7,6,6,7,7,7,6,6,10,"hardcourt"];
 hombre159=["Kukushkin, Mikhail(KAZ)",8,8,6,7,8,8,7,6,7,8,10,"hardcourt"];
 hombre307=["Kuzmanov, Dimitar(BUL)",7,6,6,5,6,6,7,8,6,6,10,"hardcourt"];
-<!--hombre78=["Kunitsyn, Igor(RUS)",7,6,7,7,7,7,8,7,7,7,10,"clay"];-->
+hombre78=["Kunitsyn, Igor(RUS)",7,6,7,7,7,7,8,7,7,7,10,"clay"];
 hombre166=["Kuznetsov, Andrey(RUS)",7,8,6,7,7,8,7,7,7,8,10,"clay"];
 hombre305=["Kyrgios, Nick(AUS)",7,7,7,6,6,7,7,7,7,7,10,"hardcourt"];
 hombre298=["Laaksonen, Henri(SUI)",8,6,6,6,6,7,6,7,6,6,10,"clay"];
@@ -356,52 +351,52 @@ hombre232=["Levine, Jesse(CAN)",7,6,7,6,8,6,7,7,5,5,10,"hardcourt"];
 hombre290=["Li, Zhe(CHN)",6,7,5,5,7,7,5,7,6,7,10,"hardcourt"];
 hombre80=["Lindahl, Nick(SWE)",5,7,5,5,6,5,6,7,6,5,10,"hardcourt"];
 hombre299=["Lindell, Christian(SWE)",7,6,5,7,4,6,7,6,7,5,10,"clay"];
-<!--hombre81=["Ljubicic, Ivan(CRO)",8,8,7,7,6,7,9,9,7,7,10,"hardcourt"];-->
+hombre81=["Ljubicic, Ivan(CRO)",8,8,7,7,6,7,9,9,7,7,10,"hardcourt"];
 hombre82=["Llodra, Michael(FRA)",6,6,8,7,6,6,8,6,6,5,10,"carpet"];
 hombre267=["Lokoli, Laurent(FRA)",7,7,6,5,7,6,6,7,7,6,10,"clay"];
-hombre83=["López, Feliciano(ESP)",8,7,8,8,7,7,9,9,6,7,10,"hardcourt"];
-<!--hombre231=["López, Marc(ESP)",9,7,9,7,8,6,8,7,8,8,10,"clay"];-->
+hombre83=["Lï¿½pez, Feliciano(ESP)",8,7,8,8,7,7,9,9,6,7,10,"hardcourt"];
+hombre231=["Lï¿½pez, Marc(ESP)",9,7,9,7,8,6,8,7,8,8,10,"clay"];
 hombre84=["Lorenzi, Paolo(ITA)",7,7,6,6,7,7,7,6,7,7,10,"clay"];
-<!--hombre143=["Luczak, Peter(AUS)",9,8,5,6,9,8,5,8,7,6,10,"clay"];-->
+hombre143=["Luczak, Peter(AUS)",9,8,5,6,9,8,5,8,7,6,10,"clay"];
 hombre85=["Machado, Rui(POR)",7,6,6,6,7,7,7,7,7,7,10,"clay"];
 hombre86=["Mahut, Nicolas(FRA)",7,7,7,6,5,6,9,9,5,6,10,"grass"];
-<!--hombre87=["Malisse, Xavier(BEL)",7,7,8,6,7,7,7,8,6,8,10,"hardcourt"];-->
+hombre87=["Malisse, Xavier(BEL)",7,7,8,6,7,7,7,8,6,8,10,"hardcourt"];
 hombre88=["Mannarino, Adrian(FRA)",7,7,7,7,6,7,7,7,7,7,10,"neutral"];
 hombre163=["Marchenko, Illya(UKR)",8,8,7,7,8,7,7,8,7,7,10,"hardcourt"];
 hombre384=["Marti, Yann(SUI)",8,8,5,5,6,7,6,6,6,7,10,"clay"];
-hombre183=["Martí, Javier(ESP)",7,8,7,6,7,7,6,6,7,7,10,"clay"];
+hombre183=["Martï¿½, Javier(ESP)",7,8,7,6,7,7,6,6,7,7,10,"clay"];
 hombre277=["Martin, Andrej(SVK)",6,6,6,6,7,6,6,6,6,6,10,"hardcourt"];
-<!--hombre89=["Massú, Nicolás(CHI)",8,6,5,5,6,6,8,7,6,10,"clay"];-->
+hombre89=["Massï¿½, Nicolï¿½s(CHI)",8,6,5,5,6,6,8,7,6,10,"clay"];
 hombre90=["Mathieu, Paul Henri(FRA)",8,7,6,7,8,7,7,7,7,8,10,"hardcourt"];
 hombre186=["Matosevic, Marinko(AUS)",8,7,7,5,6,6,7,8,6,7,10,"hardcourt"];
 hombre91=["Mayer, Florian(GER)",7,7,8,8,7,7,8,8,7,7,10,"grass"];
 hombre92=["Mayer, Leonardo(ARG)",9,10,7,6,6,7,9,10,7,8,10,"hardcourt"];
 hombre376=["Mecir, Miloslav(SVK)",6,7,8,7,5,6,8,7,5,5,10,"grass"];
 hombre243=["Meffert, Dominic(GER)",6,5,7,6,5,6,8,7,6,7,10,"hardcourt"];
-<!--hombre93=["Mello, Ricardo(BRA)",7,6,5,7,7,8,7,6,7,8,10,"clay"];-->
+hombre93=["Mello, Ricardo(BRA)",7,6,5,7,7,8,7,6,7,8,10,"clay"];
 hombre226=["Melzer, Gerald(AUT)",6,6,5,7,6,6,6,6,6,6,10,"clay"];
 hombre94=["Melzer, Jurgen(AUT)",8,7,8,8,7,7,7,8,8,6,10,"carpet"];
-hombre255=["Menéndez Maceiras, Adrián(ESP)",7,7,6,4,7,7,7,7,5,7,10,"hardcourt"];
+hombre255=["Menï¿½ndez Maceiras, Adriï¿½n(ESP)",7,7,6,4,7,7,7,7,5,7,10,"hardcourt"];
 hombre251=["Mertens, Yannick(BEL)",7,6,7,5,6,6,6,7,6,6,10,"hardcourt"];
 hombre291=["Millman, John(AUS)",8,6,7,7,6,6,7,7,7,6,10,"hardcourt"];
 hombre208=["Minar, Ivo(CZE)",6,6,6,6,7,6,7,6,6,6,10,"clay"];
 hombre194=["Mitchell, Benjamin(AUS)",8,6,7,5,7,6,5,8,7,7,10,"clay"];
-hombre95=["Mónaco, Juan(ARG)",8,7,7,6,8,8,7,7,8,8,10,"clay"];
+hombre95=["Mï¿½naco, Juan(ARG)",8,7,7,6,8,8,7,7,8,8,10,"clay"];
 hombre96=["Monfils, Gael(FRA)",8,7,7,7,8,8,8,9,8,7,10,"clay"];
-hombre97=["Montañés, Albert(ESP)",7,7,6,7,7,7,7,7,7,7,10,"clay"];
+hombre97=["Montaï¿½ï¿½s, Albert(ESP)",7,7,6,7,7,7,7,7,7,7,10,"clay"];
 hombre383=["Monteiro, Thiago(BRA)",7,7,6,6,8,7,7,8,7,6,10,"clay"];
 hombre270=["Moriya, Hiroki(JPN)",6,7,5,6,7,6,6,6,6,6,10,"hardcourt"];
 hombre178=["Muller, Gilles(LUX)",8,6,7,6,5,7,9,8,6,5,10,"hardcourt"];
-hombre215=["Muñoz-De La Nava, Daniel(ESP)",7,6,6,7,6,7,6,7,6,6,10,"clay"];
+hombre215=["Muï¿½oz-De La Nava, Daniel(ESP)",7,6,6,7,6,7,6,7,6,6,10,"clay"];
 hombre98=["Murray, Andy(GBR)",8,9,8,9,9,9,9,9,9,9,10,"hardcourt"];
 hombre99=["Nadal, Rafael(ESP)",9,8,7,8,10,9,7,9,10,9,10,"clay"];
-<!--hombre100=["Nalbandián, David(ARG)",7,9,7,6,6,7,7,7,9,7,10,"hardcourt"];-->
+hombre100=["Nalbandiï¿½n, David(ARG)",7,9,7,6,6,7,7,7,9,7,10,"hardcourt"];
 hombre268=["Naso, Gianluca(ITA)",6,7,5,6,7,6,6,6,7,6,10,"clay"];
-<!--hombre195=["Navarro, Iván(ESP)",6,7,8,5,6,6,7,7,6,6,10,"clay"];-->
+hombre195=["Navarro, Ivï¿½n(ESP)",6,7,8,5,6,6,7,7,6,6,10,"clay"];
 hombre312=["Nedovyesov, Oleksandr(UKR)",6,6,7,6,6,6,8,7,6,6,10,"carpet"];
 hombre101=["Nieminen, Jarkko(FIN)",8,7,7,7,8,8,7,7,8,7,10,"carpet"];
-<!--hombre225=["Nieminen, Timo(FIN)",7,6,6,5,7,7,6,7,6,7,10,"carpet"];-->
-<!--hombre170=["Niland, Conor(IRL)",6,6,7,7,6,6,7,7,6,6,10,"hardcourt"];-->
+hombre225=["Nieminen, Timo(FIN)",7,6,6,5,7,7,6,7,6,7,10,"carpet"];
+hombre170=["Niland, Conor(IRL)",6,6,7,7,6,6,7,7,6,6,10,"hardcourt"];
 hombre102=["Nishikori, Kei(JPN)",9,9,6,7,9,8,7,10,8,8,10,"hardcourt"];
 hombre200=["Odesnik, Wayne(USA)",7,6,7,6,7,8,6,6,7,7,10,"clay"];
 hombre379=["Ojeda, Ricardo(ESP)",7,6,6,6,6,7,6,7,6,6,10,"clay"];
@@ -415,43 +410,43 @@ hombre272=["Pashanki, Boris(SRB)",5,7,5,6,6,7,6,6,7,6,10,"clay"];
 hombre278=["Pavic, Mate(CRO)",7,7,8,9,5,6,7,8,6,6,10,"grass"];
 hombre285=["Peliwo, Filip(CAN)",7,7,6,6,6,6,6,7,6,6,10,"grass"];
 hombre244=["Pella, Guido(ARG)",8,7,5,7,7,8,6,6,7,7,10,"clay"];
-hombre310=["Pérez Sanz, David(ESP)",7,6,5,5,8,7,6,6,7,6,10,"clay"];
+hombre310=["Pï¿½rez Sanz, David(ESP)",7,6,5,5,8,7,6,6,7,6,10,"clay"];
 hombre103=["Petzschner, Philipp(GER)",7,6,7,7,6,7,8,7,7,7,10,"grass"];
-<!--hombre235=["Phau, Bjorn(GER)",7,7,6,7,7,6,5,7,7,7,10,"clay"];-->
+hombre235=["Phau, Bjorn(GER)",7,7,6,7,7,6,5,7,7,7,10,"clay"];
 hombre210=["Polansky, Peter(CAN)",7,7,6,6,7,6,8,8,7,6,10,"hardcourt"];
 hombre104=["Pospisil, Jaroslav(CZE)",6,6,6,5,6,6,6,6,6,7,10,"clay"];
 hombre209=["Pospisil, Vasek(CAN)",8,8,8,7,7,7,8,8,7,6,10,"hardcourt"];
 hombre373=["Pouille, Lucas(FRA)",8,7,5,5,6,7,6,6,7,6,10,"clay"];
-<!--hombre175=["Prodon, Eric(FRA)",8,8,8,10,8,5,7,6,7,7,10,"clay"];-->
-<!--hombre105=["Prpic, Filip(SWE)",7,5,6,5,8,5,6,6,6,6,10,"hardcourt"];-->
+hombre175=["Prodon, Eric(FRA)",8,8,8,10,8,5,7,6,7,7,10,"clay"];
+hombre105=["Prpic, Filip(SWE)",7,5,6,5,8,5,6,6,6,6,10,"hardcourt"];
 hombre279=["Przysiezny, Michal(POL)",8,6,7,7,5,6,9,8,8,5,10,"carpet"];
 hombre106=["Querrey, Sam(USA)",8,8,7,6,6,7,9,8,7,6,10,"hardcourt"];
 hombre300=["Quinzi, Gianluigi(ITA)",6,7,6,5,7,7,7,6,6,6,10,"clay"];
 hombre202=["Ram, Rajeev(USA)",6,7,7,7,6,6,7,8,6,6,10,"grass"];
-hombre151=["Ramírez Hidalgo, Rubén(ESP)",7,7,5,5,7,8,6,7,7,8,10,"clay"];
+hombre151=["Ramï¿½rez Hidalgo, Rubï¿½n(ESP)",7,7,5,5,7,8,6,7,7,8,10,"clay"];
 hombre152=["Ramos, Albert(ESP)",8,8,5,7,7,8,8,8,8,7,10,"clay"];
 hombre107=["Raonic, Milos(CAN)",9,7,8,7,6,8,10,9,7,9,10,"hardcourt"];
 hombre141=["Reister, Julian(GER)",8,7,5,7,7,6,6,7,7,7,10,"clay"];
-<!--hombre201=["Reynolds, Bobby(USA)",6,6,8,8,7,6,8,7,6,7,10,"hardcourt"];-->
+hombre201=["Reynolds, Bobby(USA)",6,6,8,8,7,6,8,7,6,7,10,"hardcourt"];
 hombre108=["Riba, Pere(ESP)",8,8,6,7,7,8,8,8,7,7,10,"clay"];
 hombre109=["Robert, Stephane(FRA)",7,7,7,6,7,7,7,7,6,7,10,"hardcourt"];
 hombre110=["Robredo, Tommy(ESP)",8,8,7,7,7,7,7,7,8,8,10,"clay"];
-<!--hombre111=["Rochus, Olivier(BEL)",7,6,6,7,8,7,6,6,8,8,10,"clay"];-->
-<!--hombre112=["Roddick, Andy(USA)",9,9,8,7,9,8,9,9,9,7,10,"hardcourt"];-->
-hombre318=["Rodríguez, Ricardo(VEN)",7,6,6,5,7,7,5,6,7,6,10,"clay"];
+hombre111=["Rochus, Olivier(BEL)",7,6,6,7,8,7,6,6,8,8,10,"clay"];
+hombre112=["Roddick, Andy(USA)",9,9,8,7,9,8,9,9,9,7,10,"hardcourt"];
+hombre318=["Rodrï¿½guez, Ricardo(VEN)",7,6,6,5,7,7,5,6,7,6,10,"clay"];
 hombre174=["Roger-Vasselin, Edouard(FRA)",7,7,8,6,6,7,7,7,6,9,10,"grass"];
 hombre161=["Rosol, Lukas(CZE)",7,7,7,6,6,7,8,9,7,7,10,"hardcourt"];
 hombre180=["Rufin, Guillaume(FRA)",6,8,7,7,6,6,8,7,6,6,10,"clay"];
 hombre113=["Russell, Michael(USA)",6,6,5,6,7,8,7,7,7,8,10,"hardcourt"];
-<!--hombre114=["Ryderstedt, Michael(SWE)",5,7,6,5,7,6,5,7,7,6,10,"hardcourt"];-->
-hombre282=["Saavedra, Cristóbal(CHI)",7,6,5,6,7,7,6,7,6,6,10,"clay"];
+hombre114=["Ryderstedt, Michael(SWE)",5,7,6,5,7,6,5,7,7,6,10,"hardcourt"];
+hombre282=["Saavedra, Cristï¿½bal(CHI)",7,6,5,6,7,7,6,7,6,6,10,"clay"];
 hombre377=["Safwat, Mohamed(EGY)",7,6,6,6,7,7,6,6,6,7,10,"hardcourt"];
 hombre148=["Salamanca, Carlos(COL)",6,5,8,7,6,7,7,6,5,6,10,"clay"];
-<!--hombre165=["Sansonetti, Federico(URU)",5,7,6,5,8,5,6,6,6,6,10,"clay"];-->
+hombre165=["Sansonetti, Federico(URU)",5,7,6,5,8,5,6,6,6,6,10,"clay"];
 hombre292=["Saville, Luke(AUS)",7,7,7,6,6,6,7,6,6,6,10,"hardcourt"];
 hombre156=["Schoorel, Thomas(NED)",9,6,7,5,5,6,9,8,7,6,10,"clay"];
-<!--hombre115=["Schuettler, Rainer(GER)",6,8,8,7,6,6,7,7,7,7,10,"hardcourt"];-->
-<!--hombre218=["Schukin, Yuri(KAZ)",6,7,6,6,6,8,7,7,7,6,10,"clay"];-->
+hombre115=["Schuettler, Rainer(GER)",6,8,8,7,6,6,7,7,7,7,10,"hardcourt"];
+hombre218=["Schukin, Yuri(KAZ)",6,7,6,6,6,8,7,7,7,6,10,"clay"];
 hombre116=["Schwank, Eduardo(ARG)",7,6,8,7,7,6,7,8,7,6,10,"clay"];
 hombre286=["Schwartzman, Diego Sebastian(ARG)",6,7,5,7,7,8,6,6,8,6,10,"clay"];
 hombre117=["Sela, Dudi(ISR)",7,7,7,6,8,7,6,5,6,7,10,"grass"];
@@ -459,11 +454,11 @@ hombre118=["Seppi, Andreas(ITA)",8,8,7,6,8,8,7,7,7,8,10,"clay"];
 hombre160=["Sergeyev, Ivan(UCR)",6,7,5,6,7,8,6,5,6,6,10,"hardcourt"];
 hombre119=["Serra, Florent(FRA)",8,7,6,6,6,7,6,7,7,7,10,"clay"];
 hombre181=["Sijsling, Igor(NED)",8,8,9,7,6,7,8,8,6,6,10,"grass"];
-<!--hombre146=["Silva, Julio(BRA)",7,6,4,5,8,8,5,6,7,7,10,"clay"];-->
+hombre146=["Silva, Julio(BRA)",7,6,4,5,8,8,5,6,7,7,10,"clay"];
 hombre120=["Simon, Gilles(FRA)",8,8,7,7,8,9,7,7,8,9,10,"hardcourt"];
 hombre257=["Smyczek, Tim (USA)",7,5,7,6,6,6,8,6,6,6,10,"hardcourt"];
 hombre219=["Sock, Jack(USA)",8,6,7,7,6,7,8,8,6,7,10,"hardcourt"];
-<!--hombre121=["Soderling, Robin(SWE)",9,8,7,8,7,7,9,9,8,8,10,"hardcourt"];-->
+hombre121=["Soderling, Robin(SWE)",9,8,7,8,7,7,9,9,8,8,10,"hardcourt"];
 hombre122=["Soeda, Go(JPN)",6,6,7,6,9,8,6,7,7,7,10,"hardcourt"];
 hombre184=["Sousa, Joao(POR)",9,9,5,6,8,8,10,9,7,6,10,"clay"];
 hombre296=["Sousa, Pedro(POR)",7,6,4,7,7,6,7,6,6,6,10,"clay"];
@@ -486,10 +481,10 @@ hombre205=["Tsung-Hua, Yang(TPE)",7,7,5,6,7,6,7,7,7,6,10,"hardcourt"];
 hombre129=["Tursunov, Dmitry(RUS)",8,8,8,8,7,6,8,8,6,6,10,"grass"];
 hombre273=["Udomchoke, Danai(THA)",6,6,5,5,9,7,6,6,6,6,10,"hard"];
 hombre130=["Ungur, Adrian(ROU)",7,7,6,5,7,7,5,6,7,7,10,"clay"];
-<!--hombre131=["Vasallo, Martin(ARG)",7,7,5,5,7,7,5,6,6,10,"clay"];-->
+hombre131=["Vasallo, Martin(ARG)",7,7,5,5,7,7,5,6,6,10,"clay"];
 hombre199=["Van der Merwe, Izak(RSA)",6,7,7,6,7,7,8,7,6,6,10,"hardcourt"];
 hombre236=["Veic, Antonio(CRO)",8,6,6,7,6,7,7,8,6,5,10,"clay"];
-hombre287=["Velotti, Agustín(ARG)",7,7,5,6,6,7,6,6,7,7,10,"clay"];
+hombre287=["Velotti, Agustï¿½n(ARG)",7,7,5,6,6,7,6,6,7,7,10,"clay"];
 hombre375=["Venus, Michael(NZL)",7,6,8,4,6,5,8,8,6,6,10,"hardcourt"];
 hombre132=["Verdasco, Fernando(ESP)",9,7,7,7,8,7,9,9,8,7,10,"clay"];
 hombre280=["Vesely, Jiri(CZE)",8,9,7,7,7,7,9,8,4,6,10,"carpet"];
@@ -516,20 +511,20 @@ hombre250=["Authom, Maxime(BEL)",0,0,0,0,0,0,0,0,0,0,0,"carpet"];
 
 //Jugadores Dobles
 hombre388=["Begemann, Andre(GER)",6,7,7,8,6,6,6,7,6,5,10,"grass"];
-<!--hombre321=["Bhupathi, Mahesh(IND)",6,7,9,7,6,7,8,8,7,8,10,"grass"];-->
+hombre321=["Bhupathi, Mahesh(IND)",6,7,9,7,6,7,8,8,7,8,10,"grass"];
 hombre322=["Bopanna, Rohan(IND)",7,6,7,7,6,6,7,6,5,8,10,"grass"];
 hombre323=["Bracciali, Daniele(ITA)",6,7,7,7,6,6,5,6,7,6,10,"clay"];
 hombre369=["Brunstrom, Johan(SWE)",6,6,7,7,5,6,8,7,6,6,10,"hardcourt"];
 hombre324=["Bryan, Bob(USA)",7,6,7,5,6,6,7,6,7,7,10,"hardcourt"];
 hombre325=["Bryan, Mike(USA)",7,6,7,5,6,6,7,6,7,7,10,"hardcourt"];
-hombre326=["Cabal, Juan Sebastián(COL)",7,6,7,6,7,7,6,5,7,6,10,"clay"];
+hombre326=["Cabal, Juan Sebastiï¿½n(COL)",7,6,7,6,7,7,6,5,7,6,10,"clay"];
 hombre327=["Cermak, Frantisek(CZE)",6,6,7,5,5,5,7,7,7,6,10,"clay"];
 hombre328=["Dlouhy, Lukas(CZE)",6,6,7,8,5,6,7,7,7,6,10,"clay"];
 hombre386=["Draganja, Marin(CRO)",6,7,8,6,6,6,6,8,6,5,10,"grass"];
 hombre329=["Erlich, Jonathan(ISR)",5,6,6,6,5,5,7,6,6,5,10,"hardcourt"];
 hombre149=["Farah, Robert(COL)",7,7,5,4,6,7,7,8,6,7,10,"hardcourt"];
 hombre330=["Fyrstenberg, Mariusz(POL)",6,6,7,6,6,5,7,7,6,6,10,"grass"];
-hombre331=["González, Santiago(MEX)",6,7,7,7,5,6,6,7,6,5,10,"hardcourt"];
+hombre331=["Gonzï¿½lez, Santiago(MEX)",6,7,7,7,5,6,6,7,6,5,10,"hardcourt"];
 hombre332=["Huey, Treat(FIL)",8,6,7,6,7,6,5,5,7,5,10,"hardcourt"];
 hombre362=["Inglot, Dominic(GBR)",7,6,6,8,6,7,6,6,6,6,10,"clay"];
 hombre387=["Kas, Christopher(GER)",7,6,8,6,6,6,8,6,6,5,10,"grass"];
@@ -537,7 +532,7 @@ hombre333=["Klaasen, Raven(RSA)",6,6,6,6,6,6,8,6,7,5,10,"hardcourt"];
 hombre224=["Kontinen, Henri(FIN)",7,7,8,6,6,7,7,8,6,6,10,"hardcourt"];
 hombre334=["Lindstedt, Robert(SWE)",6,6,7,6,6,6,6,7,8,6,10,"grass"];
 hombre335=["Lipsky, Scott(USA)",7,6,6,6,5,5,8,7,7,5,10,"hardcourt"];
-hombre336=["López, Marc(ESP)",8,6,7,6,8,8,6,6,7,6,10,"clay"];
+hombre336=["Lï¿½pez, Marc(ESP)",8,6,7,6,8,8,6,6,7,6,10,"clay"];
 hombre337=["Marach, Olivier(AUT)",5,6,7,6,6,6,7,6,6,6,10,"clay"];
 hombre338=["Marray, Jonathan(GBR)",6,7,7,6,6,5,6,6,7,5,10,"hardcourt"];
 hombre339=["Marrero, David(ESP)",7,6,7,5,6,7,7,6,7,6,10,"clay"];
@@ -560,17 +555,17 @@ hombre354=["Soares, Bruno(BRA)",6,6,7,7,6,7,7,6,7,5,10,"hardcourt"];
 hombre355=["Tecau, Horia(ROU)",7,6,8,6,6,6,5,7,7,6,10,"hardcourt"];
 hombre356=["Zimonjic, Nenad(SRB)",6,7,7,6,5,6,7,6,7,7,10,"clay"];
 
-<!--Último: 389-->
-<!--hombre=["",,,,,,,,,,,,""];-->
+//ï¿½ltimo: 389
+//hombre=["",,,,,,,,,,,,""];
 
 hombres=new Array();
 hombres[0]=hombre0;
-<!--hombres[1]=hombre1;-->
+hombres[1]=hombre1;
 hombres[2]=hombre2;
 hombres[3]=hombre3;
 hombres[4]=hombre4;
 hombres[5]=hombre5;
-<!--hombres[6]=hombre6;-->
+hombres[6]=hombre6;
 hombres[7]=hombre7;
 hombres[8]=hombre8;
 hombres[9]=hombre9;
@@ -582,24 +577,24 @@ hombres[14]=hombre14;
 hombres[15]=hombre15;
 hombres[16]=hombre16;
 hombres[17]=hombre17;
-<!--hombres[18]=hombre18;-->
+hombres[18]=hombre18;
 hombres[19]=hombre19;
 hombres[20]=hombre20;
 hombres[21]=hombre21;
 hombres[22]=hombre22;
-<!--hombres[23]=hombre23;-->
+hombres[23]=hombre23;
 hombres[24]=hombre24;
-<!--hombres[25]=hombre25;-->
+hombres[25]=hombre25;
 hombres[26]=hombre26;
 hombres[27]=hombre27;
 hombres[28]=hombre28;
-<!--hombres[29]=hombre29;-->
+hombres[29]=hombre29;
 hombres[30]=hombre30;
 hombres[31]=hombre31;
 hombres[32]=hombre32;
-<!--hombres[33]=hombre33;-->
+hombres[33]=hombre33;
 hombres[34]=hombre34;
-<!--hombres[35]=hombre35;-->
+hombres[35]=hombre35;
 hombres[36]=hombre36;
 hombres[37]=hombre37;
 hombres[38]=hombre38;
@@ -611,18 +606,18 @@ hombres[43]=hombre43;
 hombres[44]=hombre44;
 hombres[45]=hombre45;
 hombres[46]=hombre46;
-<!--hombres[47]=hombre47;-->
+hombres[47]=hombre47;
 hombres[48]=hombre48;
 hombres[49]=hombre49;
 hombres[50]=hombre50;
 hombres[51]=hombre51;
 hombres[52]=hombre52;
-<!--hombres[53]=hombre53;-->
+hombres[53]=hombre53;
 hombres[54]=hombre54;
 hombres[55]=hombre55;
 hombres[56]=hombre56;
 hombres[57]=hombre57;
-<!--hombres[58]=hombre58;-->
+hombres[58]=hombre58;
 hombres[59]=hombre59;
 hombres[60]=hombre60;
 hombres[61]=hombre61;
@@ -637,55 +632,55 @@ hombres[69]=hombre69;
 hombres[70]=hombre70;
 hombres[71]=hombre71;
 hombres[72]=hombre72;
-<!--hombres[73]=hombre73;-->
-<!--hombres[74]=hombre74;-->
-<!--hombres[75]=hombre75;-->
+hombres[73]=hombre73;
+hombres[74]=hombre74;
+hombres[75]=hombre75;
 hombres[76]=hombre76;
-<!--hombres[77]=hombre77;-->
-<!--hombres[78]=hombre78;-->
+hombres[77]=hombre77;
+hombres[78]=hombre78;
 hombres[79]=hombre79;
 hombres[80]=hombre80;
-<!--hombres[81]=hombre81;-->
+hombres[81]=hombre81;
 hombres[82]=hombre82;
 hombres[83]=hombre83;
 hombres[84]=hombre84;
 hombres[85]=hombre85;
 hombres[86]=hombre86;
-<!--hombres[87]=hombre87;-->
+hombres[87]=hombre87;
 hombres[88]=hombre88;
-<!--hombres[89]=hombre89;-->
+hombres[89]=hombre89;
 hombres[90]=hombre90;
 hombres[91]=hombre91;
 hombres[92]=hombre92;
-<!--hombres[93]=hombre93;-->
+hombres[93]=hombre93;
 hombres[94]=hombre94;
 hombres[95]=hombre95;
 hombres[96]=hombre96;
 hombres[97]=hombre97;
 hombres[98]=hombre98;
 hombres[99]=hombre99;
-<!--hombres[100]=hombre100;-->
+hombres[100]=hombre100;
 hombres[101]=hombre101;
 hombres[102]=hombre102;
 hombres[103]=hombre103;
 hombres[104]=hombre104;
-<!--hombres[105]=hombre105;-->
+hombres[105]=hombre105;
 hombres[106]=hombre106;
 hombres[107]=hombre107;
 hombres[108]=hombre108;
 hombres[109]=hombre109;
 hombres[110]=hombre110;
-<!--hombres[111]=hombre111;-->
-<!--hombres[112]=hombre112;-->
+hombres[111]=hombre111;
+hombres[112]=hombre112;
 hombres[113]=hombre113;
-<!--hombres[114]=hombre114;-->
-<!--hombres[115]=hombre115;-->
+hombres[114]=hombre114;
+hombres[115]=hombre115;
 hombres[116]=hombre116;
 hombres[117]=hombre117;
 hombres[118]=hombre118;
 hombres[119]=hombre119;
 hombres[120]=hombre120;
-<!--hombres[121]=hombre121;-->
+hombres[121]=hombre121;
 hombres[122]=hombre122;
 hombres[123]=hombre123;
 hombres[124]=hombre124;
@@ -695,7 +690,7 @@ hombres[127]=hombre127;
 hombres[128]=hombre128;
 hombres[129]=hombre129;
 hombres[130]=hombre130;
-<!--hombres[131]=hombre131;-->
+hombres[131]=hombre131;
 hombres[132]=hombre132;
 hombres[133]=hombre133;
 hombres[134]=hombre134;
@@ -707,10 +702,10 @@ hombres[139]=hombre139;
 hombres[140]=hombre140;
 hombres[141]=hombre141;
 hombres[142]=hombre142;
-<!--hombres[143]=hombre143;-->
+hombres[143]=hombre143;
 hombres[144]=hombre144;
 hombres[145]=hombre145;
-<!--hombres[146]=hombre146;-->
+hombres[146]=hombre146;
 hombres[147]=hombre147;
 hombres[148]=hombre148;
 hombres[149]=hombre149;
@@ -728,18 +723,18 @@ hombres[160]=hombre160;
 hombres[161]=hombre161;
 hombres[162]=hombre162;
 hombres[163]=hombre163;
-<!--hombres[164]=hombre164;-->
-<!--hombres[165]=hombre165;-->
+hombres[164]=hombre164;
+hombres[165]=hombre165;
 hombres[166]=hombre166;
 hombres[167]=hombre167;
 hombres[168]=hombre168;
 hombres[169]=hombre169;
-<!--hombres[170]=hombre170;-->
+hombres[170]=hombre170;
 hombres[171]=hombre171;
-<!--hombres[172]=hombre172;-->
+hombres[172]=hombre172;
 hombres[173]=hombre173;
 hombres[174]=hombre174;
-<!--hombres[175]=hombre175;-->
+hombres[175]=hombre175;
 hombres[176]=hombre176;
 hombres[177]=hombre177;
 hombres[178]=hombre178;
@@ -759,13 +754,13 @@ hombres[191]=hombre191;
 hombres[192]=hombre192;
 hombres[193]=hombre193;
 hombres[194]=hombre194;
-<!--hombres[195]=hombre195;-->
+hombres[195]=hombre195;
 hombres[196]=hombre196;
 hombres[197]=hombre197;
 hombres[198]=hombre198;
 hombres[199]=hombre199;
 hombres[200]=hombre200;
-<!--hombres[201]=hombre201;-->
+hombres[201]=hombre201;
 hombres[202]=hombre202;
 hombres[203]=hombre203;
 hombres[204]=hombre204;
@@ -776,30 +771,30 @@ hombres[208]=hombre208;
 hombres[209]=hombre209;
 hombres[210]=hombre210;
 hombres[211]=hombre211;
-<!--hombres[212]=hombre212;-->
+hombres[212]=hombre212;
 hombres[213]=hombre213;
 hombres[214]=hombre214;
 hombres[215]=hombre215;
 hombres[216]=hombre216;
-<!--hombres[217]=hombre217;-->
-<!--hombres[218]=hombre218;-->
+hombres[217]=hombre217;
+hombres[218]=hombre218;
 hombres[219]=hombre219;
-<!--hombres[220]=hombre220;-->
+hombres[220]=hombre220;
 hombres[221]=hombre221;
 hombres[222]=hombre222;
-<!--hombres[223]=hombre223;-->
+hombres[223]=hombre223;
 hombres[224]=hombre224;
-<!--hombres[225]=hombre225;-->
+hombres[225]=hombre225;
 hombres[226]=hombre226;
 hombres[227]=hombre227;
 hombres[228]=hombre228;
 hombres[229]=hombre229;
 hombres[230]=hombre230;
-<!--hombres[231]=hombre231;-->
+hombres[231]=hombre231;
 hombres[232]=hombre232;
 hombres[233]=hombre233;
 hombres[234]=hombre234;
-<!--hombres[235]=hombre235;-->
+hombres[235]=hombre235;
 hombres[236]=hombre236;
 hombres[237]=hombre237;
 hombres[238]=hombre238;
@@ -818,7 +813,7 @@ hombres[250]=hombre250;
 hombres[251]=hombre251;	
 hombres[252]=hombre252;	
 hombres[253]=hombre253;	
-<!--hombres[254]=hombre254;-->	
+hombres[254]=hombre254;	
 hombres[255]=hombre255;		
 hombres[256]=hombre256;	
 hombres[257]=hombre257;	
@@ -827,7 +822,7 @@ hombres[259]=hombre259;
 hombres[260]=hombre260;	
 hombres[261]=hombre261;	
 hombres[262]=hombre262;	
-<!--hombres[263]=hombre263;-->
+hombres[263]=hombre263;
 hombres[264]=hombre264;	
 hombres[265]=hombre265;	
 hombres[266]=hombre266;	
@@ -875,7 +870,7 @@ hombres[307]=hombre307;
 hombres[308]=hombre308;
 hombres[309]=hombre309;
 hombres[310]=hombre310;
-<!--hombres[311]=hombre311;-->
+hombres[311]=hombre311;
 hombres[312]=hombre312;
 hombres[313]=hombre313;
 hombres[314]=hombre314;
@@ -885,7 +880,7 @@ hombres[317]=hombre317;
 hombres[318]=hombre318;
 hombres[319]=hombre319;
 hombres[320]=hombre320;
-<!--hombres[321]=hombre321;-->
+hombres[321]=hombre321;
 hombres[322]=hombre322;
 hombres[323]=hombre323;
 hombres[324]=hombre324;
@@ -954,7 +949,7 @@ hombres[386]=hombre386;
 hombres[387]=hombre387;
 hombres[388]=hombre388;
 hombres[389]=hombre389;
-<!--hombres[]=hombre;-->
+//hombres[]=hombre;
 
 //Jugadores veteranos
 veterano0=["--------------VETERANOS----------------",0,0,0,0,0,0,0,0,0,0,0,"carpet"];
@@ -964,26 +959,26 @@ veterano3=["Borg, Bjorn(SWE)",8,8,8,8,9,10,8,8,10,9,10,"clay"];
 veterano4=["Chang, Michael(USA)",8,8,8,8,10,9,8,7,8,9,10,"hardcourt"];
 veterano5=["Connors, Jimmy(USA)",9,9,9,7,9,9,7,9,8,9,10,"hardcourt"];
 veterano6=["Coria, Guillermo(ARG)",8,8,8,9,10,9,6,8,9,8,10,"clay"];
-veterano7=["Corretja, Álex(ESP)",8,8,8,8,9,9,7,8,9,9,10,"clay"];
+veterano7=["Corretja, ï¿½lex(ESP)",8,8,8,8,9,9,7,8,9,9,10,"clay"];
 veterano8=["Costa, Albert(ESP)",8,8,7,8,8,9,7,8,9,10,"clay"];
 veterano9=["Edberg, Stefan(SWE)",8,10,10,9,8,8,9,8,7,8,10,"hardcourt"];
 veterano10=["Ferrero, Juan Carlos(ESP)",9,9,7,7,9,9,7,9,9,8,10,"clay"];
-veterano11=["Gaudio, Gastón(ARG)",8,9,8,9,8,9,7,8,9,8,10,"clay"];
+veterano11=["Gaudio, Gastï¿½n(ARG)",8,9,8,9,8,9,7,8,9,8,10,"clay"];
 veterano12=["Ivanisevic, Goran(CRO)",8,7,9,8,6,9,10,9,8,9,10,"grass"];
 veterano13=["Kuerten, Gustavo(BRA)",8,10,8,9,8,9,7,8,9,8,10,"clay"];
 veterano14=["Laver, Rod(AUS)",9,9,10,8,9,8,9,8,8,9,10,"grass"];
 veterano15=["Lendl, Ivan(CZE)",10,8,9,9,8,9,8,9,8,7,10,"hardcourt"];
 veterano16=["McEnroe, John(USA)",8,9,10,9,9,10,7,8,8,9,10,"hardcourt"];
-veterano17=["Moyá, Carlos(ESP)",10,8,9,7,8,9,8,9,8,8,10,"clay"];
+veterano17=["Moyï¿½, Carlos(ESP)",10,8,9,7,8,9,8,9,8,8,10,"clay"];
 veterano18=["Nalbandian, David(ARG)",8,10,8,9,8,7,7,8,10,8,10,"hardcourt"];
 veterano19=["Rafter, Patrick(AUS)",8,8,10,8,7,8,9,9,8,9,10,"hardcourt"];
 veterano20=["Roddick, Andy(USA)",9,7,8,7,8,8,10,9,8,9,10,"hardcourt"];
 veterano21=["Safin, Marat(RUS)",9,10,9,8,7,8,8,9,8,9,10,"hardcourt"];
 veterano22=["Sampras, Pete(USA)",10,7,9,8,7,9,10,9,8,9,10,"grass"];
 veterano23=["Vilas, Guillermo(ARG)",9,8,9,9,9,9,7,9,9,8,10,"clay"];
-veterano24=["González, Fernando(CHI)",9,7,7,7,9,9,8,9,8,9,10,"clay"];
+veterano24=["Gonzï¿½lez, Fernando(CHI)",9,7,7,7,9,9,8,9,8,9,10,"clay"];
 veterano25=["Stich, Michael(GER)",9,8,9,9,9,7,9,7,8,9,10,"grass"];
-veterano26=["Ríos, Marcelo(CHI)",8,9,8,10,8,9,7,7,10,8,10,"clay"];
+veterano26=["Rï¿½os, Marcelo(CHI)",8,9,8,10,8,9,7,7,10,8,10,"clay"];
 veterano27=["Johansson, Thomas(SWE)",9,8,9,8,8,7,9,10,8,8,10,"carpet"];
 
 veteranos=new Array();
@@ -1028,7 +1023,7 @@ mujer4=["Cibulkova, Dominica(SLQ)",9,7,7,7,8,8,7,8,8,8,10,"hardcourt"];
 mujer5=["Cirstea, Sorana(RUM)",7,7,5,6,8,6,6,7,7,7,10,"clay"];
 mujer6=["Clijsters, Kim(BEL)",8,9,8,8,8,7,7,8,9,9,10,"hardcourt"];
 mujer7=["Cornet, Alize(FRA)",5,7,6,6,7,6,6,6,7,7,10,"clay"];
-<!--mujer8=["Dementieva, Elena(RUS)",8,8,8,8,8,9,7,8,7,10,"hardcourt"];-->
+mujer8=["Dementieva, Elena(RUS)",8,8,8,8,8,9,7,8,7,10,"hardcourt"];
 mujer65=["Dominguez Lino, Lourdes(ESP)",,,,,,,,,,,,""];
 mujer9=["Dulgheru, Alexandra(RUM)",7,8,6,6,9,8,7,5,7,8,10,"clay"];
 mujer10=["Dulko, Gisela(ARG)",7,7,8,8,8,7,6,7,8,8,10,"clay"];
@@ -1039,7 +1034,7 @@ mujer56=["Goerges, Julia(GER)",9,8,7,7,8,8,9,8,6,8,10,"clay"];
 mujer14=["Groth, Jarmila(AUS)",6,7,6,7,7,8,9,9,7,6,10,"hardcourt"];
 mujer15=["Halep, Simona(RUM)",7,6,6,7,7,8,6,8,7,7,10,"clay"];
 mujer16=["Hantuchova, Daniela(SLQ)",8,8,8,7,7,9,8,8,7,8,10,"hardcourt"];
-<!--mujer17=["Henin, Justine(BEL)",8,10,7,8,9,8,6,7,10,"clay"];-->
+mujer17=["Henin, Justine(BEL)",8,10,7,8,9,8,6,7,10,"clay"];
 mujer60=["Hercog, Polona(SLO)",,,,,,,,,,,,""];
 mujer66=["Hradecka, Lucie(CZE)",,,,,,,,,,,,""];
 mujer18=["Ivanovic, Ana(SRB)",9,8,7,6,8,8,7,8,7,8,10,"clay"];
@@ -1094,7 +1089,7 @@ mujeres[4]=mujer4;
 mujeres[5]=mujer5;
 mujeres[6]=mujer6;
 mujeres[7]=mujer7;
-<!--mujeres[8]=mujer8;-->
+mujeres[8]=mujer8;
 mujeres[9]=mujer9;
 mujeres[10]=mujer10;
 mujeres[11]=mujer11;
@@ -1103,7 +1098,7 @@ mujeres[13]=mujer13;
 mujeres[14]=mujer14;
 mujeres[15]=mujer15;
 mujeres[16]=mujer16;
-<!--mujeres[17]=mujer17;-->
+mujeres[17]=mujer17;
 mujeres[18]=mujer18;
 mujeres[19]=mujer19;
 mujeres[20]=mujer20;
@@ -1154,9 +1149,8 @@ mujeres[64]=mujer64;
 mujeres[65]=mujer65;
 mujeres[66]=mujer66;
 
-<!--Definición de raquetas-->
-
-<!--raquetas PRINCE-->
+//Definiciï¿½n de raquetas
+//raquetas PRINCE
 PrinceEXO3Black=[2,2,0,0,-1,0,0,2,0,0];
 PrinceEXO3WhiteMP=[2,1,1,0,0,0,0,1,0,0];
 PrinceEXO3Graphite=[1,0,1,0,0,-1,1,2,0,0];
@@ -1164,13 +1158,13 @@ PrinceEXO3Rebel=[2,1,0,0,0,0,0,1,0,0];
 PrinceEXO3Tour10018X20 =[1,2,0,0,0,1,0,0,0,0];
 PrinceEXO3Tour10016X18 =[0,1,0,0,0,0,0,1,0,0];
 
-<!--raquetas BABOLAT-->
+//raquetas BABOLAT
 BabolatAeroProDriveGT=[1,1,0,0,2,1,-1,0,1,0];
 BabolatAeroStormGT=[0,0,0,0,1,1,0,1,1,0];
 BabolatPureStormGT=[0,0,0,0,2,2,0,-1,1,0];
 BabolatPureDriveGT=[0,0,0,0,1,1,0,0,1,0];
 
-<!--raquetas WILSON-->
+//raquetas WILSON
 WilsonBLXSixOne9518x20=[0,0,1,1,1,0,1,1,0,0];
 WilsonBLXTour=[1,1,1,1,1,0,1,-1,0,0];
 WilsonSixOneTourBLX=[1,1,2,2,0,0,0,-1,0,0];
@@ -1180,12 +1174,12 @@ WilsonBLXProOpen=[1,0,1,0,0,0,0,1,0,0];
 WilsonBLXTourLimited=[0,1,0,1,1,0,0,0,0,0];
 WilsonBLXProTour=[1,1,0,0,0,0,0,0,0,0];
 
-<!--raquetas HEAD-->
+//raquetas HEAD
 HeadYoutekSpeedMP1619=[1,1,2,0,1,-1,0,1,0,0];
 HeadYoutekPrestigeMP=[1,1,2,1,0,-1,0,0,0,0];
 HeadYoutekRadicalPro=[0,0,1,0,1,0,1,0,0,0];
 
-<!--raquetas TECNIFIBRE-->
+//raquetas TECNIFIBRE
 TecnifibreTFight320VO2MAX=[1,1,1,0,0,-1,2,1,0,0];
 TecnifibreTFlash315SpeedFlex=[0,0,1,0,-1,0,2,2,0,0];
 TecnifibreTFlash295VO2MAX=[1,1,0,0,0,0,1,0,0,0];
@@ -1219,112 +1213,112 @@ raquetas[23]=TecnifibreTFlash295VO2MAX;
 raquetas[24]=TecnifibreTFlash300SpeedFlex;
 
 
-<!--Jugadores-Raquetas-->
-<!--jugadorraqueta=["Nombre del jugador (Exacto al que sale en el desplegable de jugadores),posición en el array de raquetas];-->
+//Jugadores-Raquetas
+//jugadorraqueta=["Nombre del jugador" (Exacto al que sale en el desplegable de jugadores),posiciï¿½n en el array de raquetas];
 
 jugadoresraquetas=new Array();
-jugadoresraquetas[68]=["Agassi, Andre(USA)",23]; <!--veterano-->
-jugadoresraquetas[1]=["Almagro, Nicolás(ESP)",1];
+jugadoresraquetas[68]=["Agassi, Andre(USA)",23]; //veterano
+jugadoresraquetas[1]=["Almagro, Nicolï¿½s(ESP)",1];
 jugadoresraquetas[27]=["Anderson, Kevin(RSA)",6];
-<!--jugadoresraquetas[55]=["Arguello, Facundo(ARG)",19];-->
-<!--jugadoresraquetas[2]=["Artuñedo, Andrés(ESP)",0];-->
+jugadoresraquetas[55]=["Arguello, Facundo(ARG)",19];
+jugadoresraquetas[2]=["Artuï¿½edo, Andrï¿½s(ESP)",0];
 jugadoresraquetas[97]=["Behar, Ariel(URU)",2];
 jugadoresraquetas[90]=["Bellucci, Thomaz(BRA)",6];
 jugadoresraquetas[21]=["Bemelmans, Ruben(BEL)",11];
-<!--jugadoresraquetas[32]=["Berankis, Ricardas(LTU)",0];-->
+jugadoresraquetas[32]=["Berankis, Ricardas(LTU)",0];
 jugadoresraquetas[33]=["Berdych, Tomas(CZE)",0];
-jugadoresraquetas[77]=["Borg, Bjorn(SWE)",18]; <!--veterano-->
-<!--jugadoresraquetas[63]=["Brands, Daniel(GER)",0];-->
+jugadoresraquetas[77]=["Borg, Bjorn(SWE)",18]; //veterano
+jugadoresraquetas[63]=["Brands, Daniel(GER)",0];
 jugadoresraquetas[72]=["Brown, Dustin(GER)",18];
 jugadoresraquetas[66]=["Bryan, Bob(USA)",21];
 jugadoresraquetas[94]=["Bryan, Mike(USA)",12];
-jugadoresraquetas[3]=["Carreño-Busta, Pablo(ESP)",0];
+jugadoresraquetas[3]=["Carreï¿½o-Busta, Pablo(ESP)",0];
 jugadoresraquetas[15]=["Chardy, Jeremy(FRA)",18];
 jugadoresraquetas[34]=["Cilic, Marin(CRO)",18];
-jugadoresraquetas[81]=["Connors, Jimmy(USA)",12]; <!--veterano-->
-<!--jugadoresraquetas[83]=["Coric, Borna(CRO)",0];-->
+jugadoresraquetas[81]=["Connors, Jimmy(USA)",12]; //veterano
+jugadoresraquetas[83]=["Coric, Borna(CRO)",0];
 jugadoresraquetas[95]=["Cuevas, Martin(URU)",4];
 jugadoresraquetas[96]=["Cuevas, Pablo(URU)",0];
 jugadoresraquetas[8]=["Delbonis, Federico(ARG)",11];
-jugadoresraquetas[9]=["Del Potro, Juan Martín(ARG)",12];
+jugadoresraquetas[9]=["Del Potro, Juan Martï¿½n(ARG)",12];
 jugadoresraquetas[35]=["Dimitrov, Grigor(BUL)",0];
-<!--jugadoresraquetas[36]=["Djokovic, Marko(SRB)",23];-->
+jugadoresraquetas[36]=["Djokovic, Marko(SRB)",23];
 jugadoresraquetas[37]=["Djokovic, Novak(SRB)",21];
 jugadoresraquetas[61]=["Dlouhy, Lukas(CZE)",19];
 jugadoresraquetas[38]=["Dolgopolov, Alexandr(UKR)",0];
-<!--jugadoresraquetas[39]=["Donskoy, Evgeny(RUS)",21];-->
+jugadoresraquetas[39]=["Donskoy, Evgeny(RUS)",21];
 jugadoresraquetas[62]=["Federer, Roger(SUI)",5];
 jugadoresraquetas[52]=["Ferrer, David(ESP)",0];
-jugadoresraquetas[85]=["Ferrero, Juan Carlos(ESP)",21]; <!--veterano-->
+jugadoresraquetas[85]=["Ferrero, Juan Carlos(ESP)",21]; //veterano
 jugadoresraquetas[65]=["Fognini, Fabio(ITA)",6];
-jugadoresraquetas[4]=["García-López, Guillermo(ESP)",0];
-<!--jugadoresraquetas[93]=["Gasquet, Richard(FRA)",11];-->
+jugadoresraquetas[4]=["Garcï¿½a-Lï¿½pez, Guillermo(ESP)",0];
+jugadoresraquetas[93]=["Gasquet, Richard(FRA)",11];
 jugadoresraquetas[79]=["Giannessi, Alessandro(ITA)",17];
 jugadoresraquetas[64]=["Granollers, Gerard(ESP)",0];
 jugadoresraquetas[40]=["Gulbis, Ernests(LAT)",1];
-<!--jugadoresraquetas[80]=["Haas, Tommy(GER)",1];-->
+jugadoresraquetas[80]=["Haas, Tommy(GER)",1];
 jugadoresraquetas[89]=["Haase, Robin(NED)",6];
 jugadoresraquetas[82]=["Herbert, Pierre-Hugues(FRA)",0];
 jugadoresraquetas[10]=["Isner, John(USA)",11];
 jugadoresraquetas[30]=["Istomin, Denis(UZB)",0];
 jugadoresraquetas[99]=["Johnson, Steve(USA)",0];
 jugadoresraquetas[41]=["Karlovic, Ivo(CRO)",6];
-<!--jugadoresraquetas[74]=["Kamke, Tobias(GER)",0];-->
-<!--jugadoresraquetas[42]=["Kavcic, Blaz(SLO)",19];-->
-<!--jugadoresraquetas[22]=["Kohlschreiber, Philipp(GER)",0];-->
+jugadoresraquetas[74]=["Kamke, Tobias(GER)",0];
+jugadoresraquetas[42]=["Kavcic, Blaz(SLO)",19];
+jugadoresraquetas[22]=["Kohlschreiber, Philipp(GER)",0];
 jugadoresraquetas[102]=["Kokkinakis, Thanasi(AUS)",21];
 jugadoresraquetas[88]=["Kyrgios, Nick(AUS)",21];
-<!--jugadoresraquetas[43]=["Lacko, Lukas(SVK)",0];-->
+jugadoresraquetas[43]=["Lacko, Lukas(SVK)",0];
 jugadoresraquetas[98]=["Lajovic, Dusan(SRB)",1];
-jugadoresraquetas[70]=["Laver, Rod(AUS)",7]; <!--veterano-->
-jugadoresraquetas[86]=["Lendl, Ivan(CZE)",0]; <!--veterano-->
-<!--jugadoresraquetas[16]=["Llodra, Michael(FRA)",11];-->
+jugadoresraquetas[70]=["Laver, Rod(AUS)",7]; //veterano
+jugadoresraquetas[86]=["Lendl, Ivan(CZE)",0]; //veterano
+jugadoresraquetas[16]=["Llodra, Michael(FRA)",11];
 jugadoresraquetas[92]=["Lokoli, Laurent(FRA)",4];
-jugadoresraquetas[101]=["López, Feliciano(ESP)",1];
-jugadoresraquetas[47]=["López, Marc(ESP)",21];
+jugadoresraquetas[101]=["Lï¿½pez, Feliciano(ESP)",1];
+jugadoresraquetas[47]=["Lï¿½pez, Marc(ESP)",21];
 jugadoresraquetas[44]=["Marchenko, Illya(UKR)",0];
-<!--jugadoresraquetas[49]=["Martí, Javier(ESP)",17];-->
+jugadoresraquetas[49]=["Martï¿½, Javier(ESP)",17];
 jugadoresraquetas[11]=["Mayer, Leonardo(ARG)",11];
-jugadoresraquetas[75]=["McEnroe, John(USA)",21]; <!--veterano-->
-<!--jugadoresraquetas[53]=["Melzer, Jurgen(AUT)",0];-->
-<!--jugadoresraquetas[54]=["Mónaco, Juan(ARG)",19];-->
-<!--jugadoresraquetas[17]=["Monfils, Gael(FRA)",19];-->
+jugadoresraquetas[75]=["McEnroe, John(USA)",21]; //veterano
+jugadoresraquetas[53]=["Melzer, Jurgen(AUT)",0];
+jugadoresraquetas[54]=["Mï¿½naco, Juan(ARG)",19];
+jugadoresraquetas[17]=["Monfils, Gael(FRA)",19];
 jugadoresraquetas[18]=["Murray, Andy(GBR)",1];
 jugadoresraquetas[100]=["Nadal, Rafael(ESP)",11];
 jugadoresraquetas[31]=["Nishikori, Kei(JPN)",21];
-<!--jugadoresraquetas[57]=["Paire, Benoit(FRA)",1];-->
-<!--jugadoresraquetas[28]=["Polansky, Peter(CAN)",0];-->
+jugadoresraquetas[57]=["Paire, Benoit(FRA)",1];
+jugadoresraquetas[28]=["Polansky, Peter(CAN)",0];
 jugadoresraquetas[78]=["Pospisil, Vasek(CAN)",0];
-<!--jugadoresraquetas[60]=["Przysiezny, Michal(POL)",6];-->
-<!--jugadoresraquetas[50]=["Querrey, Sam(USA)",6];-->
-jugadoresraquetas[67]=["Rafter, Patrick(AUS)",11]; <!--veterano-->
+jugadoresraquetas[60]=["Przysiezny, Michal(POL)",6];
+jugadoresraquetas[50]=["Querrey, Sam(USA)",6];
+jugadoresraquetas[67]=["Rafter, Patrick(AUS)",11]; //veterano
 jugadoresraquetas[5]=["Ramos, Albert(ESP)",18];
 jugadoresraquetas[51]=["Raonic, Milos(CAN)",18];
 jugadoresraquetas[6]=["Riba, Pere(ESP)",18];
-<!--jugadoresraquetas[56]=["Robredo, Tommy(ESP)",0];-->
-jugadoresraquetas[87]=["Safin, Marat(RUS)",10]; <!--veterano-->
-jugadoresraquetas[69]=["Sampras, Pete(USA)",6]; <!--veterano-->
-<!--jugadoresraquetas[12]=["Schwartzman, Diego Sebastian(ARG)",0];-->
+jugadoresraquetas[56]=["Robredo, Tommy(ESP)",0];
+jugadoresraquetas[87]=["Safin, Marat(RUS)",10]; //veterano
+jugadoresraquetas[69]=["Sampras, Pete(USA)",6]; //veterano
+jugadoresraquetas[12]=["Schwartzman, Diego Sebastian(ARG)",0];
 jugadoresraquetas[23]=["Seppi, Andreas(ITA)",6];
-<!--jugadoresraquetas[19]=["Serra, Florent(FRA)",0];-->
+jugadoresraquetas[19]=["Serra, Florent(FRA)",0];
 jugadoresraquetas[58]=["Sijsling, Igor(NED)",13];
-<!--jugadoresraquetas[59]=["Simon, Gilles(FRA)",15];-->
+jugadoresraquetas[59]=["Simon, Gilles(FRA)",15];
 jugadoresraquetas[13]=["Sock, Jack(USA)",1];
 jugadoresraquetas[24]=["Sousa, Joao(POR)",6];
 jugadoresraquetas[29]=["Souza, Joao(BRA)",18];
 jugadoresraquetas[45]=["Stepanek, Radek(CZE)",1];
 jugadoresraquetas[84]=["Thiem, Dominic(AUT)",21];
-<!--jugadoresraquetas[46]=["Tipsarevic, Janko(SRB)",21];-->
-<!--jugadoresraquetas[71]=["Tomic, Bernard(AUS)",0];-->
+jugadoresraquetas[46]=["Tipsarevic, Janko(SRB)",21];
+jugadoresraquetas[71]=["Tomic, Bernard(AUS)",0];
 jugadoresraquetas[20]=["Tsonga, Jo-Wilfried(FRA)",11];
-jugadoresraquetas[14]=["Velotti, Agustín(ARG)",0];
+jugadoresraquetas[14]=["Velotti, Agustï¿½n(ARG)",0];
 jugadoresraquetas[7]=["Verdasco, Fernando(ESP)",4];
 jugadoresraquetas[0]=["Vesely, Jiri(CZE)",1];
-jugadoresraquetas[76]=["Vilas, Guillermo(ARG)",5]; <!--veterano-->
-<!--jugadoresraquetas[25]=["Volandri, Filippo(ITA)",12];-->
+jugadoresraquetas[76]=["Vilas, Guillermo(ARG)",5]; //veterano
+jugadoresraquetas[25]=["Volandri, Filippo(ITA)",12];
 jugadoresraquetas[26]=["Wawrinka, Stanislas(SUI)",6];
 jugadoresraquetas[91]=["Young, Donald(USA)",4];
-<!--jugadoresraquetas[48]=["Zimonjic, Nenad(SRB)",11];-->
-<!--jugadoresraquetas[73]=["Zverev, Alexander(GER)",0];-->
+jugadoresraquetas[48]=["Zimonjic, Nenad(SRB)",11];
+jugadoresraquetas[73]=["Zverev, Alexander(GER)",0];
 
-<!--Último: 102----->
+//ï¿½ltimo: 102---
