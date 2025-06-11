@@ -97,6 +97,8 @@ function playPoint(player1, player2, tactic1, tactic2, gameState) {  //Terminado
     let pts1 = probs(player1, player2, tactic1, 1, gameState);
     let pts2 = probs(player2, player1, tactic2, 2, gameState); //(fore2, back2,vol2,drop2,spe2,sta2,ser2,pow2,rest2,form2,2,saq,consi2)
 
+    console.log("Probs/ p1: " + pts1 + " p2: " + pts2);
+
     gameState.puntosJugados++;
 
     if (pts1 == pts2) {
@@ -115,6 +117,8 @@ function playPoint(player1, player2, tactic1, tactic2, gameState) {  //Terminado
       gameState.punto1--;
       gameState.punto2--;
     }
+
+    console.log("punto1: " + gameState.punto1 + " punto2: " + gameState.punto2);
 
     //resultado(punto1, punto2, game1, game2);
     if ((gameState.punto1 == gameState.punto2) && (gameState.punto1 == 3))
@@ -398,7 +402,7 @@ function processInjury(player1, player2, gameState) {   //Terminado refactoreo
     gameState.puntosJugados == gameState.puntoLesion &&
     gameState.ya_lesion == 0
   ) {
-    calcularLesion(gameState.name1, gameState.name2);
+    processInjury(gameState.name1, gameState.name2);
     return;
   } else if (
     gameState.pLesion2 <= 40 &&
@@ -406,7 +410,7 @@ function processInjury(player1, player2, gameState) {   //Terminado refactoreo
     gameState.puntosJugados == gameState.puntoLesion &&
     gameState.ya_lesion == 0
   ) {
-    calcularLesion(gameState.name2, gameState.name1);
+    processInjury(gameState.name2, gameState.name1);
     return;
   }
 }
