@@ -764,7 +764,7 @@ function probs(player1, player2, tactic, jug, gameState) { // listo?
     else if (player1.surf1 == "neutral") sup = sup + 2.5;
     if (tactic.strategy1 == 1) sup = sup - player2.fore2;
     if (tactic.strategy1 == 2) sup = sup - player2.back2;
-    if (gameState.saq == 1) calcular(1, tactic.first1, 1, player1, { sup }, gameState.surface);
+    if (gameState.saq == 1) calcular(1, tactic.first1, tactic.second1, 1, player1, { sup }, gameState.surface);
   }
 
   if (jug == 2) {
@@ -785,7 +785,7 @@ function probs(player1, player2, tactic, jug, gameState) { // listo?
     else if (player2.surf2 == "neutral") sup = sup + 2.5;
     if (tactic.strategy2 == 1) sup = sup - player1.fore1;
     if (tactic.strategy2 == 2) sup = sup - player1.back1;
-    if (gameState.saq == 2) calcular(2, first2, 1, player2, { sup }, gameState.surface);
+    if (gameState.saq == 2) calcular(2, tactic.first2, tactic.second2, 1, player2, { sup }, gameState.surface);
   }
 
   if (gameState.surface == "clay")
@@ -804,12 +804,12 @@ function probs(player1, player2, tactic, jug, gameState) { // listo?
   return prob;
 }
 
-function calcular(jug, tipo, num, player, buffer, surface){ //terminado refactoreo
+function calcular(jug, tipoPrimerSaque, tipoSegundoSaque, num, player, buffer, surface){ //terminado refactoreo
   //console.log("Entre a calcular()");
   console.log("buffer: ",buffer);
   if (jug == 1) {
     let difi = Math.round(Math.random() * 15) + player.ser1;
-    switch (tipo) {
+    switch (tipoPrimerSaque) {
       case 1:
         if (difi > 15) {
           buffer.sup = buffer.sup + 15;
@@ -820,7 +820,7 @@ function calcular(jug, tipo, num, player, buffer, surface){ //terminado refactor
           else buffer.sup = buffer.sup + player.ser1 * 1.5;
         }
         else {
-          if (num == 1) calcular(jug, second1, 2, player, buffer);
+          if (num == 1) calcular(jug, tipoSegundoSaque, 0, 2, player, buffer);
           else buffer.sup = 0;
         }
         break;
@@ -835,7 +835,7 @@ function calcular(jug, tipo, num, player, buffer, surface){ //terminado refactor
           else buffer.sup = buffer.sup + player.ser1 * 1.5;
         }
         else {
-          if (num == 1) calcular(jug, second1, 2, player, buffer);
+          if (num == 1) calcular(jug, tipoSegundoSaque, 0, 2, player, buffer);
           else buffer.sup = 0;
         }
         break;
@@ -843,14 +843,14 @@ function calcular(jug, tipo, num, player, buffer, surface){ //terminado refactor
       case 3:
         if (difi > 10) {
           buffer.sup = buffer.sup + 5;
-          if (surface == "clay") buffer.sup = buffer.sup + ser1;
-          else if (surface = "grass") buffer.sup = buffer.sup + ser1 * 2.5;
-          else if (surface == "hardcourt") buffer.sup = buffer.sup + ser1 * 2;
-          else if (surface == "carpet") buffer.sup = buffer.sup + ser1 * 3;
+          if (surface == "clay") buffer.sup = buffer.sup + player.ser1;
+          else if (surface = "grass") buffer.sup = buffer.sup + player.ser1 * 2.5;
+          else if (surface == "hardcourt") buffer.sup = buffer.sup + player.ser1 * 2;
+          else if (surface == "carpet") buffer.sup = buffer.sup + player.ser1 * 3;
           else buffer.sup = buffer.sup + player.ser1 * 1.5;
         }
         else {
-          if (num == 1) calcular(jug, second1, 2, player, buffer);
+          if (num == 1) calcular(jug, tipoSegundoSaque, 0, 2, player, buffer);
           else buffer.sup = 0;
         }
         break;
@@ -859,7 +859,7 @@ function calcular(jug, tipo, num, player, buffer, surface){ //terminado refactor
 
   if (jug == 2) {
     let difi = Math.round(Math.random() * 15) + player.ser2;
-    switch (tipo) {
+    switch (tipoPrimerSaque) {
       case 1:
         if (difi > 15) {
           buffer.sup = buffer.sup + 15;
@@ -870,7 +870,7 @@ function calcular(jug, tipo, num, player, buffer, surface){ //terminado refactor
           else buffer.sup = buffer.sup + player.ser2 * 1.5;
         }
         else {
-          if (num == 1) calcular(jug, second2, 2, player, buffer);
+          if (num == 1) calcular(jug, tipoSegundoSaque, 0, 2, player, buffer);
           else buffer.sup = 0;
         }
         break;
@@ -885,7 +885,7 @@ function calcular(jug, tipo, num, player, buffer, surface){ //terminado refactor
           else buffer.sup = buffer.sup + player.ser2 * 1.5;
         }
         else {
-          if (num == 1) calcular(jug, second2, 2, player, buffer);
+          if (num == 1) calcular(jug, tactic.second2, 2, player, buffer);
           else buffer.sup = 0;
         }
         break;
@@ -900,7 +900,7 @@ function calcular(jug, tipo, num, player, buffer, surface){ //terminado refactor
           else buffer.sup = buffer.sup + player.ser2 * 1.5;
         }
         else {
-          if (num == 1) calcular(jug, second2, 2, player, buffer);
+          if (num == 1) calcular(jug, tactic.second2, 2, player, buffer);
           else buffer.sup = 0;
         }
         break;
