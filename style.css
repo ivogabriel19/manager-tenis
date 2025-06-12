@@ -119,14 +119,18 @@ button{
     background-color: #003366;
 }
 
-.gryBtn{
-    background-color: darkgrey;
+.blueBtn{
+    background-color: #003366;
     width: 4em;
 }
 
 .redBtn{
     background-color: red;
     width: 4em;
+}
+
+.callBtn{
+    background-color: #00adef;
 }
 
 .tactics-form {
