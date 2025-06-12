@@ -119,6 +119,11 @@ button{
     background-color: #003366;
 }
 
+.gryBtn{
+    background-color: darkgrey;
+    width: 4em;
+}
+
 .redBtn{
     background-color: red;
     width: 4em;

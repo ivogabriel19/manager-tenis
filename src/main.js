@@ -391,10 +391,14 @@ function saltarLesion(gameState) {  //Terminado refactoreo
 }
 
 function modificarVelocidad(vel, gameState) {   //Terminado refactoreo
-  if (vel == 1 && gameState.velocidad > 100)
+  if (vel == 3 && gameState.velocidad > 100)
+    gameState.velocidad = gameState.velocidad * 0.5;
+  if (vel == 2 && gameState.velocidad > 100)
     gameState.velocidad = gameState.velocidad * 0.9;
-  if (vel == 0 && gameState.velocidad < 1900)
+  if (vel == 1 && gameState.velocidad < 1900)
     gameState.velocidad = gameState.velocidad * 1.1;
+  if (vel == 0 && gameState.velocidad < 1900)
+    gameState.velocidad = gameState.velocidad * 1.5;
 }
 
 function processInjury(player1, player2, gameState) {   //Terminado refactoreo
@@ -972,12 +976,18 @@ document.getElementById("btnLaunch").addEventListener("click", () => {
 });
 
 function setUpButtons(gameState) {
-  document.getElementById("btnVelDw").addEventListener("click", () => {
+  document.getElementById("btnVelx-").addEventListener("click", () => {
     modificarVelocidad(0, gameState);
+  });
+  document.getElementById("btnVelDw").addEventListener("click", () => {
+    modificarVelocidad(1, gameState);
   });
 
   document.getElementById("btnVelUp").addEventListener("click", () => {
-    modificarVelocidad(1, gameState);
+    modificarVelocidad(2, gameState);
+  });
+  document.getElementById("btnVelx+").addEventListener("click", () => {
+    modificarVelocidad(3, gameState);
   });
 
   document.getElementById("btnStop").addEventListener("click", () => {
