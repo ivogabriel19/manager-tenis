@@ -65,8 +65,8 @@ function launch() { //Terminado refactoreo
 
 function partido(player1, player2, tactic1, tactic2, gameState) {
   //alert("listo para comenzar el partido");
-  console.log("Entre a partido(): ");
-  console.log(JSON.parse(JSON.stringify(gameState))); //fijo valores
+  //console.log("Entre a partido(): ");
+  //console.log(JSON.parse(JSON.stringify(gameState))); //fijo valores
   processInjury(player1, player2, gameState);
   processRain(player1, player2, gameState);
   processTiebreak(player1, player2, gameState);
@@ -99,8 +99,7 @@ function playPoint(player1, player2, tactic1, tactic2, gameState) {  //Terminado
     let pts1 = probs(player1, player2, tactic1, 1, gameState);
     let pts2 = probs(player1, player2, tactic2, 2, gameState);
 
-    console.log("Probs/ p1: " + pts1 + " p2: " + pts2);
-    console.log("");
+    //console.log("Probs/ p1: " + pts1 + " p2: " + pts2);
 
     gameState.puntosJugados++;
 
@@ -393,9 +392,9 @@ function saltarLesion(gameState) {  //Terminado refactoreo
 
 function modificarVelocidad(vel, gameState) {   //Terminado refactoreo
   if (vel == 1 && gameState.velocidad > 100)
-    gameState.velocidad = gameState.velocidad - 225;
+    gameState.velocidad = gameState.velocidad * 0.9;
   if (vel == 0 && gameState.velocidad < 1900)
-    gameState.velocidad = gameState.velocidad + 225;
+    gameState.velocidad = gameState.velocidad * 1.1;
 }
 
 function processInjury(player1, player2, gameState) {   //Terminado refactoreo
