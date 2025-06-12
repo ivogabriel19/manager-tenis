@@ -119,6 +119,11 @@ button{
     background-color: #003366;
 }
 
+.redBtn{
+    background-color: red;
+    width: 4em;
+}
+
 .tactics-form {
     display: flex;
     justify-content: space-between;
@@ -171,8 +176,8 @@ legend {
     text-align: right;
     height: auto;
     display: grid;
-    grid-template-columns: auto 60px 220px 20px repeat(6, 50px);
-    grid-template-rows: auto 60px 60px;
+    grid-template-columns: auto 6vw 22vw 2vw repeat(6, 5vw);
+    grid-template-rows: auto 6vh 6vh;
     gap: .15rem;
     background-color: #36b46d;
     font-family: Arial, sans-serif;
