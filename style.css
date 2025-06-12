@@ -119,9 +119,17 @@ button{
     background-color: #003366;
 }
 
+.callBtn{
+    background-color: #00adef;
+}
+
 .blueBtn{
     background-color: #003366;
     width: 4em;
+}
+
+.stopBtn{
+    transition: background 0.2s ease-in-out;
 }
 
 .redBtn{
@@ -129,8 +137,10 @@ button{
     width: 4em;
 }
 
-.callBtn{
-    background-color: #00adef;
+.ylwBtn{
+    background-color: #ffcc00;
+    color: black;
+    width: 4em;
 }
 
 .tactics-form {
