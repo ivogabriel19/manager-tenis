@@ -4,6 +4,7 @@ import { } from "./utils/game.js";
 function launch() { //Terminado refactoreo
   console.log("Entre a launch()");
   let { player1, player2, tactic1, tactic2 } = getPlayers();
+  //console.log(player1, player2, tactic1, tactic2);
   setGameStart(player1.name1, player2.name2);
   boostSkills(player1, player2, tactic1, tactic2);
 
@@ -12,6 +13,7 @@ function launch() { //Terminado refactoreo
   //saq = cambioSaque(saq);
 
   let gameState = {
+    play: true,
     punto1: 0,
     punto2: 0,
     game1: 0,
@@ -63,8 +65,8 @@ function launch() { //Terminado refactoreo
 
 function partido(player1, player2, tactic1, tactic2, gameState) {
   //alert("listo para comenzar el partido");
-  console.log("Entre a partido()");
-  console.log(gameState);
+  console.log("Entre a partido(): ");
+  console.log(JSON.parse(JSON.stringify(gameState)));
   processInjury(player1, player2, gameState);
   processRain(player1, player2, gameState);
   processTiebreak(player1, player2, gameState);
@@ -95,9 +97,10 @@ function playPoint(player1, player2, tactic1, tactic2, gameState) {  //Terminado
         si eso saliera empatado simplemente lo randomiza
      */
     let pts1 = probs(player1, player2, tactic1, 1, gameState);
-    let pts2 = probs(player2, player1, tactic2, 2, gameState); //(fore2, back2,vol2,drop2,spe2,sta2,ser2,pow2,rest2,form2,2,saq,consi2)
+    let pts2 = probs(player1, player2, tactic2, 2, gameState); //(fore2, back2,vol2,drop2,spe2,sta2,ser2,pow2,rest2,form2,2,saq,consi2)
 
     console.log("Probs/ p1: " + pts1 + " p2: " + pts2);
+    console.log("");
 
     gameState.puntosJugados++;
 
@@ -118,7 +121,7 @@ function playPoint(player1, player2, tactic1, tactic2, gameState) {  //Terminado
       gameState.punto2--;
     }
 
-    console.log("punto1: " + gameState.punto1 + " punto2: " + gameState.punto2);
+    //console.log("punto1: " + gameState.punto1 + " punto2: " + gameState.punto2);
 
     //resultado(punto1, punto2, game1, game2);
     if ((gameState.punto1 == gameState.punto2) && (gameState.punto1 == 3))
@@ -224,12 +227,12 @@ function playPoint(player1, player2, tactic1, tactic2, gameState) {  //Terminado
     //tiempo = tiempo + Math.floor(Math.random() * 90);
 
     if (gameState.numberOfSets == 5) { //5 sets
-      if (gameState.set1 < 3 && gameState.set2 < 3) {
+      if (gameState.set1 < 3 && gameState.set2 < 3 && gameState.play) {
         setTimeout(partido, gameState.velocidad, player1, player2, tactic1, tactic2, gameState);
       }
     } //3 sets
     else {
-      if (gameState.set1 < 2 && gameState.set2 < 2) {
+      if (gameState.set1 < 2 && gameState.set2 < 2 && gameState.play) {
         setTimeout(partido, gameState.velocidad, player1, player2, tactic1, tactic2, gameState);
       }
     }
@@ -252,10 +255,10 @@ function boostSkills(player1, player2, tactic1, tactic2) {  //Terminado refactor
   if (tactic2.position2 == 2) player2.pow2++;
 
   /* Bost de habilidades segun tecnica */
-  player1.fore1 = player1.fore1 + player1.technique1 * 1.5;
-  player1.back1 = player1.back1 + player1.technique1 * 1.5;
-  player2.fore2 = player2.fore2 + player2.technique2 * 1.5;
-  player2.back2 = player2.back2 + player2.technique2 * 1.5;
+  player1.fore1 = player1.fore1 + tactic1.technique1 * 1.5;
+  player1.back1 = player1.back1 + tactic1.technique1 * 1.5;
+  player2.fore2 = player2.fore2 + tactic2.technique2 * 1.5;
+  player2.back2 = player2.back2 + tactic2.technique2 * 1.5;
 }
 
 function boostSurface(surface, player1, player2) {  //Terminado refactoreo
@@ -761,7 +764,7 @@ function probs(player1, player2, tactic, jug, gameState) { // listo?
     else if (player1.surf1 == "neutral") sup = sup + 2.5;
     if (tactic.strategy1 == 1) sup = sup - player2.fore2;
     if (tactic.strategy1 == 2) sup = sup - player2.back2;
-    if (gameState.saq == 1) calcular(1, tactic.first1, 1, player1, { sup });
+    if (gameState.saq == 1) calcular(1, tactic.first1, 1, player1, { sup }, gameState.surface);
   }
 
   if (jug == 2) {
@@ -782,26 +785,28 @@ function probs(player1, player2, tactic, jug, gameState) { // listo?
     else if (player2.surf2 == "neutral") sup = sup + 2.5;
     if (tactic.strategy2 == 1) sup = sup - player1.fore1;
     if (tactic.strategy2 == 2) sup = sup - player1.back1;
-    if (gameState.saq == 2) calcular(2, first2, 1, player2, { sup });
+    if (gameState.saq == 2) calcular(2, first2, 1, player2, { sup }, gameState.surface);
   }
 
   if (gameState.surface == "clay")
-    rand = p.fo * 1.5 + p.ba * 1.5 + p.vo * 0.65 + p.dr * 1.5 + p.sp * 1.9 + p.st * 1.7 + p.po * 1.3 + p.rest * 0.25 + p.sup + p.co;
+    rand = p.fo * 1.5 + p.ba * 1.5 + p.vo * 0.65 + p.dr * 1.5 + p.sp * 1.9 + p.st * 1.7 + p.po * 1.3 + p.rest * 0.25 + sup + p.co;
   else if (gameState.surface == "grass")
-    rand = p.fo * 1.7 + p.ba * 1.7 + p.vo * 1.7 + p.dr * 0.5 + p.sp + p.st * 0.75 + p.po * 2 + p.rest * 0.75 + p.sup + p.co;
+    rand = p.fo * 1.7 + p.ba * 1.7 + p.vo * 1.7 + p.dr * 0.5 + p.sp + p.st * 0.75 + p.po * 2 + p.rest * 0.75 + sup + p.co;
   else if (gameState.surface == "hardcourt")
-    rand = p.fo * 1.7 + p.ba * 1.7 + p.vo * 1.2 + p.dr + p.sp * 1.5 + p.st * 1.5 + p.po * 1.7 + p.rest * 0.5 + p.sup + p.co;
+    rand = p.fo * 1.7 + p.ba * 1.7 + p.vo * 1.2 + p.dr + p.sp * 1.5 + p.st * 1.5 + p.po * 1.7 + p.rest * 0.5 + sup + p.co;
   else if (gameState.surface == "carpet")
-    rand = p.fo * 1.9 + p.ba * 1.9 + p.vo * 1.5 + p.dr * 0.75 + p.sp + p.st + p.po * 2.1 + p.rest + p.sup + p.co;
+    rand = p.fo * 1.9 + p.ba * 1.9 + p.vo * 1.5 + p.dr * 0.75 + p.sp + p.st + p.po * 2.1 + p.rest + sup + p.co;
   else
-    rand = p.fo * 1.5 + p.ba * 1.5 + p.vo * 1.3 + p.dr + p.sp * 1.5 + p.st * 1.5 + p.po * 1.7 + p.rest * 0.66 + p.sup + p.co;
+    rand = p.fo * 1.5 + p.ba * 1.5 + p.vo * 1.3 + p.dr + p.sp * 1.5 + p.st * 1.5 + p.po * 1.7 + p.rest * 0.66 + sup + p.co;
+
 
   let prob = Math.floor(Math.random() * (rand)) + p.form * 2;
   return prob;
 }
 
-function calcular(jug, tipo, num, player, buffer){ //terminado refactoreo
+function calcular(jug, tipo, num, player, buffer, surface){ //terminado refactoreo
   //console.log("Entre a calcular()");
+  console.log("buffer: ",buffer);
   if (jug == 1) {
     let difi = Math.round(Math.random() * 15) + player.ser1;
     switch (tipo) {
@@ -972,6 +977,10 @@ function setUpButtons(gameState) {
 
   document.getElementById("btnVelUp").addEventListener("click", () => {
     modificarVelocidad(1, gameState);
+  });
+
+  document.getElementById("btnStop").addEventListener("click", () => {
+    gameState.play = false;
   });
 }
 
