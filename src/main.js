@@ -5,7 +5,7 @@ function launch() { //Terminado refactoreo
   console.log("Entre a launch()");
   let { player1, player2, tactic1, tactic2 } = getPlayers();
   //console.log(player1, player2, tactic1, tactic2);
-  setGameStart(player1.name1, player2.name2);
+  setGameStart(player1.nomb1, player2.nomb2);
   boostSkills(player1, player2, tactic1, tactic2);
 
   /* Seteo el saque */

@@ -40,6 +40,7 @@ export function getPlayers() {
 
   let player1 = {
     name1,
+    nomb1,
     fore1,
     back1,
     vol1,
@@ -55,6 +56,7 @@ export function getPlayers() {
   };
   let player2 = {
     name2,
+    nomb2,
     fore2,
     back2,
     vol2,
