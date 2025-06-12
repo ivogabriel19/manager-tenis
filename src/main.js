@@ -66,7 +66,7 @@ function launch() { //Terminado refactoreo
 function partido(player1, player2, tactic1, tactic2, gameState) {
   //alert("listo para comenzar el partido");
   console.log("Entre a partido(): ");
-  console.log(JSON.parse(JSON.stringify(gameState)));
+  console.log(JSON.parse(JSON.stringify(gameState))); //fijo valores
   processInjury(player1, player2, gameState);
   processRain(player1, player2, gameState);
   processTiebreak(player1, player2, gameState);
@@ -97,7 +97,7 @@ function playPoint(player1, player2, tactic1, tactic2, gameState) {  //Terminado
         si eso saliera empatado simplemente lo randomiza
      */
     let pts1 = probs(player1, player2, tactic1, 1, gameState);
-    let pts2 = probs(player1, player2, tactic2, 2, gameState); //(fore2, back2,vol2,drop2,spe2,sta2,ser2,pow2,rest2,form2,2,saq,consi2)
+    let pts2 = probs(player1, player2, tactic2, 2, gameState);
 
     console.log("Probs/ p1: " + pts1 + " p2: " + pts2);
     console.log("");
@@ -206,8 +206,8 @@ function playPoint(player1, player2, tactic1, tactic2, gameState) {  //Terminado
       
       gameState.set++;
       gameState.set1++;
-      player1.sta1 = player1.sta1 - player1.technique1;
-      player2.sta2 = player2.sta2 - player2.technique2;
+      player1.sta1 = player1.sta1 - tactic1.technique1;
+      player2.sta2 = player2.sta2 - tactic2.technique2;
       gameState.game1 = 0;
       gameState.game2 = 0;
       gameState.auxgame = 0;
@@ -216,8 +216,8 @@ function playPoint(player1, player2, tactic1, tactic2, gameState) {  //Terminado
     if (gameState.game2 > 5 + gameState.auxgame) {
       gameState.set++;
       gameState.set2++;
-      player1.sta1 = player1.sta1 - player1.technique1;
-      player2.sta2 = player2.sta2 - player2.technique2;
+      player1.sta1 = player1.sta1 - tactic1.technique1;
+      player2.sta2 = player2.sta2 - tactic2.technique2;
       gameState.game1 = 0;
       gameState.game2 = 0;
       gameState.auxgame = 0;
@@ -787,6 +787,8 @@ function probs(player1, player2, tactic, jug, gameState) { // listo?
     if (tactic.strategy2 == 2) sup = sup - player1.back1;
     if (gameState.saq == 2) calcular(2, tactic.first2, tactic.second2, 1, player2, { sup }, gameState.surface);
   }
+  
+  //console.log("p:", JSON.parse(JSON.stringify(p)));
 
   if (gameState.surface == "clay")
     rand = p.fo * 1.5 + p.ba * 1.5 + p.vo * 0.65 + p.dr * 1.5 + p.sp * 1.9 + p.st * 1.7 + p.po * 1.3 + p.rest * 0.25 + sup + p.co;
