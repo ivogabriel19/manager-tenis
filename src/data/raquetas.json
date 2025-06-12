@@ -1,0 +1,402 @@
+[
+  {
+    "marca": "Prince",
+    "modelo": "EXO3Black",
+    "valores": [
+      2,
+      2,
+      0,
+      0,
+      -1,
+      0,
+      0,
+      2,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Prince",
+    "modelo": "EXO3WhiteMP",
+    "valores": [
+      2,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Prince",
+    "modelo": "EXO3Graphite",
+    "valores": [
+      1,
+      0,
+      1,
+      0,
+      0,
+      -1,
+      1,
+      2,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Prince",
+    "modelo": "EXO3Rebel",
+    "valores": [
+      2,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Prince",
+    "modelo": "EXO3Tour10018X20",
+    "valores": [
+      1,
+      2,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Prince",
+    "modelo": "EXO3Tour10016X18",
+    "valores": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Babolat",
+    "modelo": "AeroProDriveGT",
+    "valores": [
+      1,
+      1,
+      0,
+      0,
+      2,
+      1,
+      -1,
+      0,
+      1,
+      0
+    ]
+  },
+  {
+    "marca": "Babolat",
+    "modelo": "AeroStormGT",
+    "valores": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0
+    ]
+  },
+  {
+    "marca": "Babolat",
+    "modelo": "PureStormGT",
+    "valores": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      2,
+      0,
+      -1,
+      1,
+      0
+    ]
+  },
+  {
+    "marca": "Babolat",
+    "modelo": "PureDriveGT",
+    "valores": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0
+    ]
+  },
+  {
+    "marca": "Wilson",
+    "modelo": "BLXSixOne9518x20",
+    "valores": [
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Wilson",
+    "modelo": "BLXTour",
+    "valores": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      -1,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Wilson",
+    "modelo": "SixOneTourBLX",
+    "valores": [
+      1,
+      1,
+      2,
+      2,
+      0,
+      0,
+      0,
+      -1,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Wilson",
+    "modelo": "BLXBlade98",
+    "valores": [
+      1,
+      1,
+      1,
+      1,
+      0,
+      -1,
+      0,
+      1,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Wilson",
+    "modelo": "BLXBladeTour",
+    "valores": [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Wilson",
+    "modelo": "BLXProOpen",
+    "valores": [
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Wilson",
+    "modelo": "BLXTourLimited",
+    "valores": [
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Wilson",
+    "modelo": "BLXProTour",
+    "valores": [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Head",
+    "modelo": "YoutekSpeedMP1619",
+    "valores": [
+      1,
+      1,
+      2,
+      0,
+      1,
+      -1,
+      0,
+      1,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Head",
+    "modelo": "YoutekPrestigeMP",
+    "valores": [
+      1,
+      1,
+      2,
+      1,
+      0,
+      -1,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Head",
+    "modelo": "YoutekRadicalPro",
+    "valores": [
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Tecnifibre",
+    "modelo": "TFight320VO2MAX",
+    "valores": [
+      1,
+      1,
+      1,
+      0,
+      0,
+      -1,
+      2,
+      1,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Tecnifibre",
+    "modelo": "TFlash315SpeedFlex",
+    "valores": [
+      0,
+      0,
+      1,
+      0,
+      -1,
+      0,
+      2,
+      2,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Tecnifibre",
+    "modelo": "TFlash295VO2MAX",
+    "valores": [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "marca": "Tecnifibre",
+    "modelo": "TFlash300SpeedFlex",
+    "valores": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+    ]
+  }
+]
