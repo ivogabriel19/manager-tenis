@@ -5,7 +5,7 @@ let raquetas = [];
 let jugadoresraquetas = [];
 
 function cargarDesdeJSON() {
-  fetch('../data/hombres.json')
+  fetch('../src/data/hombres.json')
     .then(res => res.json())
     .then(data => {
       hombres = data.map(j => [
@@ -28,7 +28,7 @@ function cargarDesdeJSON() {
     })
     .catch(err => console.error('Error cargando jugadores:', err));
 
-  fetch('../data/raquetas.json')
+  fetch('../src/data/raquetas.json')
     .then(res => res.json())
     .then(data => {
       raquetas = data.map(r => r.valores);
@@ -36,7 +36,7 @@ function cargarDesdeJSON() {
     })
     .catch(err => console.error('Error cargando raquetas:', err));
 
-  fetch('../data/jugadoresRaquetas.json')
+  fetch('../src/data/jugadoresRaquetas.json')
     .then(response => {
         if (!response.ok) {
           throw new Error('Error al cargar el archivo JSON');
