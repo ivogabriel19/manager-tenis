@@ -23,8 +23,7 @@ function cargarDesdeJSON() {
         j.form,
         j.surf
       ]);
-      // Ahora podés usar el array `hombres` como antes
-      console.log("Jugadores cargados:", hombres);
+      //console.log("Jugadores cargados:", hombres);
     })
     .catch(err => console.error('Error cargando jugadores:', err));
 
@@ -32,7 +31,7 @@ function cargarDesdeJSON() {
     .then(res => res.json())
     .then(data => {
       raquetas = data.map(r => r.valores);
-      console.log("Raquetas cargadas:", raquetas);
+      //console.log("Raquetas cargadas:", raquetas);
     })
     .catch(err => console.error('Error cargando raquetas:', err));
 
