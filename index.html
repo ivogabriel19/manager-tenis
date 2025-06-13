@@ -26,7 +26,7 @@
           <div class="player-column">
             <h4>Jugador 1</h4>
             <label>Nombre
-              <div class="player-select">
+              <div class="container-skill-select">
                 <input id="MenosRaquetaJugador1" value="+" type="button" style="visibility:hidden"
                   onClick="AniadirRaqueta('1')"></input>
                 <select name="jugador1" id="jugador1" onChange="cargarCaracteristicas('1')">
@@ -34,17 +34,72 @@
                 </select>
               </div>
             </label>
-            <label>Derecha <select name="forehand1" id="forehand1" class="skill-select"></select></label>
-            <label>Revés <select name="backhand1" id="backhand1" class="skill-select"></select></label>
-            <label>Volea <select name="volley1" id="volley1" class="skill-select"></select></label>
-            <label>Dejada <select name="dropshot1" id="dropshot1" class="skill-select"></select></label>
-            <label>Velocidad <select name="speed1" id="speed1" class="skill-select"></select></label>
-            <label>Resistencia <select name="stamina1" id="stamina1" class="skill-select"></select></label>
-            <label>Servicio <select name="service1" id="service1" class="skill-select"></select></label>
-            <label>Potencia <select name="power1" id="power1" class="skill-select"></select></label>
-            <label>Resto <select name="resto1" id="resto1" class="skill-select"></select></label>
-            <label>Consistencia <select name="consistencia1" id="consistencia1" class="skill-select"></select></label>
-            <label>Forma <select name="form1" id="form1" class="skill-select"></select></label>
+            <label>Derecha 
+              <div class="container-skill-select">
+                <span id="span-forehand1"></span>
+                <select name="forehand1" id="forehand1" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Revés 
+              <div class="container-skill-select">
+                <span id="span-backhand1"></span>
+                <select name="backhand1" id="backhand1" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Volea 
+              <div class="container-skill-select">
+                <span id="span-volley1"></span>
+                <select name="volley1" id="volley1" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Dejada 
+              <div class="container-skill-select">
+                <span id="span-dropshot1"></span>
+                <select name="dropshot1" id="dropshot1" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Velocidad 
+              <div class="container-skill-select">
+                <span id="span-speed1"></span>
+                <select name="speed1" id="speed1" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Resistencia 
+              <div class="container-skill-select">
+                <span id="span-stamina1"></span>
+                <select name="stamina1" id="stamina1" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Servicio 
+              <div class="container-skill-select">
+                <span id="span-service1"></span>
+                <select name="service1" id="service1" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Potencia 
+              <div class="container-skill-select">
+                <span id="span-power1"></span>
+                <select name="power1" id="power1" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Resto 
+              <div class="container-skill-select">
+                <span id="span-resto1"></span>
+                <select name="resto1" id="resto1" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Consistencia 
+              <div class="container-skill-select">
+                <span id="span-consistencia1"></span>
+                <select name="consistencia1" id="consistencia1" class="skill-select"></select>
+              </div> 
+            </label>
+            <label>Forma 
+              <div class="container-skill-select">
+                <span id="span-form1"></span>
+                <select name="form1" id="form1" class="skill-select"></select>
+              </div>
+            </label>
             <label>Superficie
               <select name="surface1" id="surface1">
                 <option selected="selected" value="carpet">Indoor</option>
@@ -60,7 +115,7 @@
           <div class="player-column">
             <h4>Jugador 2</h4>
             <label>Nombre
-              <div class="player-select">
+              <div class="container-skill-select">
                 <input id="MenosRaquetaJugador2" value="+" type="button" style="visibility:hidden"
                   onClick="AniadirRaqueta('2')"></input>
                 <select name="jugador2" id="jugador2" onChange="cargarCaracteristicas('2')">
@@ -68,17 +123,72 @@
                 </select>
               </div>
             </label>
-            <label>Derecha <select name="forehand2" id="forehand2" class="skill-select"></select></label>
-            <label>Revés <select name="backhand2" id="backhand2" class="skill-select"></select></label>
-            <label>Volea <select name="volley2" id="volley2" class="skill-select"></select></label>
-            <label>Dejada <select name="dropshot2" id="dropshot2" class="skill-select"></select></label>
-            <label>Velocidad <select name="speed2" id="speed2" class="skill-select"></select></label>
-            <label>Resistencia <select name="stamina2" id="stamina2" class="skill-select"></select></label>
-            <label>Servicio <select name="service2" id="service2" class="skill-select"></select></label>
-            <label>Potencia <select name="power2" id="power2" class="skill-select"></select></label>
-            <label>Resto <select name="resto2" id="resto2" class="skill-select"></select></label>
-            <label>Consistencia <select name="consistencia2" id="consistencia2" class="skill-select"></select></label>
-            <label>Forma <select name="form2" id="form2" class="skill-select"></select></label>
+            <label>Derecha 
+              <div class="container-skill-select">
+                <span id="span-forehand2"></span>
+                <select name="forehand2" id="forehand2" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Revés 
+              <div class="container-skill-select">
+                <span id="span-backhand2"></span>
+                <select name="backhand2" id="backhand2" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Volea 
+              <div class="container-skill-select">
+                <span id="span-volley2"></span>
+                <select name="volley2" id="volley2" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Dejada 
+              <div class="container-skill-select">
+                <span id="span-dropshot2"></span>
+                <select name="dropshot2" id="dropshot2" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Velocidad 
+              <div class="container-skill-select">
+                <span id="span-speed2"></span>
+                <select name="speed2" id="speed2" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Resistencia 
+              <div class="container-skill-select">
+                <span id="span-stamina2"></span>
+                <select name="stamina2" id="stamina2" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Servicio 
+              <div class="container-skill-select">
+                <span id="span-service2"></span>
+                <select name="service2" id="service2" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Potencia 
+              <div class="container-skill-select">
+                <span id="span-power2"></span>
+                <select name="power2" id="power2" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Resto 
+              <div class="container-skill-select">
+                <span id="span-resto2"></span>
+                <select name="resto2" id="resto2" class="skill-select"></select>
+              </div>
+            </label>
+            <label>Consistencia 
+              <div class="container-skill-select">
+                <span id="span-consistencia2"></span>
+                <select name="consistencia2" id="consistencia2" class="skill-select"></select>
+              </div> 
+            </label>
+            <label>Forma 
+              <div class="container-skill-select">
+                <span id="span-form2"></span>
+                <select name="form2" id="form2" class="skill-select"></select>
+              </div>
+            </label>
             <label>Superficie
               <select name="surface2" id="surface2">
                 <option selected="selected" value="carpet">Indoor</option>

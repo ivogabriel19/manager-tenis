@@ -83,13 +83,45 @@ main {
     flex: 1;
 }
 
-.player-select input{
+
+.container-skill-select {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* margin-bottom: 1rem; */
+}
+
+.container-skill-select input{
     background-color:lightsteelblue;
     color: white;
     padding: 0 .25rem;
     border-radius: .25rem;
     font-weight: bold;
     font-size: large;
+}
+.container-skill-select span{
+    /* border: solid 1px #0be616; */
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-skill-select .suma::before {
+    content: '+';
+    display: inline-block;
+    height: 1.5rem;
+    color: #0be616;
+    font-weight: bold;
+    font-size: large;
+}
+
+.container-skill-select .resta {
+    color: #e6370b;
+}
+.container-skill-select .resta::before {
+    content: '';
 }
 
 label {
@@ -101,11 +133,14 @@ label {
 
 select,
 input[type="number"] {
-    width: 150px;
+    width: 10rem;
     padding: 6px;
     border-radius: 6px;
     border: none;
-    width: 150px;
+}
+
+.skill-select{
+    width: 3rem;
 }
 
 button{
