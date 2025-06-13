@@ -196,7 +196,7 @@ legend {
     height: auto;
     display: grid;
     grid-template-columns: auto 6vw 22vw 2vw repeat(6, 5vw);
-    grid-template-rows: auto 6vh 6vh;
+    grid-template-rows: auto 8vh 8vh;
     gap: .15rem;
     background-color: #36b46d;
     font-family: Arial, sans-serif;
@@ -212,8 +212,14 @@ legend {
     background-color: #4F000B;
     width: 100%;
     padding: 0.25rem;
-    font-weight: bold;
-    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h6{
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
 }
 
 .logo-torneo{
